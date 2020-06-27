@@ -1,7 +1,7 @@
 [user]
-	name = 8888
-	email = lee@rubiconmd.com
+  name = 8888
+  email = lee@rubiconmd.com
 [core]
-	excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [includeIf "gitdir:~/Documents/code/lee/"]
-	path = ~/.dotfiles/.gitconfig_personal
+  path = ~/.dotfiles/.gitconfig_personal
