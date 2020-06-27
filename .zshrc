@@ -1,3 +1,16 @@
+HIST_STAMPS="yyyy-mm-dd"
+ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# environment variables
+export TERM="xterm-256color"
+
+plugins=(
+  git
+  virtualenv
+  zsh-autosuggestions
+)
+
 # POWERLEVEL9K customizations
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -16,3 +29,5 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{red} $vamp %k%F{red}%f"
 # source old .zshrc
 # remove after everything is cleaned up and migrated
 source ~/.old_zshrc
+
+source $ZSH/oh-my-zsh.sh
