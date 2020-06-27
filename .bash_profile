@@ -14,3 +14,8 @@ alias gpl='git pull'
 alias gpsuo='git push --set-upstream origin'
 alias gst='git status'
 
+# general aliases
+alias dcu='docker-compose up -d --remove-orphans'
+alias rdbm='rails db:migrate'
+alias rsb='rails s -b 0.0.0.0'
+alias utcdate='date -u +%FT%TZ'
