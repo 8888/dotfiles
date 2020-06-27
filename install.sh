@@ -4,4 +4,4 @@ dir=~/.dotfiles
 
 ## create symlinks for dotfiles
 ln -s ${dir}/.bash_profile ~/.bash_profile
-
+ln -s ${dir}/.gitconfig ~/.gitconfig
