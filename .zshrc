@@ -42,3 +42,11 @@ alias utcdate='date -u +%FT%TZ'
 # RubiconMD aliases
 alias cdang='cd ~/Documents/code/rubicon-angular'
 alias cdrails='cd ~/Documents/code/rubicon'
+
+### Custom functions
+# add ssh keys to keychain
+function sak() {
+  for filename in ~/.ssh/*.pem; do
+    ssh-add -K "$filename"
+  done
+}
