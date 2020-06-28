@@ -31,3 +31,14 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{red} $vamp %k%F{red}%f"
 source ~/.old_zshrc
 
 source $ZSH/oh-my-zsh.sh
+
+# Custom aliases
+alias dcu='docker-compose up -d --remove-orphans'
+alias rdbm='rails db:migrate'
+alias rsb='rails s -b 0.0.0.0'
+alias sz="source ~/.zshrc"
+alias utcdate='date -u +%FT%TZ'
+
+# RubiconMD aliases
+alias cdang='cd ~/Documents/code/rubicon-angular'
+alias cdrails='cd ~/Documents/code/rubicon'
