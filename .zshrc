@@ -2,9 +2,14 @@ HIST_STAMPS="yyyy-mm-dd"
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-# environment variables
+### Environment variables
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
 export TERM="xterm-256color"
 
+# source expo credential environment variables
+source ~/.expo_credentials
+
+### zsh and oh-my-zsh configs
 plugins=(
   git
   virtualenv
@@ -32,7 +37,8 @@ source ~/.old_zshrc
 
 source $ZSH/oh-my-zsh.sh
 
-# Custom aliases
+### Custom aliases
+# General aliases
 alias dcu='docker-compose up -d --remove-orphans'
 alias rdbm='rails db:migrate'
 alias rsb='rails s -b 0.0.0.0'
