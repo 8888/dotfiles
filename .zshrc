@@ -1,6 +1,6 @@
 HIST_STAMPS="yyyy-mm-dd"
 ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 ### Environment variables
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
