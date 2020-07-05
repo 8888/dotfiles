@@ -17,6 +17,8 @@ plugins=(
   zsh-autosuggestions
 )
 
+source $ZSH/oh-my-zsh.sh
+
 # POWERLEVEL9K customizations
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -37,8 +39,6 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%K{$gray}%} $emoji %{%k%F{$gray}%}î
 # source old .zshrc
 # remove after everything is cleaned up and migrated
 source ~/.old_zshrc
-
-source $ZSH/oh-my-zsh.sh
 
 ### Custom aliases
 # General aliases
