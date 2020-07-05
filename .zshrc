@@ -29,7 +29,7 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%f"
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 # to see available colors run $ spectrum_ls
-local emoji="🧛🏻‍"
+local emoji="%{🧛🏻‍%2G%}"
 local gray="242"
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{$gray} $emoji %k%F{$gray}%f"
 
