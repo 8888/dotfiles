@@ -4,6 +4,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 ### Environment variables
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
+export LANG=en_US.UTF-8
 export TERM="xterm-256color"
 
 # source expo credential environment variables
@@ -26,12 +27,12 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   virtualenv
 )
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%f"
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%f%k%}"
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 # to see available colors run $ spectrum_ls
 local emoji="%{🧛🏻‍%2G%}"
 local gray="242"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{$gray} $emoji %k%F{$gray}%f"
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%K{$gray}%} $emoji %{%k%F{$gray}%}%{%f%}"
 
 # source old .zshrc
 # remove after everything is cleaned up and migrated
