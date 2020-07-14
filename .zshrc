@@ -43,6 +43,7 @@ source ~/.old_zshrc
 ### Custom aliases
 # General aliases
 alias dcu='docker-compose up -d --remove-orphans'
+alias dict='vim ~/Library/Spelling/LocalDictionary'
 alias rdbm='rails db:migrate'
 alias rsb='rails s -b 0.0.0.0'
 alias sz="source ~/.zshrc"
