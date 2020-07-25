@@ -27,7 +27,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # POWERLEVEL9K customizations
-POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%f%k%}"
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
