@@ -34,9 +34,10 @@ source ~/.old_zshrc
 # General aliases
 alias dcu='docker-compose up -d --remove-orphans'
 alias dict='vim ~/Library/Spelling/LocalDictionary'
+alias path='print -l $path'
 alias rdbm='rails db:migrate'
 alias rsb='rails s -b 0.0.0.0'
-alias sz="source ~/.zshrc"
+alias sz='source ~/.zshrc'
 alias utcdate='date -u +%FT%TZ'
 
 # RubiconMD aliases
