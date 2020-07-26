@@ -20,6 +20,7 @@ source ~/.expo_credentials
 ### zsh and oh-my-zsh configs
 plugins=(
   git
+  nvm
   virtualenv
   zsh-autosuggestions
 )
