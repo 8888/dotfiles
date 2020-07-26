@@ -1,3 +1,6 @@
+# oh-my-zsh git plugin aliases
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
+
 # General aliases
 alias dcu='docker-compose up -d --remove-orphans'
 alias dict='vim ~/Library/Spelling/LocalDictionary'
