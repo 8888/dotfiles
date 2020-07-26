@@ -28,7 +28,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 ### PATH additions
-path+=('/Users/leecostello/.local/bin')
+path+=("$HOME/.local/bin")
+path+=("$HOME/.scripts")
 
 ### Initializers
 # init rbenv
