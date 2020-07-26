@@ -30,6 +30,9 @@ source $ZSH/oh-my-zsh.sh
 # remove after everything is cleaned up and migrated
 source ~/.old_zshrc
 
+# init rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 ### Custom aliases
 # General aliases
 alias dcu='docker-compose up -d --remove-orphans'
