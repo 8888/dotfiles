@@ -27,10 +27,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# source old .zshrc
-# remove after everything is cleaned up and migrated
-source ~/.old_zshrc
+### PATH additions
+path+=('/Users/leecostello/.local/bin')
 
+### Initializers
 # init rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
