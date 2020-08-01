@@ -29,7 +29,7 @@ source $ZSH/oh-my-zsh.sh
 
 ### PATH additions
 path+=("$HOME/.local/bin")
-path+=("$HOME/.scripts")
+path+=("$HOME/.lee/bin")
 
 ### Initializers
 # init rbenv
