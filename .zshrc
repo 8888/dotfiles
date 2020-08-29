@@ -34,6 +34,7 @@ source $ZSH/oh-my-zsh.sh
 ### PATH additions
 path+=("$HOME/.local/bin")
 path+=("$HOME/.lee/bin")
+path+=("/usr/local/opt/libpq/bin") # libpq instead of full postegres install
 
 ### Initializers
 # init rbenv
