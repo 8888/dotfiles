@@ -1,0 +1,28 @@
+{
+  "breadcrumbs.enabled": true,
+  "diffEditor.renderSideBySide": true,
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.fontFamily": "HackNerdFontComplete-Regular",
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.maxColumn": 200,
+  "editor.minimap.showSlider": "always",
+  "editor.renderControlCharacters": false,
+  "editor.smoothScrolling": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.wordWrap": "on",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "[markdown]": {
+      "editor.wordWrap": "on",
+      "files.trimTrailingWhitespace": false,
+  },
+  "terminal.integrated.fontFamily": "HackNerdFontComplete-Regular",
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "window.zoomLevel": 1,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.tree.renderIndentGuides": "always"
+}

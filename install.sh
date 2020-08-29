@@ -11,3 +11,6 @@ ln -s ${dir}/.p10k.zsh ~/.p10k.zsh
 ln -s ${dir}/.lee ~/.lee
 ln -s ${dir}/.vimrc ~/.vimrc
 ln -s ${dir}/.zshrc ~/.zshrc
+
+## symlink for configs
+ln -s ${dir}/vscode/settings.json "~/Library/Application Support/Code/User/settings.json"
