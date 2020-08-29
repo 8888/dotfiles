@@ -13,4 +13,4 @@ ln -s ${dir}/.vimrc ~/.vimrc
 ln -s ${dir}/.zshrc ~/.zshrc
 
 ## symlink for configs
-ln -s ${dir}/vscode/settings.json "~/Library/Application Support/Code/User/settings.json"
+ln -s ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
