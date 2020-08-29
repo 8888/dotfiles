@@ -4,7 +4,7 @@
   "editor.detectIndentation": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
-  "editor.fontFamily": "HackNerdFontComplete-Regular",
+  "editor.fontFamily": "MesloLGS NF",
   "editor.minimap.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.minimap.maxColumn": 200,
@@ -18,9 +18,9 @@
   "files.trimTrailingWhitespace": true,
   "[markdown]": {
       "editor.wordWrap": "on",
-      "files.trimTrailingWhitespace": false,
+      "files.trimTrailingWhitespace": false
   },
-  "terminal.integrated.fontFamily": "HackNerdFontComplete-Regular",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.shell.osx": "/bin/zsh",
   "window.zoomLevel": 1,
   "workbench.editor.enablePreviewFromQuickOpen": false,
