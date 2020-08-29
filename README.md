@@ -34,3 +34,7 @@ p10k configure
 . ~/.dotfiles/install.sh
 ```
 - create real `./expo_credentials` based off of `.expo_credentials.example`
+- Install aws cli 2
+```zsh
+brew install aws
+```
