@@ -15,8 +15,8 @@ alias utcdate='date -u +%FT%TZ'
 alias gstsu='git stash save --include-untracked' #[<message>]
 
 # RubiconMD aliases
-alias cdang='cd ~/Documents/code/rubicon-angular'
-alias cdrails='cd ~/Documents/code/rubicon'
+alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
+alias cdrails='cd ~/Documents/code/rmd/rubicon'
 
 ### Custom functions
 # add ssh keys to keychain
