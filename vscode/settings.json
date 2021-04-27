@@ -16,13 +16,21 @@
   "editor.wordWrap": "on",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
+  "javascript.preferences.quoteStyle": "single",
   "[markdown]": {
       "editor.wordWrap": "on",
       "files.trimTrailingWhitespace": false
   },
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.shell.osx": "/bin/zsh",
-  "window.zoomLevel": 1,
+  "typescript.preferences.quoteStyle": "single",
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "workbench.tree.renderIndentGuides": "always"
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ],
+  "window.zoomLevel": 1
 }
