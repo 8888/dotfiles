@@ -2,7 +2,10 @@
   name = 8888
   email = leecostello1@gmail.com
 [core]
+  editor = vi
   excludesfile = ~/.gitignore_global
+[sequence]
+  editor = code --wait
 [includeIf "gitdir:~/Documents/code/rmd/"]
   path = ~/.dotfiles/.gitconfig_rmd
 [pull]
