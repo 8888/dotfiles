@@ -1,6 +1,7 @@
 {
   "breadcrumbs.enabled": true,
   "diffEditor.renderSideBySide": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "editor.detectIndentation": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
@@ -25,12 +26,9 @@
   "terminal.integrated.shell.osx": "/bin/zsh",
   "typescript.preferences.quoteStyle": "single",
   "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "workbench.tree.renderIndentGuides": "always",
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
   "window.zoomLevel": 1
 }
