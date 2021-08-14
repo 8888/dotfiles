@@ -18,6 +18,7 @@ alias gstsu='git stash save --include-untracked' #[<message>]
 # RubiconMD aliases
 alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
 alias cdrails='cd ~/Documents/code/rmd/rubicon'
+alias dumpling='~/Documents/code/rmd/rubicon/bin/dumpling'
 
 ### Custom functions
 # add ssh keys to keychain
