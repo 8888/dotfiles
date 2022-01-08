@@ -36,5 +36,5 @@ p10k configure
 - create real `./expo_credentials` based off of `.expo_credentials.example`
 - Install aws cli 2
 ```zsh
-brew install aws
+brew install awscli
 ```
