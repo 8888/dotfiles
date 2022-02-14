@@ -31,6 +31,8 @@
     "git-rebase-todo": "default"
   },
   "workbench.tree.renderIndentGuides": "always",
-  "window.zoomLevel": 1,
-  "git.autofetch": true
+  "git.autofetch": true,
+  "json.schemas": [],
+  "aws.profile": "profile:default",
+  "window.zoomLevel": 1
 }
