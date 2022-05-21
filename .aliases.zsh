@@ -1,5 +1,4 @@
 # General aliases
-alias dcu='docker-compose up -d --remove-orphans'
 alias dict='vim ~/Library/Spelling/LocalDictionary'
 alias path='print -l $path'
 alias rdbm='rails db:migrate'
@@ -14,6 +13,12 @@ alias utcdate='date -u +%FT%TZ'
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
 # if any of the above are not available, run `upgrade_oh_my_zsh`
 alias gstsu='git stash save --include-untracked' #[<message>]
+
+# Docker aliases
+alias dcu='docker-compose up -d --remove-orphans'
+alias dpsa='docker ps -a'
+alias drm='docker rm'
+alias dstp='docker stop'
 
 # RubiconMD aliases
 alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
