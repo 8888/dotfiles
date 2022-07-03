@@ -36,5 +36,7 @@
   "aws.profile": "profile:default",
   "window.zoomLevel": 1,
   "gitlens.codeLens.enabled": false,
-  "gitlens.defaultTimeFormat": null
+  "gitlens.defaultTimeFormat": null,
+  "editor.suggest.preview": true,
+  "editor.acceptSuggestionOnEnter": "on"
 }
