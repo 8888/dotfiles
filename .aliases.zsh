@@ -20,6 +20,10 @@ alias dpsa='docker ps -a'
 alias drm='docker rm'
 alias dstp='docker stop'
 
+# Terraform aliases
+alias twl='terraform workspace list'
+alias tws='terraform workspace select'
+
 # RubiconMD aliases
 alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
 alias cdrails='cd ~/Documents/code/rmd/rubicon'
