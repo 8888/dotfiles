@@ -24,6 +24,10 @@ alias dstp='docker stop'
 alias twl='terraform workspace list'
 alias tws='terraform workspace select'
 
+# Python aliases
+alias activate='source venv/bin/activate'
+alias pmvv='python3 -m venv venv'
+
 # RubiconMD aliases
 alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
 alias cdrails='cd ~/Documents/code/rmd/rubicon'
