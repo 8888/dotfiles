@@ -1,0 +1,5 @@
+#!/bin/bash
+# Displays all secrets with "prod" in its name
+# change this to accept a string as an arg
+
+aws secretsmanager list-secrets | jq '.SecretList | map(select(.Name | contains("prod"))) | .[] | {name: .Name, arn: .ARN}'

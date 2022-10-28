@@ -38,5 +38,6 @@
 		"*.ipynb": "jupyter.notebook.ipynb",
 		"git-rebase-todo": "default"
 	},
-	"workbench.tree.renderIndentGuides": "always"
+	"workbench.tree.renderIndentGuides": "always",
+	"githubPullRequests.pullBranch": "never"
 }
