@@ -34,12 +34,17 @@
 	"javascript.preferences.quoteStyle": "single",
 	"json.schemas": [],
 	"terminal.integrated.fontFamily": "MesloLGS NF",
-	"terminal.integrated.shell.osx": "/bin/zsh",
+	"terminal.integrated.profiles.osx": {
+		"zsh": {
+			"path": "/bin/zsh"
+		}
+	},
+	"terminal.integrated.defaultProfile.osx": "zsh",
 	"typescript.preferences.quoteStyle": "single",
 	"window.zoomLevel": 1,
 	"workbench.editor.enablePreviewFromQuickOpen": false,
 	"workbench.editorAssociations": {
-		"*.ipynb": "jupyter.notebook.ipynb",
+		"*.ipynb": "jupyter-notebook",
 		"git-rebase-todo": "default"
 	},
 	"workbench.tree.renderIndentGuides": "always",
