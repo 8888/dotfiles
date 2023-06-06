@@ -13,4 +13,7 @@ ln -s ${dir}/.vimrc ~/.vimrc
 ln -s ${dir}/.zshrc ~/.zshrc
 
 ## symlink for configs
+# VS Code
 ln -s ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
+# VS Code Insiders
+ln -s ${dir}/vscode/settings.json ~/"Library/Application Support/Code - Insiders/User/settings.json"

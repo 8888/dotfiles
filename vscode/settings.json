@@ -1,17 +1,13 @@
 {
-	"[markdown]": {
-		"editor.wordWrap": "on",
-		"files.trimTrailingWhitespace": false
-	},
-	"aws.profile": "profile:default",
 	"breadcrumbs.enabled": true,
 	"diffEditor.ignoreTrimWhitespace": false,
 	"diffEditor.renderSideBySide": true,
 	"editor.acceptSuggestionOnEnter": "on",
 	"editor.cursorBlinking": "phase",
-	"editor.cursorSmoothCaretAnimation": true,
+	"editor.cursorSmoothCaretAnimation": "on",
 	"editor.detectIndentation": true,
 	"editor.fontFamily": "MesloLGS NF",
+	"editor.inlineSuggest.enabled": true,
 	"editor.insertSpaces": true,
 	"editor.minimap.enabled": true,
 	"editor.minimap.maxColumn": 200,
@@ -25,6 +21,14 @@
 	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
 	"git.autofetch": true,
+	"github.copilot.enable": {
+		"*": true,
+		"yaml": true,
+		"plaintext": false,
+		"markdown": true,
+		"scminput": false
+	},
+	"githubPullRequests.pullBranch": "never",
 	"gitlens.codeLens.enabled": false,
 	"gitlens.defaultTimeFormat": null,
 	"javascript.preferences.quoteStyle": "single",
@@ -39,5 +43,11 @@
 		"git-rebase-todo": "default"
 	},
 	"workbench.tree.renderIndentGuides": "always",
-	"githubPullRequests.pullBranch": "never"
+	"[markdown]": {
+		"editor.wordWrap": "on",
+		"files.trimTrailingWhitespace": false
+	},
+	"[python]": {
+		"editor.formatOnType": true
+	}
 }
