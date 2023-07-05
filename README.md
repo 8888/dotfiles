@@ -40,7 +40,7 @@ brew install awscli
 ```
 
 ## Manual steps
-- Create ~/.pgpass since this isn't version controlled
+- Create ~/.pgpass since this isn't version controlled (set correct permissions `chmod 0600 ./.pgpass`)
 ```zsh
 localhost:5432:<dbname>:<user>:<password>
 ```
