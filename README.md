@@ -38,3 +38,9 @@ p10k configure
 ```zsh
 brew install awscli
 ```
+
+## Manual steps
+- Create ~/.pgpass since this isn't version controlled
+```zsh
+localhost:5432:<dbname>:<user>:<password>
+```
