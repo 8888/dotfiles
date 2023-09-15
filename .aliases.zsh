@@ -26,7 +26,9 @@ alias tws='terraform workspace select'
 
 # Python aliases
 alias activate='source venv/bin/activate'
+alias pip='pip3'
 alias pmvv='python3 -m venv venv'
+alias python='python3'
 
 # RubiconMD aliases
 alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
