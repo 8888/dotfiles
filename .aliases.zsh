@@ -39,6 +39,6 @@ alias dumpling='bundle exec ~/Documents/code/rmd/rubicon/bin/dumpling'
 # add ssh keys to keychain
 function sak() {
   for filename in ~/.ssh/*.pem; do
-    ssh-add -K "$filename"
+    ssh-add --apple-use-keychain "$filename"
   done
 }
