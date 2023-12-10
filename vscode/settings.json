@@ -33,6 +33,7 @@
 	"gitlens.defaultTimeFormat": null,
 	"javascript.preferences.quoteStyle": "single",
 	"json.schemas": [],
+	"notebook.lineNumbers": "on",
 	"terminal.integrated.fontFamily": "MesloLGS NF",
 	"terminal.integrated.profiles.osx": {
 		"zsh": {
