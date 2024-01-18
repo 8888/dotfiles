@@ -19,18 +19,13 @@ git clone git@github.com:8888/dotfiles.git ~/.dotfiles
 ```zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-- Install powerlevel10k for oh-my-zsh
-```zsh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
+- Install powerlevel10k for oh-my-zsh, MesloLGS NF font,
+  - https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#installation
 - Install zsh-autosuggestions plugin
 ```zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 ```
-- Install font "MesloLGS NF". Run the p10k configure command, but do not go through all the steps. Or just reset changes to `.p10k.zsh` if it makes cahnges.
-```zsh
-p10k configure
-```
+- Install VS Code
 - Setup symbolic links
 ```zsh
 . ~/.dotfiles/install.sh
