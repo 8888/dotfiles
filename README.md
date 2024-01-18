@@ -10,6 +10,7 @@ eval $(/opt/homebrew/bin/brew shellenv)
 ```zsh
 brew install git
 ```
+- Configure ssh for git: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 - Clone .dotfiles
 ```zsh
 git clone git@github.com:8888/dotfiles.git ~/.dotfiles
