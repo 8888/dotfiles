@@ -16,9 +16,10 @@ alias gstsu='git stash save --include-untracked' #[<message>]
 
 # Docker aliases
 alias dcu='docker-compose up -d --remove-orphans'
+alias dcs='docker-compose stop'
+alias dcd='docker-compose down'
 alias dpsa='docker ps -a'
 alias drm='docker rm'
-alias dstp='docker stop'
 
 # Terraform aliases
 alias twl='terraform workspace list'
