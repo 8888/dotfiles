@@ -3,6 +3,7 @@ alias dict='vim ~/Library/Spelling/LocalDictionary'
 alias path='print -l $path'
 alias sz='source ~/.zshrc'
 alias utcdate='date -u +%FT%TZ'
+alias c='cursor .'
 
 # Git aliases
 # Supplements oh-my-zsh git plugin aliases
