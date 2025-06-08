@@ -28,6 +28,7 @@ alias activate='source venv/bin/activate'
 alias pip='pip3'
 alias pmvv='python3 -m venv venv'
 alias python='python3'
+alias serve='python3 -m http.server 8000'
 
 # RubiconMD aliases
 alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
