@@ -1,10 +1,6 @@
 # General aliases
 alias dict='vim ~/Library/Spelling/LocalDictionary'
 alias path='print -l $path'
-alias rdbm='rails db:migrate'
-alias rdbms='rails db:migrate:status'
-alias rdbrb='rails db:rollback'
-alias rsb='rails s -b 0.0.0.0'
 alias sz='source ~/.zshrc'
 alias utcdate='date -u +%FT%TZ'
 
@@ -13,7 +9,7 @@ alias utcdate='date -u +%FT%TZ'
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
 # if any of the above are not available, run `upgrade_oh_my_zsh`
 alias gstsu='git stash save --include-untracked' #[<message>]
-alias uar='update_all_repos'
+alias gla='update_all_repos'
 
 # Docker aliases
 alias dcu='docker compose up -d --remove-orphans'
@@ -36,6 +32,11 @@ alias python='python3'
 alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
 alias cdrails='cd ~/Documents/code/rmd/rubicon'
 alias dumpling='bundle exec ~/Documents/code/rmd/rubicon/bin/dumpling'
+# Rails aliases
+alias rdbm='rails db:migrate'
+alias rdbms='rails db:migrate:status'
+alias rdbrb='rails db:rollback'
+alias rsb='rails s -b 0.0.0.0'
 
 ### Custom functions
 # add ssh keys to keychain
