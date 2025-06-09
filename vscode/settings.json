@@ -42,8 +42,13 @@
 		}
 	},
 	"terminal.integrated.defaultProfile.osx": "zsh",
+	"terminal.integrated.cursorBlinking": true,
 	"typescript.preferences.quoteStyle": "single",
 	"window.zoomLevel": 1,
+	"workbench.colorCustomizations": {
+		"terminal.background": "#000000",
+		"terminalCursor.foreground": "#e8e687"
+	},
 	"workbench.editor.enablePreviewFromQuickOpen": false,
 	"workbench.editorAssociations": {
 		"*.ipynb": "jupyter-notebook",
