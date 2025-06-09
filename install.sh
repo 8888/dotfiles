@@ -16,5 +16,6 @@ ln -s ${dir}/.zshrc ~/.zshrc
 # VS Code
 rm ~/"Library/Application Support/Code/User/settings.json"
 ln -s ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
-# VS Code Insiders
-# ln -s ${dir}/vscode/settings.json ~/"Library/Application Support/Code - Insiders/User/settings.json"
+# Cursor
+rm ~/Library/Application\ Support/Cursor/User/settings.json
+ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/settings.json
