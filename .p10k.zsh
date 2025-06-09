@@ -141,7 +141,7 @@
 
   # Custom icon config
   # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{🧛🏻‍%2G%} "
-  POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{🧛%} "
+  POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{🧛%2G%} "
 
   # Filler between left and right prompt on the first prompt line. You can set it to ' ', '·' or
   # '─'. The last two make it easier to see the alignment between left and right prompt and to
