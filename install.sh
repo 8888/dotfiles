@@ -12,7 +12,6 @@ rm -rf ~/.lee # prevent recursive symlinking
 ln -s ${dir}/.lee ~/.lee
 ln -s ${dir}/.vimrc ~/.vimrc
 ln -s ${dir}/.zshrc ~/.zshrc
-ln -s ${dir}/.credentials ~/.credentials
 
 ## symlink for configs
 # VS Code
