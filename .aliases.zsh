@@ -33,7 +33,7 @@ alias serve='python -m http.server 8000'
 # RubiconMD aliases
 alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
 alias cdrails='cd ~/Documents/code/rmd/rubicon'
-alias dumpling='bundle exec ~/Documents/code/rmd/rubicon/bin/dumpling'
+alias dumpling='bundle exec ~/Documents/rmd/code/rubicon/bin/dumpling'
 # Rails aliases
 alias rdbm='rails db:migrate'
 alias rdbms='rails db:migrate:status'
