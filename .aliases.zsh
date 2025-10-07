@@ -31,8 +31,8 @@ alias pmvv='python -m venv env'
 alias serve='python -m http.server 8000'
 
 # RubiconMD aliases
-alias cdang='cd ~/Documents/code/rmd/rubicon-angular'
-alias cdrails='cd ~/Documents/code/rmd/rubicon'
+alias cdang='cd ~/Documents/rmd/code/rubicon-angular'
+alias cdrails='cd ~/Documents/rmd/code/rubicon'
 alias dumpling='bundle exec ~/Documents/rmd/code/rubicon/bin/dumpling'
 # Rails aliases
 alias rdbm='rails db:migrate'
