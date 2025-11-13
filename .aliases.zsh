@@ -11,6 +11,9 @@ alias c='cursor .'
 # if any of the above are not available, run `upgrade_oh_my_zsh`
 alias gstsu='git stash save --include-untracked' #[<message>]
 alias gla='update_all_repos'
+alias gweb='url="$(git remote get-url origin \
+  | sed -E "s/^git@([^:]*):(.*)$/https:\/\/\1\/\2/; s/\.git$//")"; \
+  open "$url"'
 
 # Docker aliases
 alias dcu='docker compose up -d --remove-orphans'
