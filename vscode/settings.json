@@ -1,5 +1,7 @@
 {
 	"breadcrumbs.enabled": true,
+	"diffEditor.codeLens": true,
+	"diffEditor.hideUnchangedRegions.enabled": true,
 	"diffEditor.ignoreTrimWhitespace": false,
 	"diffEditor.renderSideBySide": true,
 	"editor.acceptSuggestionOnEnter": "on",
@@ -20,14 +22,10 @@
 	"editor.wordWrap": "on",
 	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
+	"geminicodeassist.project": "fine-agent-f0pgs",
+	"geminicodeassist.displayInlineContextHint": true,
 	"git.autofetch": true,
-	"github.copilot.enable": {
-		"*": true,
-		"yaml": true,
-		"plaintext": false,
-		"markdown": true,
-		"scminput": false
-	},
+	"github.copilot.enable": false,
 	"githubPullRequests.pullBranch": "never",
 	"gitlens.codeLens.enabled": false,
 	"gitlens.defaultTimeFormat": null,
@@ -62,5 +60,9 @@
 	},
 	"[python]": {
 		"editor.formatOnType": true
+	},
+	"[plaintext]": {
+		"files.insertFinalNewline": false,
+		"files.trimTrailingWhitespace": false
 	}
 }
