@@ -12,7 +12,7 @@ rm -rf ~/.lee # prevent recursive symlinking
 ln -s ${dir}/.lee ~/.lee
 ln -s ${dir}/.vimrc ~/.vimrc
 ln -s ${dir}/.zshrc ~/.zshrc
-ln -s ${dir}/gemini.settings.json ~/.gemini/settings.json
+ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
 ln -s ${dir}/gemini/gemini.md ~/.gemini/gemini.md
 
 ## symlink for configs

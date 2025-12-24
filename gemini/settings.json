@@ -1,14 +1,5 @@
 {
   "mcpServers": {
-    "chrome-devtools": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "chrome-devtools-mcp@latest",
-        "--autoconnect"
-      ],
-      "trust": true
-    },
     "azure": {
       "command": "npx",
       "args": [
@@ -19,6 +10,22 @@
         "--transport",
         "stdio"
       ]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--autoconnect"
+      ],
+      "trust": true
+    },
+    "context7": {
+      "httpUrl": "https://mcp.context7.com/mcp",
+      "headers": {
+        "Accept": "application/json, text/event-stream"
+      },
+      "trust": true
     },
     "github": {
       "command": "npx",
