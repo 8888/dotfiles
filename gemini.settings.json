@@ -4,14 +4,20 @@
       "command": "npx",
       "args": [
         "-y",
-        "chrome-devtools-mcp@latest"
-      ]
+        "chrome-devtools-mcp@latest",
+        "--autoconnect"
+      ],
+      "trust": true
     },
     "azure": {
       "command": "npx",
       "args": [
         "-y",
-        "@microsoft/azure-mcp-server"
+        "@azure/mcp@latest",
+        "server",
+        "start",
+        "--transport",
+        "stdio"
       ]
     }
   },
