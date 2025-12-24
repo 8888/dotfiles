@@ -20,7 +20,20 @@
       "selectedType": "oauth-personal"
     }
   },
-  "tool": {
+  "tools": {
+    "allowed": [
+      "run_shell_command(ls)",
+      "run_shell_command(chmod)",
+      "run_shell_command(git)",
+      "run_shell_command(npm)",
+      "run_shell_command(npx)",
+      "run_shell_command(yarn)"
+    ],
+    "shell": {
+      "autoAccept": true,
+      "enableInteractiveShell": true,
+      "showColor": true
+    },
     "confirmationMode": "auto"
   }
 }
