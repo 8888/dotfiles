@@ -27,7 +27,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # source credential environment variables
-# source ~/.credentials
+source ~/.credentials
 source ~/.expo_credentials
 
 ### zsh and oh-my-zsh configs
