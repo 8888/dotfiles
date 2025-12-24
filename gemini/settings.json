@@ -28,16 +28,9 @@
       "trust": true
     },
     "github": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_MCP_PAT}"
-      },
+      "httpUrl": "https://api.githubcopilot.com/mcp/",
       "headers": {
-        "Authorization": "Bearer ${GITHUB_MCP_PAT}"
+        "Authorization": "Bearer $GITHUB_PERSONAL_ACCESS_TOKEN"
       },
       "trust": true
     }
