@@ -61,7 +61,20 @@ These are the steps you must follow exactly when implementing a new feature:
 ...
 ```
 
-## Step 2: Design the Feature and Documentation
+## Step 2: Create a Feature Branch
+
+1.  After the user story is approved, create a new descriptive branch from `main` using the user story's title (e.g., `feature/user-story-title`).
+
+**Important:**
+- All subsequent work for this feature will be done on this branch.
+- Use the following Git commands:
+  ` + "`" + `` + "`" + `` + "`" + `bash
+  git checkout main
+  git pull
+  git checkout -b <branch_name>
+  ` + "`" + `` + "`" + `` + "`" + `
+
+## Step 3: Design the Feature and Documentation
 
 1.  Based on the user story, design the feature. Read the `src`, `docs`, and `config` folders as needed.
 2.  Create or update the primary design documents (`docs/DESIGN.md`, `docs/CLASS_STRUCTURE.md`).
@@ -73,7 +86,7 @@ These are the steps you must follow exactly when implementing a new feature:
 - Do not proceed until you have received the user's approval.
 - Do not modify any files outside the `docs` folder during this step.
 
-## Step 3: Write the Unit Tests
+## Step 4: Write the Unit Tests
 
 1.  Following a Test-Driven Development (TDD) approach, brainstorm a comprehensive list of test cases based on the approved design. Aim for at least 85% test coverage.
 2.  Present the list of test cases to the user for review.
@@ -84,7 +97,7 @@ These are the steps you must follow exactly when implementing a new feature:
 - Test code must mirror the folder structure of the `src` folder.
 - Use mocks instead of creating files where appropriate.
 
-## Step 4: Write the Code to Pass the Tests
+## Step 5: Write the Code to Pass the Tests
 
 1.  Formulate a detailed, step-by-step implementation plan to make the failing tests pass.
 2.  Present the plan to the user for review.
@@ -98,7 +111,7 @@ These are the steps you must follow exactly when implementing a new feature:
 - Add comments to the code for non-trivial parts.
 - Do not update documentation in the `docs` folder during this step.
 
-## Step 5: Update Final Documentation
+## Step 6: Update Final Documentation
 
 1.  Review the `docs` folder and identify any final documents that need to be updated, such as `docs/README.md`.
 2.  Present the proposed changes (as a diff) to the user. Do not show the whole document.
@@ -108,7 +121,7 @@ These are the steps you must follow exactly when implementing a new feature:
 **Important:**
 - Do not update files outside of the `docs` folder.
 
-## Step 6: Commit the Changes to Git
+## Step 7: Commit the Changes to Git
 
 1.  Summarize the changes from this user story to create a commit message.
 2.  Present the commit message to the user for review.
