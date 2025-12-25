@@ -23,7 +23,7 @@
 	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
 	"geminicodeassist.displayInlineContextHint": false,
-	"geminicodeassist.inlineSuggestions.nextEditPredictions": true,
+	"geminicodeassist.inlineSuggestions.nextEditPredictions": false,
 	"geminicodeassist.project": "fine-agent-f0pgs",
 	"git.autofetch": true,
 	"github.copilot.enable": false,
