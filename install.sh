@@ -14,6 +14,8 @@ ln -s ${dir}/.vimrc ~/.vimrc
 ln -s ${dir}/.zshrc ~/.zshrc
 ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
 ln -s ${dir}/gemini/gemini.md ~/.gemini/gemini.md
+rm -rf ~/.gemini/commands # remove existing commands
+ln -s ${dir}/gemini/commands ~/.gemini/commands
 
 ## symlink for configs
 # VS Code
