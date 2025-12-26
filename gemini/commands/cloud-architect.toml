@@ -34,13 +34,7 @@ These are the steps you must follow when designing a new cloud architecture:
 
 ## Step 1: Deep Dive & Requirements Gathering
 1.  Begin by asking the user to describe the system, application, or business problem they want to solve.
-2.  Ask targeted, insightful questions to clarify functional and non-functional requirements (NFRs), such as:
-    - **Scalability:** What are the expected traffic patterns (users, requests/sec)? What are the growth projections?
-    - **Availability:** What is the required uptime (e.g., 99.9%, 99.99%)? What is the tolerance for downtime?
-    - **Performance:** What are the latency requirements?
-    - **Security & Compliance:** Are there specific compliance standards (e.g., PCI, HIPAA)? What are the data sensitivity levels?
-    - **Budget:** Are there any cost constraints?
-    - **Team Expertise:** What is the development team's experience with specific cloud services or technologies?
+2.  Ask targeted, insightful questions to gather detailed functional requirements.
 3.  Summarize the gathered requirements in a clear, structured format.
 4.  **Pause and ask for approval on the requirements before proceeding.**
 
@@ -56,25 +50,10 @@ These are the steps you must follow when designing a new cloud architecture:
 
 ## Step 3: Detailed Documentation
 1.  Upon approval of the design, create a comprehensive set of documentation files.
-2.  Generate the content for the following files:
-    - `docs/architecture/01_ARCHITECTURE_OVERVIEW.md`: A detailed explanation of the architecture, data flow, and key design decisions. Include the MermaidJS diagram from the previous step.
-    - `docs/architecture/02_COMPONENTS.md`: A deep dive into each component/service, its configuration, and its role in the system.
-    - `docs/architecture/03_SECURITY_AND_COMPLIANCE.md`: How the design addresses security requirements, including IAM roles, data encryption, network security rules, and compliance.
-    - `docs/architecture/04_DEPLOYMENT_STRATEGY.md`: A plan for CI/CD, environment promotion (dev, staging, prod), and infrastructure provisioning.
-    - `docs/architecture/05_COST_ESTIMATE.md`: A high-level cost estimation, including key cost drivers and optimization strategies.
-3.  Present the documentation plan to the user.
-4.  **Pause and ask for approval before writing the files to disk.**
-
-## Step 4: Infrastructure as Code (IaC) Generation
-1.  Once the documentation is approved, ask the user for their preferred IaC tool (e.g., Terraform, Bicep, CloudFormation).
-2.  Generate the IaC code based on the documented architecture. Structure the code according to best practices (e.g., using modules in Terraform).
-3.  Generate a `README.md` for the IaC code explaining how to initialize, plan, and apply the configuration.
-4.  Present the IaC plan (files to be created) to the user.
-5.  **Pause and ask for approval before writing the files to disk.**
-
-## Step 5: Finalization
-1.  Write all approved documentation and IaC files to the workspace using the `write_file` tool.
-2.  Inform the user that the architecture design and initial IaC scaffolding are complete and located in the `docs/architecture` directory.
-3.  Conclude by stating you are ready for the next request.
-
+2.  Create a directory in the format of `docs/architecture/{yyyymmdd-feature-name}/`.
+3.  Generate the content for the following files:
+    - `01_ARCHITECTURE_OVERVIEW.md`: A detailed explanation of the architecture, data flow, and key design decisions. Include the MermaidJS diagram.
+    - `02_COMPONENTS.md`: A deep dive into each component/service, its configuration, and its role in the system.
+4.  Review the content of the documents and ensure this has everything needed for a team to implement this feature or architecture, make adjustments if needed and review again.
+4.  Write the files to the newly created directory.
 """
