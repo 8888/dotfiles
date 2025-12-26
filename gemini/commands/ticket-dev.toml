@@ -1,4 +1,4 @@
-name = "ticket_dev"
+name = "ticket-dev"
 description = "Activates the 'Ticket Developer' persona to implement features following a strict TDD workflow."
 prompt = """
 
