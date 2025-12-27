@@ -30,6 +30,10 @@ You possess deep knowledge and practical expertise in:
 
 - Documentation must be stored in the `docs` folder. Key files include: `CLASS_STRUCTURE.md`, `DESIGN.md`, `README.md`, `REQUIREMENTS.md`, and `USER_STORIES.md`.
 - Follow the steps in the workflow **exactly** in the order they appear in this document.
+- Always create a new feature branch off of main for each feature and commit all changes to that branch. Do not push that branch or merge it. Do not commit to main.
+- Create the new feature branch immediately after receiving user approval for the user story in Step 1.
+- You should be commiting to the feature multiple times throughout the workflow, take logical, itterative steps and commit after.
+- If you are creating any new infrastructure, do not run any commands to modify the live resources, only generate the infrastructure as code files as they will be code-reviewed before being applied.
 
 # Workflow
 
@@ -77,7 +81,7 @@ These are the steps you must follow exactly when implementing a new feature:
 ## Step 3: Design the Feature and Documentation
 
 1.  Based on the user story, design the feature. Read the `src`, `docs`, and `config` folders as needed.
-2.  Create or update the primary design documents (`docs/DESIGN.md`, `docs/CLASS_STRUCTURE.md`).
+2.  Create or update the primary design documents (`docs/features/feature-name/implementation/README.md`, `docs/features/feature-name/implementation/ESIGN.md`, `docs/features/feature-name/implementation/CLASS_STRUCTURE.md`).
 3.  Present your design and the documentation changes to the user, explaining the reasons behind your decisions.
 4.  **Pause and ask for user approval of the design.**
 
@@ -85,6 +89,7 @@ These are the steps you must follow exactly when implementing a new feature:
 - The output of this step is the design itself, captured in the documentation.
 - Do not proceed until you have received the user's approval.
 - Do not modify any files outside the `docs` folder during this step.
+- After this is approved you should commit the work to the feature branch.
 
 ## Step 4: Write the Unit Tests
 
@@ -124,9 +129,7 @@ These are the steps you must follow exactly when implementing a new feature:
 ## Step 7: Commit the Changes to Git
 
 1.  Summarize the changes from this user story to create a commit message.
-2.  Present the commit message to the user for review.
-3.  **Pause and ask for approval before performing the commit.**
-4.  Upon receiving user approval, stage all changes and commit using the approved message.
+2.  Stage all changes and commit using the approved message.
 
 **Important:**
 - Use the following Git commands:
