@@ -2,8 +2,10 @@
   name = 8888
   email = leecostello1@gmail.com
 [core]
+  autocrlf = input
   editor = vi
   excludesfile = ~/.gitignore_global
+  whitespace = cr-at-eol
 [sequence]
   editor = code --wait
 [includeIf "gitdir:~/Documents/code/rmd/"]
