@@ -56,5 +56,9 @@
       "showColor": true
     },
     "confirmationMode": "auto"
+  },
+  "hasSeenIdeIntegrationNudge": true,
+  "ide": {
+    "enabled": true
   }
 }
