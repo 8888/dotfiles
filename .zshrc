@@ -18,7 +18,7 @@ export LANG=en_US.UTF-8
 export TERM="xterm-256color"
 
 # java
-export JAVA_HOME="$(brew --prefix openjdk)"
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # nvm
