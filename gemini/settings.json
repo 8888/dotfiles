@@ -1,4 +1,8 @@
 {
+  "ide": {
+    "hasSeenNudge": true,
+    "enabled": true
+  },
   "mcpServers": {
     "azure": {
       "command": "npx",
@@ -54,10 +58,8 @@
     },
     "confirmationMode": "auto"
   },
-  "enablePreview": true,
-  "hasSeenIdeIntegrationNudge": true,
-  "ide": {
-    "enabled": true
+  "general": {
+    "previewFeatures": true
   },
   "security": {
     "auth": {
