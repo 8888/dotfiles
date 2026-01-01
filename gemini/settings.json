@@ -35,15 +35,12 @@
       "trust": true
     }
   },
-  "security": {
-    "auth": {
-      "selectedType": "oauth-personal"
-    }
-  },
   "tools": {
     "allowed": [
       "run_shell_command(ls)",
       "run_shell_command(mkdir)",
+      "run_shell_command(find)",
+      "run_shell_command(mv)",
       "run_shell_command(chmod)",
       "run_shell_command(git)",
       "run_shell_command(npm)",
@@ -57,8 +54,14 @@
     },
     "confirmationMode": "auto"
   },
+  "enablePreview": true,
   "hasSeenIdeIntegrationNudge": true,
   "ide": {
     "enabled": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
   }
 }
