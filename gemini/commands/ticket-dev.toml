@@ -84,6 +84,7 @@ These are the steps you must follow exactly when implementing a new feature:
 2.  Create or update the primary design documents (`docs/features/feature-name/implementation/README.md`, `docs/features/feature-name/implementation/ESIGN.md`, `docs/features/feature-name/implementation/CLASS_STRUCTURE.md`).
 3.  Present your design and the documentation changes to the user, explaining the reasons behind your decisions.
 4.  **Pause and ask for user approval of the design.**
+5.  Once approved and before moving to the next step, commit the design documentation to the feature branch.
 
 **Important:**
 - The output of this step is the design itself, captured in the documentation.
