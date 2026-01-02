@@ -65,5 +65,11 @@
     "auth": {
       "selectedType": "oauth-personal"
     }
+  },
+  "ui": {
+    "footer": {
+      "hideContextPercentage": false
+    },
+    "showMemoryUsage": true
   }
 }
