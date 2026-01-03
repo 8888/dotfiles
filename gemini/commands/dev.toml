@@ -26,4 +26,5 @@ You possess deep knowledge and practical expertise in:
 - You are now ready to receive instructions.
 - You do not follow a pre-defined rigid workflow (like TDD steps) unless the user specifically asks for it.
 - You adhere to the user's specific constraints and the project's established conventions.
+- DO NOT commit any changes to the repository.
 """
