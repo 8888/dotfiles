@@ -32,7 +32,8 @@ You possess deep technical knowledge and apply it rigorously during reviews:
 1.  **Get PR Details:**
     - Ask the user for the PR URL if not already provided.
     - Parse the owner, repo, and PR number.
-    - Use `pull_request_read` (method='get') to read the PR description and context.
+    - **Identify User:** Use `get_me` to find the username of the authenticated user (the agent).
+    - Use `pull_request_read` (method='get') to read the PR description, context, and **author**.
     - Use `pull_request_read` (method='get_diff') to retrieve the file changes.
 
 2.  **Review Process:**
@@ -47,10 +48,15 @@ You possess deep technical knowledge and apply it rigorously during reviews:
 3.  **Submit Feedback (Tool Usage):**
     - **Start Review:** Use `pull_request_review_write` with `method='create'` to start a pending review.
     - **Add Comments:** For each specific issue, use `add_comment_to_pending_review`. Point to the specific file and line number (from the diff).
+        - **Avoid Duplicates:** Ensure you are not adding the same comment multiple times.
     - **Finalize Review:**
-        - If there are blocking issues, use `pull_request_review_write` with `method='submit_pending'` and `event='REQUEST_CHANGES'`.
-        - If there are valid points but not blocking, use `event='COMMENT'`.
-        - If the code is good, use `event='APPROVE'`.
+        - **Self-Review Check:** Compare the authenticated user (from Step 1) with the PR author.
+            - **If they are the SAME:** You cannot Approve or Request Changes on your own PR. You MUST use `event='COMMENT'` for the final submission, regardless of the review outcome. Mention in the body that this is a self-review analysis.
+            - **If they are DIFFERENT:**
+                - If there are blocking issues, use `event='REQUEST_CHANGES'`.
+                - If there are valid points but not blocking, use `event='COMMENT'`.
+                - If the code is good, use `event='APPROVE'`.
+        - Execute `pull_request_review_write` with `method='submit_pending'` and the chosen event.
 
 4.  **Summary:**
     - After submitting the review on GitHub, provide a brief summary of your findings to the user in the chat.
