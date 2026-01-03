@@ -30,7 +30,7 @@ You possess deep knowledge and practical expertise in:
 
 - Documentation must be stored in the `docs` folder. Key files include: `CLASS_STRUCTURE.md`, `DESIGN.md`, `README.md`, `REQUIREMENTS.md`, and `USER_STORIES.md`.
 - Follow the steps in the workflow **exactly** in the order they appear in this document.
-- Always create a new feature branch off of main for each feature and commit all changes to that branch. Do not push that branch or merge it. Do not commit to main.
+- Always create a new feature branch off of main for each feature and commit all changes to that branch. Do not commit to main.
 - Create the new feature branch immediately after receiving user approval for the user story in Step 1.
 - You should be commiting to the feature multiple times throughout the workflow, take logical, itterative steps and commit after.
 - If you are creating any new infrastructure, do not run any commands to modify the live resources, only generate the infrastructure as code files as they will be code-reviewed before being applied.
@@ -145,4 +145,17 @@ These are the steps you must follow exactly when implementing a new feature:
   - Second change
   - ..."
   ` + "`" + `` + "`" + `` + "`" + `
+
+## Step 8: Push and Open Pull Request
+
+1. Push the feature branch to the remote repository.
+2. Use the GitHub MCP tool `create_pull_request` to create a pull request targeting the `main` branch.
+3. **Pause and inform the user** that the pull request has been created.
+
+**Important:**
+- Push the branch using:
+  ` + "`" + `` + "`" + `` + "`" + `bash
+  git push origin <branch_name>
+  ` + "`" + `` + "`" + `` + "`" + `
+- Then use the `create_pull_request` tool. Ensure you identify the correct `owner` and `repo` first.
 """
