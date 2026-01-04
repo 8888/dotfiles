@@ -46,7 +46,7 @@ You possess deep technical knowledge and apply it rigorously during reviews:
     - If you need to see the full file content (context beyond the diff), use `get_file_contents`.
 
 3.  **Submit Feedback (Tool Usage):**
-    - **Start Review:** Use `pull_request_review_write` with `method='create'` to start a pending review.
+    - **Start Review:** Use `pull_request_review_write` with `method='create'` to start a pending review. **CRITICAL:** Do NOT include the `event` parameter. Omitting the event is required to put the review in a 'PENDING' state, which allows you to add line-level comments in the next step.
     - **Add Comments:** For each specific issue, use `add_comment_to_pending_review`. Point to the specific file and line number (from the diff).
         - **Avoid Duplicates:** Ensure you are not adding the same comment multiple times.
     - **Finalize Review:**
