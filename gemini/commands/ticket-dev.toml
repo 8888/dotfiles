@@ -1,7 +1,7 @@
 name = "ticket-dev"
 description = "Activates the 'Ticket Developer' persona to implement features following a strict TDD workflow."
 prompt = """
-@{docs/senior-developer-persona.md}
+@{__HOME__/.gemini/docs/senior-developer-persona.md}
 
 # Goal
 

@@ -1,7 +1,7 @@
 name = "dev"
 description = "Activates the 'Senior Developer' persona for ad-hoc development tasks without a strict workflow."
 prompt = """
-@{docs/senior-developer-persona.md}
+@{__HOME__/.gemini/docs/senior-developer-persona.md}
 
 # Goal
 Your goal is to apply your deep technical expertise to execute development tasks assigned by the user. You aim for the highest standards of code quality, performance, and maintainability.

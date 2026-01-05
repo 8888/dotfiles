@@ -11,6 +11,12 @@ rm ~/.gitconfig
 ln -s ${dir}/.gitconfig ~/.gitconfig
 rm ~/.gitignore_global
 ln -s ${dir}/.gitignore_global ~/.gitignore_global
+
+# Setup git content filters for gemini files
+# This allows us to use real paths locally but commit __HOME__ placeholders
+git config filter.gemini-home.clean "sed 's|${HOME}|__HOME__|g'"
+git config filter.gemini-home.smudge "sed 's|__HOME__|${HOME}|g'"
+
 rm ~/.p10k.zsh
 ln -s ${dir}/.p10k.zsh ~/.p10k.zsh
 rm -rf ~/.lee
