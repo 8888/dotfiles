@@ -1,5 +1,5 @@
-name = "ticket-dev"
-description = "Activates the 'Ticket Developer' persona to implement features following a strict TDD workflow."
+name = "dev:ticket"
+description = "Activates the 'Senior Developer' persona to implement features following a strict software development lifecycle workflow."
 prompt = """
 @{__HOME__/.gemini/docs/senior-developer-persona.md}
 

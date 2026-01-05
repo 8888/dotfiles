@@ -1,4 +1,4 @@
-name = "dev"
+name = "dev:task"
 description = "Activates the 'Senior Developer' persona for ad-hoc development tasks without a strict workflow."
 prompt = """
 @{__HOME__/.gemini/docs/senior-developer-persona.md}
