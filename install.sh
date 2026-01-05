@@ -2,7 +2,7 @@
 
 dir=~/.dotfiles
 
-## create symlinks for dotfiles
+## symlinks for dotfiles
 rm ~/.aliases.zsh
 ln -s ${dir}/.aliases.zsh ~/.aliases.zsh
 rm ~/.bash_profile
@@ -19,17 +19,22 @@ rm ~/.vimrc
 ln -s ${dir}/.vimrc ~/.vimrc
 rm ~/.zshrc
 ln -s ${dir}/.zshrc ~/.zshrc
-rm ~/.gemini/settings.json
-ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
-rm ~/.gemini/gemini.md
-ln -s ${dir}/gemini/gemini.md ~/.gemini/gemini.md
-rm -rf ~/.gemini/commands
-ln -s ${dir}/gemini/commands ~/.gemini/commands
 
 ## symlink for configs
 # VS Code
 rm ~/"Library/Application Support/Code/User/settings.json"
 ln -s ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
+
 # Cursor
 rm ~/Library/Application\ Support/Cursor/User/settings.json
 ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/settings.json
+
+# Gemini
+rm ~/.gemini/settings.json
+ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
+rm ~/.gemini/gemini.md
+ln -s ${dir}/gemini/gemini.md ~/.gemini/gemini.md
+rm -rf ~/.gemini/docs
+ln -s ${dir}/gemini/docs ~/.gemini/docs
+rm -rf ~/.gemini/commands
+ln -s ${dir}/gemini/commands ~/.gemini/commands
