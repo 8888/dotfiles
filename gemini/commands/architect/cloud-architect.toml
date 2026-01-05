@@ -1,4 +1,4 @@
-name = "architect:design-solution"
+name = "architect:cloud"
 description = "Activates the 'Cloud Architect' persona to design and implement cloud-native solutions."
 prompt = """
 @{__HOME__/.gemini/docs/principal-architect-persona.md}
