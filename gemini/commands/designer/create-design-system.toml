@@ -1,9 +1,9 @@
 name = "designer:create-design-system"
-description = "Activates the 'Design System Creator' persona to create a web-app design system."
+description = "Activates the 'Design System Creator' persona to create a React/Storybook design system."
 prompt = """
 @{__HOME__/.gemini/docs/senior-designer-persona.md}
 
-Goal: Create a custom, high-fidelity Design System for a web app project. Tech Stack: HTML5, Tailwind CSS (via CDN), and Vanilla JS.
+Goal: Create a custom, high-fidelity Design System for a web app project. Tech Stack: React, TypeScript, Tailwind CSS, and Storybook.
 
 Process: Do not generate any code yet. We will follow a two-step process:
 
@@ -18,29 +18,25 @@ Ask me 3-5 pointed, high-level questions to determine the "Mood and Feel" and fu
 Step 2: The Execution (To be done AFTER I answer)
 Once I answer, YOU will make the executive design decisions. You will engineer a design system that balances beautiful aesthetics with rigorous usability and accessibility standards (ensuring color contrast ratios meet WCAG AA/AAA).
 
-You will choose the color palette, typography pairings, and spatial system. Then, generate two specific artifacts:
+You will choose the color palette, typography pairings, and spatial system. Then, you will generate the implementation:
 
-Artifact 1: styleguide.html
-- Use the Tailwind CDN: <script src="https://cdn.tailwindcss.com"></script>.
-- Crucial: Include a comprehensive custom configuration script: <script> tailwind.config = { theme: { extend: { ... } } } </script>.
-- Map your design decisions to semantic Tailwind names (e.g., primary, secondary, accent, surface, error).
-- Create a visually stunning, responsive style guide section demonstrating:
-    - Typography Scale (with readability in mind).
-    - Color Palette (showing contrast ratios where applicable).
-    - Component Library: Buttons (states: hover, active, focus), Inputs, Cards, Alerts, and Navigation elements.
-    - Accessibility Features: Clear focus indicators and readable text over backgrounds.
-- Ensure this file serves as the definitive "Source of Truth" for the frontend. A developer should be able to copy-paste component HTML from this file to build any new feature and have it immediately adhere to the design vision.
+Artifact 1: Project Implementation
+- You are responsible for setting up or adding to the project structure.
+- Implementation details:
+    - **React Components**: Create atomic components (e.g., `Button.tsx`, `Input.tsx`, `Card.tsx`) in `src/components/design-system`.
+    - **Styling**: Use Tailwind CSS for styling. Ensure `tailwind.config.js` is updated with your semantic color/font choices.
+    - **Storybook**: Create stories (e.g., `Button.stories.tsx`) for each component to demonstrate states (hover, focus, disabled, variants).
+    - **Accessibility**: Ensure proper ARIA attributes and keyboard navigation are built into the React components.
 
 Artifact 2: styleguide.toml
 - A TOML file acting as a "System Prompt" for future AI agents.
 - It must capture the intentional logic and purposeful design decisions made.
 - Structure it with:
-    - [theme.colors]: Semantic mapping.
+    - [theme.colors]: Semantic mapping (e.g., primary, destructive, surface).
     - [theme.typography]: Font families, weights, and scale logic.
     - [components.rules]: Layout, spacing, and interaction guidelines.
     - [accessibility.standards]: Explicit rules for contrast and usability.
-- This file must provide the "Implementation Contract". It must be so comprehensive that a frontend engineer (or AI) can read it and instantly understand how to implement a new feature (e.g., "How much padding does a container have?", "Which shadow do we use for dropdowns?") without needing to ask the designer.
+- This file must provide the "Implementation Contract". It must be so comprehensive that a frontend engineer (or AI) can read it and instantly understand the design tokens and rules.
 
 Action: Please start with Step 1 and ask me your design strategy questions.
-
 """
