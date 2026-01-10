@@ -33,6 +33,9 @@ alias python='python3'
 alias pmvv='python -m venv env'
 alias serve='python -m http.server 8000'
 
+# Gemini aliases
+alias gemini='gemini --include-directories ~/.gemini/docs'
+
 # RubiconMD aliases
 alias cdang='cd ~/Documents/rmd/code/rubicon-angular'
 alias cdrails='cd ~/Documents/rmd/code/rubicon'
