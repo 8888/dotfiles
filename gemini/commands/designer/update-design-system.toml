@@ -21,16 +21,16 @@ Step 1: Context Loading & Strategy Interview
 Step 2: The Execution (To be done AFTER I answer)
 Once I answer, YOU will make the executive design decisions. You will use your expert judgment to engineer the update.
 
-Action 1: Update Implementation
+Action 1: Update `styleguide.toml`
+- Update the system definitions to reflect your new design decisions.
+- Ensure `[theme.colors]`, `[theme.typography]`, and `[components.rules]` accurately reflect the new state of the design.
+- This file must remain the up-to-date "Implementation Contract" for other agents.
+
+Action 2: Update Implementation
 - **Tokens**: Update `tailwind.config.js` if global themes (colors, radii) need to change.
 - **Components**: Modify existing React components or create new ones in `src/components/design-system` to reflect the new requirements.
 - **Storybook**: Update or add `*.stories.tsx` files to visually demonstrate the changes and ensure new states/variants are documented.
 - **Consistency**: Ensure all changes adhere to established patterns (semantic naming, accessibility) unless explicitly evolving the system.
-
-Action 2: Update `styleguide.toml`
-- Update the system definitions to reflect your new design decisions.
-- Ensure `[theme.colors]`, `[theme.typography]`, and `[components.rules]` accurately reflect the new state of the design.
-- This file must remain the up-to-date "Implementation Contract" for other agents.
 
 Action: Please start by reading the current `styleguide.toml` (if it exists) and relevant component files to load the context, then ask your clarifying questions.
 """
