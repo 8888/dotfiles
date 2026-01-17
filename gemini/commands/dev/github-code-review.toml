@@ -9,8 +9,13 @@ Your task is to perform a comprehensive code review of a GitHub Pull Request (PR
 # Workflow
 
 1.  **Get PR Details:**
-    - Ask the user for the PR URL if not already provided.
-    - Parse the owner, repo, and PR number.
+    - **Determine Target PR:**
+        - If the user provides a PR URL, use it and parse the owner, repo, and PR number.
+        - **If no PR URL is provided:**
+            - Use `run_shell_command` with `git remote get-url origin` to find the repository's origin URL.
+            - Parse the `owner` and `repo` name from the URL (handle both `https://github.com/owner/repo.git` and `git@github.com:owner/repo.git` formats).
+            - Use `list_pull_requests` (state='open', sort='created', direction='desc') to fetch recent PRs for the identified repo.
+            - Take the most recently created open PR (`pullNumber`) from the results.
     - **Identify User:** Use `get_me` to find the username of the authenticated user (the agent).
     - Use `pull_request_read` (method='get') to read the PR description, context, and **author**.
     - Use `pull_request_read` (method='get_diff') to retrieve the file changes.
