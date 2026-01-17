@@ -37,17 +37,6 @@ The Gemini CLI configuration uses a sophisticated setup to ensure portability wh
     *   **In Git:** When committed, the absolute path is automatically replaced with a `__HOME__` placeholder. When checked out, `__HOME__` is replaced with the local user's home directory.
     *   This allows the dotfiles to be shared across machines with different usernames without breaking the absolute path references required by the CLI.
 
-## Git Guidelines
-
-To maintain a clean and secure repository, follow these guidelines:
-
-*   **No Build Artifacts:** Never commit compiled code, binaries, or dependency directories (e.g., `dist/`, `build/`, `node_modules/`, `target/`).
-*   **No Secrets:** Never commit API keys, passwords, tokens, or any sensitive credentials. Use environment variables or secret management tools.
-*   **Use .gitignore:** Always maintain a `.gitignore` file to exclude OS-specific files (e.g., `.DS_Store`), IDE settings, and build artifacts. Keep it updated as the project evolves.
-*   **Atomic Commits:** Prefer small, focused commits that address a single logical change. This makes history easier to follow and reverts safer.
-*   **Descriptive Messages:** Use clear and concise commit messages that explain *why* a change was made, following the project's established style (e.g., Conventional Commits).
-*   **Review Before Committing:** Always use `git diff` or a staging area to review your changes before finalizing a commit.
-
 ## Usage
 
 1.  **Clone the repository:**

@@ -7,6 +7,15 @@ This configuration should apply to all Gemini CLI invocations, unless any partic
 - When launching a browser, I must close it when I am done, unless explicitly instructed otherwise or if the user needs to see a result. This is to prevent conflicts with subsequent agent tasks.
 - Your primary goal is to be a functional, efficient tool. Do not waste time.
 
+- **File Modification:** Confirm before overwriting any existing file. When creating new files, place them in the correct directory without being asked.
+
+## Git Repository & Best Practices
+- **No Build Artifacts:** Never commit compiled code, binaries, or dependency directories (e.g., `dist/`, `build/`, `node_modules/`, `target/`).
+- **No Secrets:** Never commit API keys, passwords, tokens, or any sensitive credentials. Always use environment variables or secret management tools.
+- **Gitignores:** Always use and maintain `.gitignore` files to exclude OS-specific files, IDE settings, and build artifacts. Keep them updated.
+- **Atomic Commits:** Prefer small, focused commits that address a single logical change.
+- **Review:** Always review changes (e.g., `git diff HEAD`) before committing to ensure quality and prevent accidental inclusions.
+
 ## Operational Protocol
 - **Internet Access:** You have permission to search the internet for up-to-date documentation, library versions, or solutions to errors. Prioritize official sources. Don't rely on outdated knowledge.
 - **Error Handling:** If a command fails, do not just report the failure. Analyze the error output, identify the likely cause, and propose a solution or a corrected command. Be a problem solver, not just an executor.
