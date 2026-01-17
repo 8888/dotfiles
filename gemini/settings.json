@@ -52,7 +52,9 @@
       "run_shell_command(head)",
       "run_shell_command(npm)",
       "run_shell_command(npx)",
-      "run_shell_command(yarn)"
+      "run_shell_command(yarn)",
+      "run_shell_command(echo)",
+      "run_shell_command(pbcopy)"
     ],
     "shell": {
       "autoAccept": true,
