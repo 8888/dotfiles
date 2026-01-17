@@ -26,9 +26,11 @@ Your task is to perform a comprehensive code review of a GitHub Pull Request (PR
     - If you need to see the full file content (context beyond the diff), use `get_file_contents`.
 
 3.  **Submit Feedback:**
-    - **Step 3a: Start Pending Review:**
-        - Use `pull_request_review_write` with `method='create'`.
-        - **CRITICAL:** Do NOT include the `event` parameter. This creates a "PENDING" review object required for batching comments.
+    - **Step 3a: Ensure Clean State & Start Pending Review:**
+        - **Clear Stale Reviews:** Attempt to delete any existing pending review using `pull_request_review_write` with `method='delete_pending'`.
+            - *Note:* If this fails (e.g., because no pending review exists), explicitly IGNORE the error and proceed. This ensures we don't append duplicate comments to a previous failed run.
+        - **Create New Review:** Use `pull_request_review_write` with `method='create'`.
+        - **CRITICAL:** Do NOT include the `event` parameter. This creates a fresh "PENDING" review object.
 
     - **Step 3b: Add Comments to Pending Review:**
         - **Deduplication Strategy (MANDATORY):**
