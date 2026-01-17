@@ -19,7 +19,10 @@ Your task is to perform a comprehensive code review of a GitHub Pull Request (PR
     - **Identify User:** Use `get_me` to find the username of the authenticated user (the agent).
     - Use `pull_request_read` (method='get') to read the PR description, context, and **author**.
     - Use `pull_request_read` (method='get_diff') to retrieve the file changes.
-    - **Fetch Existing Comments:** Use `pull_request_read` (method='get_review_comments') to retrieve existing review threads. **You MUST read these to avoid repeating yourself or others.**
+    - **Fetch Existing Comments:**
+        - Use `pull_request_read` (method='get_review_comments') to retrieve existing review threads.
+        - Use `pull_request_read` (method='get_comments') to retrieve conversation-level comments.
+        - **You MUST read both to avoid repeating yourself or others.**
 
 2.  **Review Process:**
     - Analyze the diffs carefully. Look for:
@@ -31,35 +34,26 @@ Your task is to perform a comprehensive code review of a GitHub Pull Request (PR
     - If you need to see the full file content (context beyond the diff), use `get_file_contents`.
 
 3.  **Submit Feedback:**
-    - **Step 3a: Ensure Clean State & Start Pending Review:**
-        - **Clear Stale Reviews:** Attempt to delete any existing pending review using `pull_request_review_write` with `method='delete_pending'`.
-            - *Note:* If this fails (e.g., because no pending review exists), explicitly IGNORE the error and proceed. This ensures we don't append duplicate comments to a previous failed run.
-        - **Create New Review:** Use `pull_request_review_write` with `method='create'`.
-        - **CRITICAL:** Do NOT include the `event` parameter. This creates a fresh "PENDING" review object.
-
-    - **Step 3b: Add Comments to Pending Review:**
+    - **Step 3a: Post Individual Findings:**
         - **Deduplication Strategy (MANDATORY):**
-            - Iterate through every intended comment.
-            - Cross-reference with the `existing_comments` from Step 1.
-            - **CRITICAL:** If **ANY** comment already exists on the same `file` and `line` (regardless of who posted it, but ESPECIALLY if YOU posted it), compare the *meaning*.
-            - **DO NOT POST** if a substantially similar comment exists.
-            - **DO NOT POST** if the issue has already been pointed out.
-            - **DO NOT POST** identical feedback to what you gave in a previous review iteration.
-            - **ONLY POST** if it is a *new* observation or a specific reply to a fix that is still incorrect (and explicitly reference the previous context if so).
-        - For each *new, unique* issue found in Step 2, use `add_comment_to_pending_review`.
-        - **Parameters:** Provide the `path`, `body`, and `line` (the line number in the diff) for each comment.
-        - **Batching:** Do this for *all* comments before moving to the next step.
+            - Iterate through every intended finding.
+            - Cross-reference with both `review_comments` and `get_comments` from Step 1.
+            - **CRITICAL:** If a substantially similar comment exists (regardless of author, but especially if YOU posted it), **DO NOT POST**.
+        - For each *new, unique* issue found in Step 2:
+            - Use `add_issue_comment` (using the PR number as `issue_number`).
+            - The comment `body` MUST clearly specify the file and line/context for the finding (e.g., "In `path/to/file.py`, line 42: ...").
 
-    - **Step 3c: Finalize and Submit:**
+    - **Step 3b: Submit Final Summary and Action:**
         - **Check Author:** Compare the authenticated user (from Step 1) with the PR author (from Step 1).
-        - **Action:** Use `pull_request_review_write` with `method='submit_pending'`.
+        - **Action:** Use `pull_request_review_write` with `method='create'`.
+        - **Parameters:** Provide a concise final summary in the `body`.
         - **Event Logic:**
-            - **IF User == Author (Self-Review):** You MUST use `event='COMMENT'`. You cannot Approve or Request Changes on your own PR.
+            - **IF User == Author (Self-Review):** You MUST use `event='COMMENT'`.
             - **IF User != Author (Peer Review):**
-                - `event='REQUEST_CHANGES'` if there are blocking issues.
-                - `event='APPROVE'` if the code is good.
-                - `event='COMMENT'` if you have feedback but it is not blocking.
+                - `event='REQUEST_CHANGES'` if there are blocking issues found.
+                - `event='APPROVE'` if the code is solid and no blocking issues were identified.
+                - `event='COMMENT'` if you have non-blocking feedback but no major concerns.
 
 4.  **Summary:**
-    - After submitting the review on GitHub, provide a brief summary of your findings to the user in the chat.
+    - Provide a brief confirmation to the user that the review and individual comments have been posted.
 """
