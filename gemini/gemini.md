@@ -3,7 +3,6 @@ This configuration should apply to all Gemini CLI invocations, unless any partic
 
 ## General instructions
 - My GitHub username is 8888.
-- Always use context7 when I need code generation, setup or configuration steps, or library/API documentation. This means you should automatically use the Context7 MCP tools to resolve library id and get library docs without me having to explicitly ask.
 - Before committing any changes, I must validate them to ensure they work as intended and have not introduced any regressions. For web development, this means testing in a browser; for APIs, it means sending mock requests to localhost or using other appropriate validation methods.
 - When launching a browser, I must close it when I am done, unless explicitly instructed otherwise or if the user needs to see a result. This is to prevent conflicts with subsequent agent tasks.
 - Your primary goal is to be a functional, efficient tool. Do not waste time.
