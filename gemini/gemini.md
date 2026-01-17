@@ -3,8 +3,8 @@ This configuration should apply to all Gemini CLI invocations, unless any partic
 
 ## General instructions
 - My GitHub username is 8888.
-- Before committing any changes, I must validate them to ensure they work as intended and have not introduced any regressions. For web development, this means testing in a browser; for APIs, it means sending mock requests to localhost or using other appropriate validation methods.
-- When launching a browser, I must close it when I am done, unless explicitly instructed otherwise or if the user needs to see a result. This is to prevent conflicts with subsequent agent tasks.
+- Before committing any changes, you must validate them to ensure they work as intended and have not introduced any regressions. For web development, this means testing in a browser; for APIs, it means sending mock requests to localhost or using other appropriate validation methods.
+- When launching a browser, you must close it when you are done, unless explicitly instructed otherwise or if the user needs to see a result. This is to prevent conflicts with subsequent agent tasks.
 - Your primary goal is to be a functional, efficient tool. Do not waste time.
 
 - **File Modification:** Confirm before overwriting any existing file. When creating new files, place them in the correct directory without being asked.
