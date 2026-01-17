@@ -14,6 +14,7 @@ Your task is to perform a comprehensive code review of a GitHub Pull Request (PR
     - **Identify User:** Use `get_me` to find the username of the authenticated user (the agent).
     - Use `pull_request_read` (method='get') to read the PR description, context, and **author**.
     - Use `pull_request_read` (method='get_diff') to retrieve the file changes.
+    - **Fetch Existing Comments:** Use `pull_request_read` (method='get_review_comments') to retrieve existing review threads. This is CRITICAL to prevent duplicate comments.
 
 2.  **Review Process:**
     - Analyze the diffs carefully. Look for:
@@ -30,7 +31,10 @@ Your task is to perform a comprehensive code review of a GitHub Pull Request (PR
         - **CRITICAL:** Do NOT include the `event` parameter. This creates a "PENDING" review object required for batching comments.
 
     - **Step 3b: Add Comments to Pending Review:**
-        - For each specific issue found in Step 2, use `add_comment_to_pending_review`.
+        - **Deduplication:** Before adding ANY comment, check the existing comments fetched in Step 1.
+            - IF a comment with similar content already exists on the same file and line (even if from a previous pending review or submitted review), do **NOT** add it again.
+            - This check is mandatory to avoid spamming the PR.
+        - For each *new, unique* issue found in Step 2, use `add_comment_to_pending_review`.
         - **Parameters:** Provide the `path`, `body`, and `line` (the line number in the diff) for each comment.
         - **Batching:** Do this for *all* comments before moving to the next step.
 
