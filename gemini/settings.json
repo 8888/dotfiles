@@ -54,7 +54,8 @@
       "run_shell_command(npx)",
       "run_shell_command(yarn)",
       "run_shell_command(echo)",
-      "run_shell_command(pbcopy)"
+      "run_shell_command(pbcopy)",
+      "run_shell_command(gradlew)"
     ],
     "shell": {
       "autoAccept": true,
