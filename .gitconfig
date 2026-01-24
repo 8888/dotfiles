@@ -8,8 +8,6 @@
   whitespace = cr-at-eol
 [sequence]
   editor = code --wait
-[includeIf "gitdir:~/Documents/code/rmd/"]
-  path = ~/.dotfiles/.gitconfig_rmd
 [pull]
   rebase = true
 [init]
@@ -19,3 +17,14 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+# Conditional includes for different environments
+# Work
+[includeIf "gitdir:~/Documents/work/"]
+  path = ~/.dotfiles/git/work.gitconfig
+[includeIf "gitdir:~/Documents/code/rmd/"]
+  path = ~/.dotfiles/git/work.gitconfig
+
+# Home (Optional specific overrides)
+[includeIf "gitdir:~/Documents/personal/"]
+  path = ~/.dotfiles/git/home.gitconfig
