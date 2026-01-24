@@ -50,9 +50,13 @@ if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
 fi
 
 # Install essential Brew packages
-echo -e "${BLUE}Updating and installing essential brew packages...${NC}"
-brew update
-brew install git awscli
+echo -e "${BLUE}Checking essential brew packages...${NC}"
+for pkg in git awscli; do
+    if ! brew list $pkg &>/dev/null; then
+        echo -e "${BLUE}Installing $pkg...${NC}"
+        brew install $pkg
+    fi
+done
 
 # Install VS Code if missing
 if ! command -v code &> /dev/null; then
