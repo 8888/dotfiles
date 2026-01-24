@@ -26,9 +26,13 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 ```
 - Install VS Code
-- Setup symbolic links
+- Setup symbolic links and profile
 ```zsh
-. ~/.dotfiles/install.sh
+# For a home computer (default)
+~/.dotfiles/install.sh home
+
+# For a work computer
+~/.dotfiles/install.sh work
 ```
 - create real `./expo_credentials` based off of `.expo_credentials.example`
 - Install aws cli 2
