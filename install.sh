@@ -3,6 +3,7 @@
 # Define colors for output
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
+RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 dir=~/.dotfiles
@@ -49,19 +50,12 @@ if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
 fi
 
-# Install essential Brew packages
-echo -e "${BLUE}Checking essential brew packages...${NC}"
-for pkg in git awscli; do
-    if ! brew list $pkg &>/dev/null; then
-        echo -e "${BLUE}Installing $pkg...${NC}"
-        brew install $pkg
-    fi
-done
-
-# Install VS Code if missing
-if ! command -v code &> /dev/null; then
-    echo -e "${BLUE}Installing Visual Studio Code...${NC}"
-    brew install --cask visual-studio-code
+# Install Brew packages via Brewfile
+echo -e "${BLUE}Installing packages from Brewfile...${NC}"
+if [ -f "${dir}/Brewfile" ]; then
+    brew bundle --file="${dir}/Brewfile"
+else
+    echo -e "${RED}Brewfile not found in ${dir}${NC}"
 fi
 
 # --- Symlinking ---
