@@ -17,6 +17,51 @@ fi
 
 echo -e "${GREEN}Installing dotfiles with profile: $PROFILE${NC}"
 
+# --- Prerequisites ---
+
+# Check for Homebrew
+if ! command -v brew &> /dev/null; then
+    echo -e "${BLUE}Installing Homebrew...${NC}"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    echo -e "${BLUE}Homebrew already installed.${NC}"
+fi
+
+# Check for Oh My Zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo -e "${BLUE}Installing Oh My Zsh...${NC}"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+else
+    echo -e "${BLUE}Oh My Zsh already installed.${NC}"
+fi
+
+# Install Oh My Zsh plugins & themes
+ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
+
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+    echo -e "${BLUE}Installing zsh-autosuggestions...${NC}"
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+fi
+
+if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+    echo -e "${BLUE}Installing powerlevel10k...${NC}"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
+fi
+
+# Install essential Brew packages
+echo -e "${BLUE}Updating and installing essential brew packages...${NC}"
+brew update
+brew install git awscli
+
+# Install VS Code if missing
+if ! command -v code &> /dev/null; then
+    echo -e "${BLUE}Installing Visual Studio Code...${NC}"
+    brew install --cask visual-studio-code
+fi
+
+# --- Symlinking ---
+
 # Save profile to file for .zshrc to read
 echo "$PROFILE" > ~/.dotfiles_profile
 
