@@ -10,9 +10,6 @@ alias c='cursor .'
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
 alias gstsu='git stash save --include-untracked' #[<message>]
 alias gla='update_all_repos'
-alias gweb='url="$(git remote get-url origin \
-  | sed -E "s/^git@([^:]*):(.*)$/https:\/\/\1\/\2/" | s/\.git$//)"'; \
-  open "$url"'
 
 # Docker aliases
 alias dcu='docker compose up -d --remove-orphans'
@@ -59,4 +56,16 @@ function update_all_repos() {
       (cd "$dir" && gfa && gl)
     fi
   done
+}
+
+# Open the current git repo in the browser
+function gweb() {
+  local remote_url=$(git remote get-url origin 2>/dev/null)
+  if [ -z "$remote_url" ]; then
+    echo "No git remote found."
+    return 1
+  fi
+
+  local url=$(echo "$remote_url" | sed -E "s/^git@([^:]*):(.*)$/https:\/\/\1\/\2/" | sed "s/\.git$//")
+  open "$url"
 }
