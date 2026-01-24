@@ -27,7 +27,7 @@ This repository uses a modular, profile-based architecture to manage configurati
 ## Key Files
 
 *   `.zshrc`: The bootstrap script. It reads `~/.dotfiles_profile` and dynamically sources the correct modular files.
-*   `.gitconfig`: The master Git template. Uses `includeIf` to switch identities automatically based on the directory (e.g., switches to Work email in `~/Documents/work/`).
+*   `.gitconfig`: The main Git template. Uses `includeIf` to switch identities automatically based on the directory (e.g., switches to Work email in `~/Documents/work/`).
 *   `install.sh`: The setup script. Creates all necessary symlinks and sets the local machine profile.
 *   `personal-install.sh`: Legacy/Optional script for manual linking of non-versioned sensitive files.
 
