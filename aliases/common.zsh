@@ -8,11 +8,10 @@ alias c='cursor .'
 # Git aliases
 # Supplements oh-my-zsh git plugin aliases
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
-# if any of the above are not available, run `upgrade_oh_my_zsh`
 alias gstsu='git stash save --include-untracked' #[<message>]
 alias gla='update_all_repos'
 alias gweb='url="$(git remote get-url origin \
-  | sed -E "s/^git@([^:]*):(.*)$/https:\/\/\1\/\2/; s/\.git$//")"; \
+  | sed -E "s/^git@([^:]*):(.*)$/https:\/\/\1\/\2/" | s/\.git$//)"'; \
   open "$url"'
 
 # Docker aliases
@@ -35,16 +34,6 @@ alias serve='python -m http.server 8000'
 
 # Gemini aliases
 alias gemini='gemini --include-directories ~/.gemini/docs'
-
-# RubiconMD aliases
-alias cdang='cd ~/Documents/rmd/code/rubicon-angular'
-alias cdrails='cd ~/Documents/rmd/code/rubicon'
-alias dumpling='bundle exec ~/Documents/rmd/code/rubicon/bin/dumpling'
-# Rails aliases
-alias rdbm='rails db:migrate'
-alias rdbms='rails db:migrate:status'
-alias rdbrb='rails db:rollback'
-alias rsb='rails s -b 0.0.0.0'
 
 ### Custom functions
 # add ssh keys to keychain
