@@ -90,8 +90,8 @@ rm -f ~/.aliases.zsh
 
 # Setup git content filters for gemini files
 # This allows us to use real paths locally but commit __HOME__ placeholders
-git config filter.gemini-home.clean "sed 's|${HOME}|__HOME__|g'"
-git config filter.gemini-home.smudge "sed 's|__HOME__|${HOME}|g'"
+git -C "${dir}" config filter.gemini-home.clean "sed 's|${HOME}|__HOME__|g'"
+git -C "${dir}" config filter.gemini-home.smudge "sed 's|__HOME__|${HOME}|g'"
 
 # Symlink .lee directory
 rm -rf ~/.lee
