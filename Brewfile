@@ -5,15 +5,12 @@ brew "git"
 brew "gh"
 brew "jq"
 brew "wget"
-brew "pre-commit"
 
 # Cloud & Infrastructure
 brew "awscli"
 brew "azure-cli"
 brew "azurite"
 brew "terraform"
-brew "terraform-docs"
-brew "tfsec"
 
 # AI
 brew "gemini-cli"
