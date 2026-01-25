@@ -5,7 +5,6 @@ brew "git"
 brew "gh"
 brew "jq"
 brew "wget"
-brew "mise"
 
 # Cloud & Infrastructure
 brew "awscli"
@@ -17,8 +16,7 @@ brew "terraform"
 brew "gemini-cli"
 
 # Runtimes
-brew "node"
-brew "python@3.13"
+brew "mise"
 
 # Apps
 cask "visual-studio-code"
