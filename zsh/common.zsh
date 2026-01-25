@@ -46,6 +46,7 @@ path+=("/usr/local/opt/libpq/bin")
 
 ### Initializers
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which mise > /dev/null; then eval "$(mise activate zsh)"; fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

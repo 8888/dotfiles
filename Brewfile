@@ -5,6 +5,7 @@ brew "git"
 brew "gh"
 brew "jq"
 brew "wget"
+brew "mise"
 
 # Cloud & Infrastructure
 brew "awscli"
