@@ -22,15 +22,9 @@ if [[ -x /usr/libexec/java_home ]]; then
   fi
 fi
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 ### zsh and oh-my-zsh configs
 plugins=(
   git
-  nvm
   virtualenv
   zsh-autosuggestions
 )

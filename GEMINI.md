@@ -12,7 +12,7 @@ This repository uses a modular, profile-based architecture to manage configurati
 ## Directory Structure
 
 *   `zsh/`: Modular shell initialization.
-    *   `common.zsh`: Core setup (OMZ, NVM, Java, PATH).
+    *   `common.zsh`: Core setup (OMZ, mise, Java, PATH).
     *   `home.zsh` / `work.zsh`: Profile-specific environment variables.
 *   `aliases/`: Command shortcuts.
     *   `common.zsh`: General purpose tools (Git, Docker, Python).
