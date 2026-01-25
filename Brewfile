@@ -10,7 +10,6 @@ brew "wget"
 brew "awscli"
 brew "azure-cli"
 brew "azurite"
-brew "terraform"
 
 # AI
 brew "gemini-cli"
