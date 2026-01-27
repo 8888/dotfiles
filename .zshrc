@@ -6,7 +6,7 @@ else
 fi
 
 # Path to dotfiles directory
-export DOTFILES_DIR="$HOME/.dotfiles"
+export DOTFILES_DIR="$HOME/dotfiles"
 
 # 1. Load Common ZSH Config
 source "$DOTFILES_DIR/zsh/common.zsh"
