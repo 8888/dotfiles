@@ -21,10 +21,10 @@
 # Conditional includes for different environments
 # Work
 [includeIf "gitdir:~/Documents/work/"]
-  path = ~/.dotfiles/git/work.gitconfig
+  path = ~/dotfiles/git/work.gitconfig
 [includeIf "gitdir:~/Documents/code/rmd/"]
-  path = ~/.dotfiles/git/work.gitconfig
+  path = ~/dotfiles/git/work.gitconfig
 
 # Home (Optional specific overrides)
 [includeIf "gitdir:~/Documents/personal/"]
-  path = ~/.dotfiles/git/home.gitconfig
+  path = ~/dotfiles/git/home.gitconfig
