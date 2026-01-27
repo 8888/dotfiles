@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=~/.dotfiles
+dir=~/dotfiles
 
 ## create symlinks for dotfiles
 ln -s ${dir}/.credentials ~/.credentials
