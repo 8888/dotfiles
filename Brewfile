@@ -17,3 +17,6 @@ brew "mise"
 
 # Apps
 cask "visual-studio-code"
+
+# Fonts (for Powerlevel10k)
+cask "font-meslo-lg-nerd-font"
