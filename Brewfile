@@ -8,6 +8,7 @@ brew "wget"
 brew "awscli"
 brew "azure-cli"
 brew "azurite"
+brew "ngrok"
 
 # AI
 brew "gemini-cli"
