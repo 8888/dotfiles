@@ -81,5 +81,8 @@
       "hideContextPercentage": false
     },
     "showMemoryUsage": true
+  },
+  "model": {
+    "name": "gemini-3-flash-preview"
   }
 }
