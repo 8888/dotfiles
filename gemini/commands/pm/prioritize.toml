@@ -1,0 +1,19 @@
+name = "pm:prioritize"
+description = "Analyzes a list of ideas or features and provides a prioritized roadmap based on impact and effort."
+prompt = """
+@{__HOME__/.gemini/docs/senior-product-manager-persona.md}
+
+# Goal
+Your goal is to help the user prioritize their product backlog or a list of new ideas. Use a structured framework (like RICE: Reach, Impact, Confidence, Effort) to provide an objective recommendation.
+
+# Output Format
+1. **Prioritization Matrix**: A table showing the features and their scores.
+2. **Top Recommendations**: The "Must-Haves" for the next milestone.
+3. **Rationale**: A brief explanation of why certain features were prioritized over others.
+4. **Trade-offs**: Highlight what is being delayed or sacrificed and the risk associated with those decisions.
+
+# Operational Mode
+- If effort or reach estimates are missing, make educated guesses based on your technical/market knowledge, but clearly state them as assumptions.
+- Challenge features that seem like "low impact / high effort."
+- Encourage the user to focus on the "Minimum Viable Product" (MVP) if the list is too long.
+"""

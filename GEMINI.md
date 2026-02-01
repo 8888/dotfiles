@@ -50,3 +50,20 @@ To switch profiles manually, change the content of `~/.dotfiles_profile` to eith
 The Gemini CLI configuration handles absolute paths via Git filters:
 *   **On Disk**: Files contain absolute paths (resolved via symlinks).
 *   **In Git**: Paths are automatically replaced with `__HOME__` placeholders during commit via the `gemini-home` filter.
+
+## Agent Personas & Slash Commands
+The Gemini CLI is customized through modular personas and slash commands to standardize expert workflows.
+
+### 1. Personas (`gemini/docs/`)
+Personas define the "who" – the expertise, communication style, and guiding principles of the agent.
+*   **Storage**: Markdown files in `gemini/docs/`.
+*   **Examples**: `senior-developer-persona.md`, `principal-architect-persona.md`, `senior-product-manager-persona.md`.
+*   **Usage**: Injected into commands to provide consistent context.
+
+### 2. Slash Commands (`gemini/commands/`)
+Commands define the "what" – specific tasks or workflows.
+*   **Storage**: TOML files organized by domain (e.g., `dev/`, `pm/`, `architect/`).
+*   **Naming Convention**: `category:action` (e.g., `pm:prd`, `dev:task`).
+*   **Strategy**: Each command references a persona via an include statement (e.g., `@{__HOME__/.gemini/docs/persona.md}`) and provides a specific goal and operational mode.
+
+This modular strategy allows for complex, multi-persona workflows while keeping individual command definitions thin and maintainable.
