@@ -1,6 +1,6 @@
 # Determine dotfiles profile
-if [[ -f ~/dotfiles_profile ]]; then
-  export DOTFILES_PROFILE=$(cat ~/dotfiles_profile)
+if [[ -f ~/.dotfiles_profile ]]; then
+  export DOTFILES_PROFILE=$(cat ~/.dotfiles_profile)
 else
   export DOTFILES_PROFILE="home"
 fi

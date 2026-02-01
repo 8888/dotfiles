@@ -2,18 +2,18 @@
 
 ## Setup
 1. **Configure SSH for GitHub**: [GitHub Guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-2. **Clone .dotfiles**:
+2. **Clone dotfiles**:
    ```zsh
-   git clone git@github.com:8888/dotfiles.git ~/.dotfiles
+   git clone git@github.com:8888/dotfiles.git ~/dotfiles
    ```
 3. **Run Installation**:
    The script will automatically install Homebrew, Oh My Zsh, plugins, Git, AWS CLI, and VS Code.
    ```zsh
    # For a home computer
-   ~/.dotfiles/install.sh home
+   ~/dotfiles/install.sh home
 
    # For a work computer
-   ~/.dotfiles/install.sh work
+   ~/dotfiles/install.sh work
    ```
 4. **Finalize**:
    - Create real `./expo_credentials` based off of `.expo_credentials.example`.

@@ -61,7 +61,7 @@ fi
 # --- Symlinking ---
 
 # Save profile to file for .zshrc to read
-echo "$PROFILE" > ~/dotfiles_profile
+echo "$PROFILE" > ~/.dotfiles_profile
 
 ## symlinks for dotfiles
 # Remove existing files/links and create new ones
