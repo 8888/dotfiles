@@ -8,7 +8,6 @@ brew "wget"
 brew "awscli"
 brew "azure-cli"
 brew "azurite"
-brew "ngrok"
 
 # AI
 brew "gemini-cli"
@@ -19,5 +18,6 @@ brew "mise"
 # Apps
 cask "visual-studio-code"
 
-# Fonts (for Powerlevel10k)
+# Tools
 cask "font-meslo-lg-nerd-font"
+cask "ngrok"
