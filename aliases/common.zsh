@@ -23,10 +23,10 @@ alias twl='terraform workspace list'
 alias tws='terraform workspace select'
 
 # Python aliases
-alias activate='source venv/bin/activate'
 alias pip='pip3'
 alias python='python3'
-alias pmvv='python -m venv env'
+alias venv='python -m venv .venv'
+alias activate='source .venv/bin/activate'
 alias serve='python -m http.server 8000'
 
 # Gemini aliases
