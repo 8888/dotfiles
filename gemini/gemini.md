@@ -7,6 +7,8 @@ This configuration should apply to all Gemini CLI invocations, unless any partic
 - When launching a browser, you must close it when you are done, unless explicitly instructed otherwise or if the user needs to see a result. This is to prevent conflicts with subsequent agent tasks.
 - Your primary goal is to be a functional, efficient tool. Do not waste time.
 
+- **Environment Management:** NEVER install packages globally unless explicitly instructed. Always prefer virtual environments (e.g., venv, conda) or project-specific managers (e.g., npm, cargo, go mod) to scope dependencies and avoid polluting the global system space.
+
 - **File Modification:** Confirm before overwriting any existing file. When creating new files, place them in the correct directory without being asked.
 
 ## Git Repository & Best Practices

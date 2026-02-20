@@ -65,7 +65,8 @@
     "confirmationMode": "auto"
   },
   "general": {
-    "previewFeatures": true
+    "previewFeatures": true,
+    "defaultApprovalMode": "auto_edit"
   },
   "experimental": {
     "enableAgents": true,
