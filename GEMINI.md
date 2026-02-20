@@ -51,19 +51,26 @@ The Gemini CLI configuration handles absolute paths via Git filters:
 *   **On Disk**: Files contain absolute paths (resolved via symlinks).
 *   **In Git**: Paths are automatically replaced with `__HOME__` placeholders during commit via the `gemini-home` filter.
 
-## Agent Personas & Slash Commands
-The Gemini CLI is customized through modular personas and slash commands to standardize expert workflows.
+## Agent Personas & Modular Workflows
+The agent capabilities are customized through modular personas and slash commands located in `gemini/`. However, to be used universally inside Antigravity agent interactions, they are compiled into global **Workflows**.
 
 ### 1. Personas (`gemini/docs/`)
 Personas define the "who" – the expertise, communication style, and guiding principles of the agent.
 *   **Storage**: Markdown files in `gemini/docs/`.
-*   **Examples**: `senior-developer-persona.md`, `principal-architect-persona.md`, `senior-product-manager-persona.md`.
-*   **Usage**: Injected into commands to provide consistent context.
+*   **Examples**: `senior-developer-persona.md`, `principal-architect-persona.md`.
+*   **Usage**: Included in commands to provide consistent context using the macro syntax: `@{__HOME__/.gemini/docs/persona.md}`.
 
 ### 2. Slash Commands (`gemini/commands/`)
-Commands define the "what" – specific tasks or workflows.
-*   **Storage**: TOML files organized by domain (e.g., `dev/`, `pm/`, `architect/`).
-*   **Naming Convention**: `category:action` (e.g., `pm:prd`, `dev:task`).
-*   **Strategy**: Each command references a persona via an include statement (e.g., `@{__HOME__/.gemini/docs/persona.md}`) and provides a specific goal and operational mode.
+Commands define the "what" – specific tasks or goals.
+*   **Storage**: TOML files organized by domain (e.g., `dev/`, `pm/`).
+*   **Naming Convention**: Organized in folders matching their category.
+*   **Strategy**: Each command file contains a `description` and a `prompt` (which often includes a persona).
 
-This modular strategy allows for complex, multi-persona workflows while keeping individual command definitions thin and maintainable.
+### 3. Antigravity Workflows Compilation (`~/.agents/workflows/`)
+Because Antigravity leverages global `.md` files equipped with YAML frontmatter to act as slash commands, an automated script merges the personas and toml commands into flat workflow formats.
+
+*   **Compilation Script**: `.lee/bin/compile_workflows.py`.
+*   **Process**: It iterates through `gemini/commands/`, resolves any `@{.../.gemini/docs/persona.md}` macros, and writes the output directly to `.agents/workflows/`.
+*   **Result**: A file like `dev/task.toml` becomes `~/.agents/workflows/dev-task.md`. Typing `/dev-task` inside Antigravity will now inject that exact workflow, including its injected modular persona.
+
+*(Note: The install script automatically runs the workflow compiler during setup).*

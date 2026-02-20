@@ -101,7 +101,7 @@ mkdir -p ~/Library/Application\ Support/Cursor/User
 rm -f ~/Library/Application\ Support/Cursor/User/settings.json
 ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/settings.json
 
-# Gemini
+# Gemini CLI & Antigravity Workflows
 mkdir -p ~/.gemini
 rm -f ~/.gemini/settings.json
 ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
@@ -111,5 +111,15 @@ rm -rf ~/.gemini/docs
 ln -s ${dir}/gemini/docs ~/.gemini/docs
 rm -rf ~/.gemini/commands
 ln -s ${dir}/gemini/commands ~/.gemini/commands
+
+# Compile Antigravity workflows
+if [ -f "${dir}/.lee/bin/compile_workflows.py" ]; then
+    echo -e "${BLUE}Compiling Antigravity Workflows...${NC}"
+    python3 "${dir}/.lee/bin/compile_workflows.py"
+fi
+
+# Link Antigravity workflows globally
+rm -rf ~/.agents
+ln -s ${dir}/.agents ~/.agents
 
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"
