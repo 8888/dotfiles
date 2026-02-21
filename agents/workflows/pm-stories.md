@@ -1,7 +1,6 @@
-name = "pm:stories"
-description = "Break requirements into User Stories"
-prompt = """
-@{__HOME__/.gemini/docs/senior-product-manager-persona.md}
+---
+description: Break requirements into User Stories
+---
 
 # Goal
 Your goal is to take a feature description and break it down into high-quality, engineering-ready User Stories.
@@ -16,4 +15,3 @@ Your goal is to take a feature description and break it down into high-quality, 
 - Focus on the "Definition of Ready." The stories should be granular enough for a developer to estimate and start working.
 - Ensure every story has a clear "So that" which justifies its existence.
 - If a story is too large (an Epic), suggest how to split it.
-"""

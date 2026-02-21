@@ -82,11 +82,6 @@ done
 # Legacy alias file cleanup (we now use aliases/*.zsh)
 rm -f ~/.aliases.zsh
 
-# Setup git content filters for gemini files
-# This allows us to use real paths locally but commit __HOME__ placeholders
-git -C "${dir}" config filter.gemini-home.clean "sed 's|${HOME}|__HOME__|g'"
-git -C "${dir}" config filter.gemini-home.smudge "sed 's|__HOME__|${HOME}|g'"
-
 # Symlink .lee directory
 rm -rf ~/.lee
 ln -s ${dir}/.lee ~/.lee
@@ -105,25 +100,25 @@ ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/set
 mkdir -p ~/.gemini
 rm -f ~/.gemini/settings.json
 ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
-rm -f ~/.gemini/gemini.md
-ln -s ${dir}/gemini/gemini.md ~/.gemini/gemini.md
+rm -f ~/.gemini/GEMINI.md
+ln -s ${dir}/agents/rules/GLOBAL_RULES.md ~/.gemini/GEMINI.md
 rm -rf ~/.gemini/docs
-ln -s ${dir}/gemini/docs ~/.gemini/docs
-rm -rf ~/.gemini/commands
-ln -s ${dir}/gemini/commands ~/.gemini/commands
+ln -s ${dir}/agents/rules ~/.gemini/docs
 
-# Compile Antigravity workflows
-if [ -f "${dir}/.lee/bin/compile_workflows.py" ]; then
-    echo -e "${BLUE}Compiling Antigravity Workflows...${NC}"
-    python3 "${dir}/.lee/bin/compile_workflows.py"
+# Compile Gemini CLI Commands
+rm -rf ~/.gemini/commands
+if [ -f "${dir}/.lee/bin/compile_cli_commands.py" ]; then
+    echo -e "${BLUE}Compiling Gemini CLI Commands...${NC}"
+    python3 "${dir}/.lee/bin/compile_cli_commands.py"
 fi
 
-# Link Antigravity workflows globally
+# Link Antigravity globally
 mkdir -p ~/.gemini/antigravity
 rm -rf ~/.gemini/antigravity/global_workflows
-ln -s ${dir}/.agents/workflows ~/.gemini/antigravity/global_workflows
-
-# Cleanup legacy links
-rm -rf ~/.agents
+ln -s ${dir}/agents/workflows ~/.gemini/antigravity/global_workflows
+rm -rf ~/.gemini/antigravity/global_skills
+ln -s ${dir}/agents/skills ~/.gemini/antigravity/global_skills
+rm -rf ~/.gemini/antigravity/rules
+ln -s ${dir}/agents/rules ~/.gemini/antigravity/rules
 
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"

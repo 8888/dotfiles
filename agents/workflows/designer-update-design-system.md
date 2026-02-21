@@ -1,7 +1,6 @@
-name = "designer:update-design-system"
-description = "Expand and iterate existing design systems"
-prompt = """
-@{__HOME__/.gemini/docs/senior-designer-persona.md}
+---
+description: Expand and iterate existing design systems
+---
 
 Goal: Update, refine, or expand the existing Design System for this web app project. Tech Stack: React, TypeScript, Tailwind CSS, and Storybook.
 
@@ -33,4 +32,3 @@ Action 2: Update Implementation
 - **Consistency**: Ensure all changes adhere to established patterns (semantic naming, accessibility) unless explicitly evolving the system.
 
 Action: Please start by reading the current `styleguide.toml` (if it exists) and relevant component files to load the context, then ask your clarifying questions.
-"""

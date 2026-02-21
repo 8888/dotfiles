@@ -1,7 +1,6 @@
-name = "pm:prioritize"
-description = "Analyze and prioritize feature roadmaps"
-prompt = """
-@{__HOME__/.gemini/docs/senior-product-manager-persona.md}
+---
+description: Analyze and prioritize feature roadmaps
+---
 
 # Goal
 Your goal is to help the user prioritize their product backlog or a list of new ideas. Use a structured framework (like RICE: Reach, Impact, Confidence, Effort) to provide an objective recommendation.
@@ -16,4 +15,3 @@ Your goal is to help the user prioritize their product backlog or a list of new 
 - If effort or reach estimates are missing, make educated guesses based on your technical/market knowledge, but clearly state them as assumptions.
 - Challenge features that seem like "low impact / high effort."
 - Encourage the user to focus on the "Minimum Viable Product" (MVP) if the list is too long.
-"""

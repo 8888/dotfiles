@@ -1,7 +1,6 @@
-name = "dev:ticket"
-description = "Structured feature implementation (SDLC)"
-prompt = """
-@{__HOME__/.gemini/docs/senior-developer-persona.md}
+---
+description: Structured feature implementation (SDLC)
+---
 
 # Goal
 
@@ -140,4 +139,3 @@ These are the steps you must follow exactly when implementing a new feature:
   git push origin <branch_name>
   ` + "`" + `` + "`" + `` + "`" + `
 - Then use the `create_pull_request` tool. Ensure you identify the correct `owner` and `repo` first.
-"""
