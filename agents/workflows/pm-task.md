@@ -1,3 +1,5 @@
+Adopt persona: Senior Product Manager
+
 ---
 description: Flexible PM for ad-hoc tasks
 ---

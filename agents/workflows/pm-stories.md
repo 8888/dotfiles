@@ -1,3 +1,5 @@
+Adopt persona: Senior Product Manager
+
 ---
 description: Break requirements into User Stories
 ---

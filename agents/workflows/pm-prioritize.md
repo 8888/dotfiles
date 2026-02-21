@@ -1,3 +1,5 @@
+Adopt persona: Senior Product Manager
+
 ---
 description: Analyze and prioritize feature roadmaps
 ---

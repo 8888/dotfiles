@@ -1,3 +1,5 @@
+Adopt persona: Senior Designer
+
 ---
 description: Create web style guides & systems
 ---

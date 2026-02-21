@@ -1,3 +1,5 @@
+Adopt persona: Senior Software Developer
+
 ---
 description: Address PR feedback & manage reviews
 ---

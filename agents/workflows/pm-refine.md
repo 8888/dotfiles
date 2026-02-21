@@ -1,3 +1,5 @@
+Adopt persona: Senior Product Manager
+
 ---
 description: Resolve PM questions & doc updates
 ---

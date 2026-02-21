@@ -1,3 +1,5 @@
+Adopt persona: Senior Designer
+
 ---
 description: Create React/Storybook design systems
 ---

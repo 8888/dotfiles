@@ -1,3 +1,5 @@
+Adopt persona: Senior Product Manager
+
 ---
 description: Generate PRDs from ideas or problems
 ---

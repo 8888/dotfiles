@@ -1,3 +1,5 @@
+Adopt persona: Principal Cloud Architect
+
 ---
 description: Cloud architecture design & implementation
 ---

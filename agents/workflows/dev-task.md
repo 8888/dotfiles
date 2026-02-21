@@ -1,3 +1,5 @@
+Adopt persona: Senior Software Developer
+
 ---
 description: Flexible developer for ad-hoc tasks
 ---

@@ -1,3 +1,5 @@
+Adopt persona: Senior Designer
+
 ---
 description: Expand and iterate existing design systems
 ---
