@@ -120,15 +120,19 @@ if [ -f "${dir}/.lee/bin/compile_cli_commands.py" ]; then
 fi
 
 # Link Antigravity globally
-# We use both standard and legacy paths for maximum compatibility
-mkdir -p ~/.antigravity
+mkdir -p ~/.agents
+for dir_name in "workflows" "skills" "rules"; do
+    rm -rf ~/.agents/$dir_name
+    case $dir_name in
+        workflows) ln -s ${dir}/agents/workflows ~/.agents/$dir_name ;;
+        skills)    ln -s ${dir}/agents/skills ~/.agents/$dir_name ;;
+        rules)     ln -s ${dir}/agents/rules ~/.agents/$dir_name ;;
+    esac
+done
+
+# Cleanup legacy Antigravity paths
 for dir_name in "workflows" "global_workflows" "skills" "global_skills" "rules"; do
     rm -rf ~/.antigravity/$dir_name
-    case $dir_name in
-        *workflows) ln -s ${dir}/agents/workflows ~/.antigravity/$dir_name ;;
-        *skills)    ln -s ${dir}/agents/skills ~/.antigravity/$dir_name ;;
-        rules)      ln -s ${dir}/agents/rules ~/.antigravity/$dir_name ;;
-    esac
 done
 
 # Cleanup legacy non-standard path (safe removal of specific links only)
