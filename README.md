@@ -7,20 +7,28 @@
    git clone git@github.com:8888/dotfiles.git ~/dotfiles
    ```
 3. **Run Installation**:
-   The script will automatically install Homebrew, Oh My Zsh, plugins, Git, AWS CLI, and VS Code.
+   The script installs Homebrew, Oh My Zsh + plugins, Brewfile packages, and sets up all symlinks for shell configs, Git, VS Code/Cursor, and Gemini/Antigravity agents.
    ```zsh
-   # For a home computer
+   # Home machine
    ~/dotfiles/install.sh home
 
-   # For a work computer
+   # Work machine
    ~/dotfiles/install.sh work
    ```
 4. **Finalize**:
-   - Create real `./expo_credentials` based off of `.expo_credentials.example`.
-   - Setup `~/.pgpass` if needed (see below).
+   - Copy `.credentials.example` → `.credentials` and fill in real values.
+   - Set `$GITHUB_PERSONAL_ACCESS_TOKEN` in your environment for MCP GitHub access.
+   - Create `~/.pgpass` if needed (see below).
 
-## Manual steps
-- Create ~/.pgpass since this isn't version controlled (set correct permissions `chmod 0600 ./.pgpass`)
-```zsh
-localhost:5432:<dbname>:<user>:<password>
-```
+## Manual Steps
+- Create `~/.pgpass` (not version controlled). Set correct permissions:
+  ```zsh
+  chmod 0600 ~/.pgpass
+  ```
+  Format:
+  ```
+  localhost:5432:<dbname>:<user>:<password>
+  ```
+
+## Agent Configuration
+Gemini CLI and Antigravity are configured via `agents/` and `gemini/settings.json`. See [GEMINI_AGENT_ARCHITECTURE.md](GEMINI_AGENT_ARCHITECTURE.md) for full details.

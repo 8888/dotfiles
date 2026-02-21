@@ -9,14 +9,28 @@ By writing context docs (personas/rules) and commands (workflows) once as Markdo
 The `agents/` directory is the single source of truth for all agentic configurations:
 
 - `rules/`: Global context files and persona definitions.
-  - **Antigravity**: These act as global rules.
-  - **Gemini CLI**: Mapped to `~/.gemini/docs/` for context. `GLOBAL_RULES.md` is symlinked to `~/.gemini/GEMINI.md` to establish global behavior for the CLI.
-- `workflows/`: Markdown files containing reproducible agent tasks (replacing `.toml` command files).
+  - **Antigravity**: Symlinked to `~/.gemini/antigravity/rules`. These act as global rules.
+  - **Gemini CLI**: Symlinked to `~/.gemini/docs/` for context. `GLOBAL_RULES.md` is also linked to `~/.gemini/GEMINI.md` to establish global behavior.
+  - Current rules: `GLOBAL_RULES.md`, `engineering-standards.md`, `environment-and-ops.md`, `git-workflow-rules.md`
+  - Current personas: `senior-developer-persona.md`, `senior-designer-persona.md`, `senior-product-manager-persona.md`, `principal-architect-persona.md`
+- `workflows/`: Markdown files containing reproducible agent tasks.
   - **Antigravity**: Symlinked to `~/.gemini/antigravity/global_workflows`.
   - **Gemini CLI**: Compiled automatically into `~/.gemini/commands/` TOML files during installation.
-- `skills/`: Complex tool sets and modular agent capabilities (e.g., `java-gradle-diagnostics`).
+- `skills/`: Complex tool sets and modular agent capabilities.
   - **Antigravity**: Symlinked to `~/.gemini/antigravity/global_skills`.
-  - Works natively for both platforms via symlinks.
+  - **Gemini CLI**: Accessible via the shared symlink.
+  - Current skills: `java-gradle-diagnostics`, `mood-board-capture`
+
+## Gemini Settings (`~/dotfiles/gemini/settings.json`)
+
+`gemini/settings.json` is symlinked to `~/.gemini/settings.json`. It defines:
+
+- **MCP Servers**: Available to both the Gemini CLI and Antigravity.
+  - `github`: Remote MCP via GitHub Copilot API. Requires `$GITHUB_PERSONAL_ACCESS_TOKEN`. Provides full repo management, PRs, issues, and code search.
+  - `azure`: Runs via `npx @azure/mcp`. Provides Azure cloud service integration (AppLens, resource management).
+  - `chrome-devtools`: Runs via `npx chrome-devtools-mcp`. Provides browser automation and inspection.
+- **Tool Permissions**: Allowlist for `run_shell_command` and shell auto-accept behavior.
+- **Experimental Features**: `enableAgents` and `skills` flags for Antigravity discovery.
 
 ## How It Works
 
@@ -24,9 +38,19 @@ The `agents/` directory is the single source of truth for all agentic configurat
 Historically, the Gemini CLI required custom commands to be written in TOML format, often injecting long persona markdown files via macro `@{...}` syntax. This bloated the prompts and led to high token usage. 
 
 Now, we write everything in Markdown:
-1. **Define a Rule/Persona**: Create `agents/rules/senior-developer-persona.md`. Let the agent systems implicitly load this context via their native rules/docs engines.
+1. **Define a Rule/Persona**: Create `agents/rules/senior-developer-persona.md`. Agent systems load this context implicitly via their native rules/docs engines.
 2. **Define a Workflow**: Create `agents/workflows/dev-task.md`. Use YAML frontmatter to give it a description, followed by the specific markdown prompt for the workflow. 
 3. **Compile**: When you run `./install.sh`, the python script `.lee/bin/compile_cli_commands.py` iterates over `agents/workflows/*.md`. It generates clean `.toml` files (e.g., `dev/task.toml`) inside `~/.gemini/commands/` for the CLI.
+
+### Symlink Map
+| Source | Target | Used By |
+|---|---|---|
+| `agents/rules/GLOBAL_RULES.md` | `~/.gemini/GEMINI.md` | Gemini CLI (global rules) |
+| `agents/rules/` | `~/.gemini/docs/` | Gemini CLI (context docs) |
+| `agents/rules/` | `~/.gemini/antigravity/rules` | Antigravity (global rules) |
+| `agents/workflows/` | `~/.gemini/antigravity/global_workflows` | Antigravity |
+| `agents/skills/` | `~/.gemini/antigravity/global_skills` | Antigravity |
+| `gemini/settings.json` | `~/.gemini/settings.json` | CLI & Antigravity |
 
 ### Pros
 - **Single Source of Truth**: Edit a workflow once; it updates everywhere.

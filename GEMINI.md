@@ -22,6 +22,8 @@ This repository uses a modular, profile-based architecture to manage configurati
     *   `work.gitconfig`: Professional identity (email, work-specific paths).
     *   `home.gitconfig`: Personal identity.
 *   `agents/`: Unified agent configurations (rules, workflows, skills).
+*   `gemini/`: Gemini CLI & Antigravity configuration.
+    *   `settings.json`: MCP server definitions, tool permissions, and CLI settings. Symlinked to `~/.gemini/settings.json`.
 *   `.lee/bin/`: Custom utility scripts (including the command compiler).
 
 ## Key Files
@@ -53,7 +55,7 @@ For a deep dive into how to extend or use these agentic tools, see [GEMINI_AGENT
 
 ## Compilation & Installation
 The `install.sh` script automatically handles:
-1. **Symlinking**: Maps `agents/` rules and workflows into the appropriate `~/.gemini` and Antigravity directories.
+1. **Symlinking**: Maps dotfiles, `agents/` components, and `gemini/settings.json` into the appropriate `~/.gemini/` and Antigravity directories.
 2. **CLI Command Compilation**: Runs `.lee/bin/compile_cli_commands.py` to generate the TOML command structure for the Gemini CLI from the Markdown workflows.
 
 To update your agents after making changes to `agents/workflows/`, just re-run:
