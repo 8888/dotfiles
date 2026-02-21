@@ -21,8 +21,8 @@ This repository uses a modular, profile-based architecture to manage configurati
     *   `common.gitconfig`: Shared settings (editor, core behaviors).
     *   `work.gitconfig`: Professional identity (email, work-specific paths).
     *   `home.gitconfig`: Personal identity.
-*   `gemini/`: Gemini CLI configurations and personas.
-*   `.lee/bin/`: Custom utility scripts.
+*   `agents/`: Unified agent configurations (rules, workflows, skills).
+*   `.lee/bin/`: Custom utility scripts (including the command compiler).
 
 ## Key Files
 
@@ -46,31 +46,17 @@ Run the installer with the desired profile:
 ### 2. Switching Profiles
 To switch profiles manually, change the content of `~/.dotfiles_profile` to either `home` or `work` and restart the shell.
 
-## Gemini Configuration & Portability
-The Gemini CLI configuration handles absolute paths via Git filters:
-*   **On Disk**: Files contain absolute paths (resolved via symlinks).
-*   **In Git**: Paths are automatically replaced with `__HOME__` placeholders during commit via the `gemini-home` filter.
+## Agent Configuration & Unified Architecture
+We use a unified Markdown-first approach for both the Gemini CLI and Antigravity. Personas, workflows, and skills are authored once in `agents/` and applied everywhere.
 
-## Agent Personas & Modular Workflows
-The agent capabilities are customized through modular personas and slash commands located in `gemini/`. However, to be used universally inside Antigravity agent interactions, they are compiled into global **Workflows**.
+For a deep dive into how to extend or use these agentic tools, see [GEMINI_AGENT_ARCHITECTURE.md](file:///Users/leecostello/dotfiles/GEMINI_AGENT_ARCHITECTURE.md).
 
-### 1. Personas (`gemini/docs/`)
-Personas define the "who" – the expertise, communication style, and guiding principles of the agent.
-*   **Storage**: Markdown files in `gemini/docs/`.
-*   **Examples**: `senior-developer-persona.md`, `principal-architect-persona.md`.
-*   **Usage**: Included in commands to provide consistent context using the macro syntax: `@{__HOME__/.gemini/docs/persona.md}`.
+## Compilation & Installation
+The `install.sh` script automatically handles:
+1. **Symlinking**: Maps `agents/` rules and workflows into the appropriate `~/.gemini` and Antigravity directories.
+2. **CLI Command Compilation**: Runs `.lee/bin/compile_cli_commands.py` to generate the TOML command structure for the Gemini CLI from the Markdown workflows.
 
-### 2. Slash Commands (`gemini/commands/`)
-Commands define the "what" – specific tasks or goals.
-*   **Storage**: TOML files organized by domain (e.g., `dev/`, `pm/`).
-*   **Naming Convention**: Organized in folders matching their category.
-*   **Strategy**: Each command file contains a `description` and a `prompt` (which often includes a persona).
-
-### 3. Antigravity Workflows Compilation (`~/.agents/workflows/`)
-Because Antigravity leverages global `.md` files equipped with YAML frontmatter to act as slash commands, an automated script merges the personas and toml commands into flat workflow formats.
-
-*   **Compilation Script**: `.lee/bin/compile_workflows.py`.
-*   **Process**: It iterates through `gemini/commands/`, resolves any `@{.../.gemini/docs/persona.md}` macros, and writes the output directly to `.agents/workflows/`.
-*   **Result**: A file like `dev/task.toml` becomes `~/.agents/workflows/dev-task.md`. Typing `/dev-task` inside Antigravity will now inject that exact workflow, including its injected modular persona.
-
-*(Note: The install script automatically runs the workflow compiler during setup).*
+To update your agents after making changes to `agents/workflows/`, just re-run:
+```bash
+./install.sh [home|work]
+```

@@ -1,7 +1,8 @@
-name = "designer:create-design-system"
-description = "Create React/Storybook design systems"
-prompt = """
-@{__HOME__/.gemini/docs/senior-designer-persona.md}
+Adopt persona: Senior Designer
+
+---
+description: Create React/Storybook design systems
+---
 
 Goal: Create a custom, high-fidelity Design System for a web app project. Tech Stack: React, TypeScript, Tailwind CSS, and Storybook.
 
@@ -39,4 +40,3 @@ Artifact 2: styleguide.toml
 - This file must provide the "Implementation Contract". It must be so comprehensive that a frontend engineer (or AI) can read it and instantly understand the design tokens and rules.
 
 Action: Please start with Step 1 and ask me your design strategy questions.
-"""

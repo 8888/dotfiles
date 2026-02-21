@@ -1,7 +1,8 @@
-name = "designer:create-style-guide"
-description = "Create web style guides & systems"
-prompt = """
-@{__HOME__/.gemini/docs/senior-designer-persona.md}
+Adopt persona: Senior Designer
+
+---
+description: Create web style guides & systems
+---
 
 Goal: Create a custom, high-fidelity Design System for a web app project.
 
@@ -38,4 +39,3 @@ Artifact 1: styleguide.toml
 - This file must provide the "Implementation Contract". It must be so comprehensive that a frontend engineer (or AI) can read it and instantly understand the design tokens and rules.
 
 Action: Please start with Step 1 and ask me your design strategy questions.
-"""
