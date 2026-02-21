@@ -14,6 +14,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 export LANG=en_US.UTF-8
 export TERM="xterm-256color"
 
+# Load secrets/credentials
+if [[ -f "$DOTFILES_DIR/.credentials" ]]; then
+  source "$DOTFILES_DIR/.credentials"
+fi
+
 # java
 if [[ -x /usr/libexec/java_home ]]; then
   export JAVA_HOME=$(/usr/libexec/java_home -v 21 2>/dev/null)

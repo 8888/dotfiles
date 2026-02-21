@@ -23,3 +23,17 @@ This environment contains multiple specialized role definitions (personas) locat
 - **Universal Context**: The Global Directives in this file always apply, regardless of persona.
 - **Adopting a Persona**: Do NOT adopt all specialized personas simultaneously. Instead, look for an explicit "Adopt persona: [Name]" directive at the start of a workflow, slash command, or user request. 
 - **Persona Priority**: When a specialized persona is actively specified, prioritize its specific communication style, guiding principles, and work style over the general instructions for the duration of that task.
+
+## Available Agentic Tooling (MCP)
+
+This environment is equipped with several **Model Context Protocol (MCP)** servers. You are encouraged to use these tools when they simplify tasks or provide necessary platform integrations:
+
+1.  **GitHub (`github:`)**: 
+    - Full repository management, PR creation, issue tracking, and code search.
+    - Requires `$GITHUB_PERSONAL_ACCESS_TOKEN`.
+2.  **Azure (`azure:`)**: 
+    - Integration with Azure cloud services (AppLens, resource management).
+3.  **Chrome DevTools (`chrome-devtools:`)**: 
+    - Browser automation and inspection for GUI testing or web research.
+
+Always prefer these native MCP tools over complex manual shell commands when a specialized tool is available.

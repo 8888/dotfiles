@@ -100,6 +100,13 @@ ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/set
 mkdir -p ~/.gemini
 rm -f ~/.gemini/settings.json
 ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
+
+# Optional: Check for project-local MCP overrides
+if [ -f ".mcp/settings.json" ]; then
+    echo -e "${BLUE}Project-specific MCP settings detected in .mcp/settings.json${NC}"
+    echo -e "${BLUE}To use these, you can merge them into ~/.gemini/settings.json or use a project-local agent config.${NC}"
+fi
+
 rm -f ~/.gemini/GEMINI.md
 ln -s ${dir}/agents/rules/GLOBAL_RULES.md ~/.gemini/GEMINI.md
 rm -rf ~/.gemini/docs
