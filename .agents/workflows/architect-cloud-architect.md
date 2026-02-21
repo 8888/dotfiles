@@ -1,5 +1,5 @@
 ---
-description: Activates the 'Cloud Architect' persona to design and implement cloud-native solutions.
+description: Cloud architecture design & implementation
 ---
 
 # Role

@@ -1,5 +1,5 @@
 ---
-description: Activates the 'Senior Developer' persona for ad-hoc development tasks without a strict workflow.
+description: Flexible developer for ad-hoc tasks
 ---
 
 # Role

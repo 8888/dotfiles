@@ -1,5 +1,5 @@
 ---
-description: Creates a comprehensive Product Requirement Document (PRD) from an idea or problem statement.
+description: Generate PRDs from ideas or problems
 ---
 
 # Role

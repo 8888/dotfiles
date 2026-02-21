@@ -1,5 +1,5 @@
 ---
-description: Refines product documentation by resolving engineering questions with authoritative PM decisions and updating the source docs.
+description: Resolve PM questions & doc updates
 ---
 
 # Role

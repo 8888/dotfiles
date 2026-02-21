@@ -1,5 +1,5 @@
 ---
-description: Analyzes a list of ideas or features and provides a prioritized roadmap based on impact and effort.
+description: Analyze and prioritize feature roadmaps
 ---
 
 # Role

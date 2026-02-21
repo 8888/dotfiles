@@ -1,5 +1,5 @@
 ---
-description: Activates the 'Senior Product Manager' persona for ad-hoc product management tasks without a strict workflow.
+description: Flexible PM for ad-hoc tasks
 ---
 
 # Role

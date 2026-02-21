@@ -1,5 +1,5 @@
 ---
-description: Activates the 'Design System Architect' persona to iterate, improve, and expand a React/Storybook design system.
+description: Expand and iterate existing design systems
 ---
 
 # Role

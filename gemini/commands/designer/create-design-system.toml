@@ -1,5 +1,5 @@
 name = "designer:create-design-system"
-description = "Activates the 'Design System Creator' persona to create a React/Storybook design system."
+description = "Create React/Storybook design systems"
 prompt = """
 @{__HOME__/.gemini/docs/senior-designer-persona.md}
 

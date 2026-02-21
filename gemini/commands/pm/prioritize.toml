@@ -1,5 +1,5 @@
 name = "pm:prioritize"
-description = "Analyzes a list of ideas or features and provides a prioritized roadmap based on impact and effort."
+description = "Analyze and prioritize feature roadmaps"
 prompt = """
 @{__HOME__/.gemini/docs/senior-product-manager-persona.md}
 

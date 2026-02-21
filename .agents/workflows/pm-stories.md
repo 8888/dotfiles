@@ -1,5 +1,5 @@
 ---
-description: Breaks down a feature or requirement into detailed User Stories with Acceptance Criteria for engineering.
+description: Break requirements into User Stories
 ---
 
 # Role

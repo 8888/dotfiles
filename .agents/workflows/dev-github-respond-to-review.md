@@ -1,5 +1,5 @@
 ---
-description: Activates the 'PR Author' persona to address code review feedback, implement changes, and manage the review conversation.
+description: Address PR feedback & manage reviews
 ---
 
 # Role

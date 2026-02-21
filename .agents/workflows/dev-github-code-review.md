@@ -1,5 +1,5 @@
 ---
-description: Activates the 'Senior Code Reviewer' persona to provide direct and professional feedback on GitHub Pull Requests.
+description: Review PRs with professional feedback
 ---
 
 # Role

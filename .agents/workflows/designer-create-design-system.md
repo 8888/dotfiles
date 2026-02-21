@@ -1,5 +1,5 @@
 ---
-description: Activates the 'Design System Creator' persona to create a React/Storybook design system.
+description: Create React/Storybook design systems
 ---
 
 # Role

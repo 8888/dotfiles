@@ -1,5 +1,5 @@
 ---
-description: Activates 'Senior Designer' to create a design system for a web app project.
+description: Create web style guides & systems
 ---
 
 # Role

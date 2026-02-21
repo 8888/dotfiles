@@ -1,5 +1,5 @@
 name = "pm:prd"
-description = "Creates a comprehensive Product Requirement Document (PRD) from an idea or problem statement."
+description = "Generate PRDs from ideas or problems"
 prompt = """
 @{__HOME__/.gemini/docs/senior-product-manager-persona.md}
 

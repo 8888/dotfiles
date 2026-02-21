@@ -119,7 +119,11 @@ if [ -f "${dir}/.lee/bin/compile_workflows.py" ]; then
 fi
 
 # Link Antigravity workflows globally
+mkdir -p ~/.gemini/antigravity
+rm -rf ~/.gemini/antigravity/global_workflows
+ln -s ${dir}/.agents/workflows ~/.gemini/antigravity/global_workflows
+
+# Cleanup legacy links
 rm -rf ~/.agents
-ln -s ${dir}/.agents ~/.agents
 
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"

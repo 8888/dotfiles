@@ -1,5 +1,5 @@
 name = "dev:github-respond-to-review"
-description = "Activates the 'PR Author' persona to address code review feedback, implement changes, and manage the review conversation."
+description = "Address PR feedback & manage reviews"
 prompt = """
 @{__HOME__/.gemini/docs/senior-developer-persona.md}
 

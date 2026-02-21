@@ -1,5 +1,5 @@
 name = "pm:refine"
-description = "Refines product documentation by resolving engineering questions with authoritative PM decisions and updating the source docs."
+description = "Resolve PM questions & doc updates"
 prompt = """
 @{__HOME__/dotfiles/gemini/docs/senior-product-manager-persona.md}
 

@@ -1,5 +1,5 @@
 name = "dev:ticket"
-description = "Activates the 'Senior Developer' persona to implement features following a strict software development lifecycle workflow."
+description = "Structured feature implementation (SDLC)"
 prompt = """
 @{__HOME__/.gemini/docs/senior-developer-persona.md}
 

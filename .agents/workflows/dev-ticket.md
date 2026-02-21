@@ -1,5 +1,5 @@
 ---
-description: Activates the 'Senior Developer' persona to implement features following a strict software development lifecycle workflow.
+description: Structured feature implementation (SDLC)
 ---
 
 # Role
