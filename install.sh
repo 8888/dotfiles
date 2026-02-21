@@ -120,28 +120,25 @@ if [ -f "${dir}/.lee/bin/compile_cli_commands.py" ]; then
 fi
 
 # Link Antigravity globally
-mkdir -p ~/.agents
+# Path: ~/.gemini/antigravity/ used for global discovery
+antigravity_dir="$HOME/.gemini/antigravity"
+mkdir -p "$antigravity_dir"
+
 for dir_name in "workflows" "skills" "rules"; do
-    rm -rf ~/.agents/$dir_name
+    target_name="global_$dir_name"
+    if [ "$dir_name" == "rules" ]; then target_name="rules"; fi
+
+    rm -rf "$antigravity_dir/$target_name"
     case $dir_name in
-        workflows) ln -s ${dir}/agents/workflows ~/.agents/$dir_name ;;
-        skills)    ln -s ${dir}/agents/skills ~/.agents/$dir_name ;;
-        rules)     ln -s ${dir}/agents/rules ~/.agents/$dir_name ;;
+        workflows) ln -s "${dir}/agents/workflows" "$antigravity_dir/$target_name" ;;
+        skills)    ln -s "${dir}/agents/skills" "$antigravity_dir/$target_name" ;;
+        rules)     ln -s "${dir}/agents/rules" "$antigravity_dir/$target_name" ;;
     esac
 done
 
-# Cleanup legacy Antigravity paths
-for dir_name in "workflows" "global_workflows" "skills" "global_skills" "rules"; do
-    rm -rf ~/.antigravity/$dir_name
-done
+# Cleanup previous attempts and legacy paths
+rm -rf ~/.agents
+rm -rf ~/.antigravity
 
-# Cleanup legacy non-standard path (safe removal of specific links only)
-if [ -d ~/.gemini/antigravity ]; then
-    rm -f ~/.gemini/antigravity/global_workflows
-    rm -f ~/.gemini/antigravity/global_skills
-    rm -f ~/.gemini/antigravity/rules
-    # Only remove the directory if it's empty (preserves 'brain' folder)
-    rmdir ~/.gemini/antigravity 2>/dev/null || true
-fi
 
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"
