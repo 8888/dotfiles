@@ -1,8 +1,9 @@
-Adopt persona: Senior Product Manager
-
 ---
 description: Break requirements into User Stories
 ---
+
+Adopt persona: Senior Product Manager
+
 
 # Goal
 Your goal is to take a feature description and break it down into high-quality, engineering-ready User Stories.

@@ -1,8 +1,9 @@
-Adopt persona: Senior Software Developer
-
 ---
 description: Address PR feedback & manage reviews
 ---
+
+Adopt persona: Senior Software Developer
+
 
 # Goal
 Your task is to process code review feedback on a specific GitHub Pull Request. You will read the review comments, decide on the appropriate action (implement, discuss, or respectfully decline), modify the code accordingly, and reply to the reviewers on GitHub.

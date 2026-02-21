@@ -1,8 +1,9 @@
-Adopt persona: Senior Designer
-
 ---
 description: Create React/Storybook design systems
 ---
+
+Adopt persona: Senior Designer
+
 
 Goal: Create a custom, high-fidelity Design System for a web app project. Tech Stack: React, TypeScript, Tailwind CSS, and Storybook.
 

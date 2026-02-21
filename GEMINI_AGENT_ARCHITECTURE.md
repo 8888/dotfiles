@@ -12,9 +12,10 @@ The `agents/` directory is the single source of truth for all agentic configurat
   - **Antigravity**: These act as global rules.
   - **Gemini CLI**: Mapped to `~/.gemini/docs/` for context. `GLOBAL_RULES.md` is symlinked to `~/.gemini/GEMINI.md` to establish global behavior for the CLI.
 - `workflows/`: Markdown files containing reproducible agent tasks (replacing `.toml` command files).
-  - **Antigravity**: Symlinked directly to `~/.gemini/antigravity/global_workflows`.
+  - **Antigravity**: Symlinked to `~/.antigravity/workflows` and `~/.antigravity/global_workflows`.
   - **Gemini CLI**: Compiled automatically into `~/.gemini/commands/` TOML files during installation.
 - `skills/`: Complex tool sets and modular agent capabilities (e.g., `java-gradle-diagnostics`).
+  - **Antigravity**: Symlinked to `~/.antigravity/skills` and `~/.antigravity/global_skills`.
   - Works natively for both platforms via symlinks.
 
 ## How It Works
@@ -59,4 +60,4 @@ Whenever you author or modify workflows, simply re-run your profile setup:
 cd ~/dotfiles
 ./install.sh home  # or work
 ```
-This will rebuild the symlinks and regenerate the CLI's `.toml` command files from your `.md` workflows.
+This will rebuild the symlinks (linking `agents/` components to `~/.antigravity/` and `~/.gemini/`) and regenerate the CLI's `.toml` command files from your `.md` workflows.

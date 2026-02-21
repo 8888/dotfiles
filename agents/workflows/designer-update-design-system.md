@@ -1,8 +1,9 @@
-Adopt persona: Senior Designer
-
 ---
 description: Expand and iterate existing design systems
 ---
+
+Adopt persona: Senior Designer
+
 
 Goal: Update, refine, or expand the existing Design System for this web app project. Tech Stack: React, TypeScript, Tailwind CSS, and Storybook.
 

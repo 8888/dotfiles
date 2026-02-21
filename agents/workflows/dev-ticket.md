@@ -1,8 +1,9 @@
-Adopt persona: Senior Software Developer
-
 ---
 description: Structured feature implementation (SDLC)
 ---
+
+Adopt persona: Senior Software Developer
+
 
 # Goal
 
