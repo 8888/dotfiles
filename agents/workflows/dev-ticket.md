@@ -51,94 +51,35 @@ These are the steps you must follow exactly when implementing a new feature:
 
 ## Step 2: Create a Feature Branch
 
-1.  After the user story is approved, create a new descriptive branch from `main` using the user story's title (e.g., `feature/user-story-title`).
-
-**Important:**
-- All subsequent work for this feature will be done on this branch.
-- Use the following Git commands:
-  ` + "`" + `` + "`" + `` + "`" + `bash
-  git checkout main
-  git pull
-  git checkout -b <branch_name>
-  ` + "`" + `` + "`" + `` + "`" + `
+1.  Use the `git-feature-workflow` skill to create a descriptive branch from `main` based on the user story.
 
 ## Step 3: Design the Feature and Documentation
 
-1.  Based on the user story, design the feature. Read the `src`, `docs`, and `config` folders as needed.
-2.  Create or update the primary design documents (`docs/features/feature-name/implementation/README.md`, `docs/features/feature-name/implementation/ESIGN.md`, `docs/features/feature-name/implementation/CLASS_STRUCTURE.md`).
-3.  Present your design and the documentation changes to the user, explaining the reasons behind your decisions.
-4.  **Pause and ask for user approval of the design.**
-5.  Once approved and before moving to the next step, commit the design documentation to the feature branch.
+1.  Based on the user story, design the feature. Use `src`, `docs`, and `config` as context.
+2.  Create/update core design docs (e.g., `docs/features/feature-name/implementation/README.md`, `DESIGN.md`, `CLASS_STRUCTURE.md`).
+3.  **Pause and ask for approval before committing the design documentation.**
+4.  Once approved, use the `git-feature-workflow` skill to commit the documentation.
 
-**Important:**
-- The output of this step is the design itself, captured in the documentation.
-- Do not proceed until you have received the user's approval.
-- Do not modify any files outside the `docs` folder during this step.
-- After this is approved you should commit the work to the feature branch.
+## Step 4: Write the Unit Tests (The "Red" Phase)
 
-## Step 4: Write the Unit Tests
+1.  Use the `tdd-workflow` skill to brainstorm test cases and implement failing tests.
+2.  **Ensure you pause for approval on the test cases before implementation.**
 
-1.  Following a Test-Driven Development (TDD) approach, brainstorm a comprehensive list of test cases based on the approved design. Aim for at least 85% test coverage.
-2.  Present the list of test cases to the user for review.
-3.  **Pause and ask for approval before writing the tests.**
-4.  Upon receiving user approval, implement the test cases. Since the feature code does not exist yet, these tests are expected to fail.
+## Step 5: Write the Code (The "Green" Phase)
 
-**Important:**
-- Test code must mirror the folder structure of the `src` folder.
-- Use mocks instead of creating files where appropriate.
-
-## Step 5: Write the Code to Pass the Tests
-
-1.  Formulate a detailed, step-by-step implementation plan to make the failing tests pass.
-2.  Present the plan to the user for review.
-3.  **Pause and ask for approval before writing the code.**
-4.  Upon receiving user approval, write the feature code.
-5.  Run the tests written in the previous step to verify the implementation.
-6.  Fix the implementation until all new and existing tests pass.
-7.  **Pause and inform the user** when the implementation is complete and all tests are passing.
-
-**Important:**
-- Add comments to the code for non-trivial parts.
-- Do not update documentation in the `docs` folder during this step.
+1.  Use the `tdd-workflow` skill to implement the feature code and verify that all tests pass.
+2.  **Pause and inform the user** when the implementation is complete and all tests are passing.
 
 ## Step 6: Update Final Documentation
 
-1.  Review the `docs` folder and identify any final documents that need to be updated, such as `docs/README.md`.
-2.  Present the proposed changes (as a diff) to the user. Do not show the whole document.
-3.  **Pause and ask for approval before updating the documentation.**
-4.  Upon receiving user approval, update the files.
+1.  Review and update any final files like `docs/README.md`.
+2.  **Pause and ask for approval of the diff before updating.**
 
-**Important:**
-- Do not update files outside of the `docs` folder.
+## Step 7: Commit and Submit
 
-## Step 7: Commit the Changes to Git
+1.  Use the `git-feature-workflow` skill to:
+    - Summarize changes and commit with a descriptive message.
+    - Push the branch to the remote repo.
+    - Open a Pull Request targeting `main`.
+2.  **Pause and inform the user** once the PR is ready.
 
-1.  Summarize the changes from this user story to create a commit message.
-2.  Stage all changes and commit using the approved message.
-
-**Important:**
-- Use the following Git commands:
-  ` + "`" + `` + "`" + `` + "`" + `bash
-  git add .
-  git commit -m "FEATURE: <title>
-
-  <A concise but meaningful description of the feature>
-
-  Key changes:
-  - First change
-  - Second change
-  - ..."
-  ` + "`" + `` + "`" + `` + "`" + `
-
-## Step 8: Push and Open Pull Request
-
-1. Push the feature branch to the remote repository.
-2. Use the GitHub MCP tool `create_pull_request` to create a pull request targeting the `main` branch.
-3. **Pause and inform the user** that the pull request has been created.
-
-**Important:**
-- Push the branch using:
-  ` + "`" + `` + "`" + `` + "`" + `bash
-  git push origin <branch_name>
-  ` + "`" + `` + "`" + `` + "`" + `
-- Then use the `create_pull_request` tool. Ensure you identify the correct `owner` and `repo` first.

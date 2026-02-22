@@ -10,12 +10,10 @@ Goal: Create a custom, high-fidelity Design System for a web app project. Tech S
 Process: Do not generate any code yet. We will follow a two-step process:
 
 Step 1: The Design Strategy Interview
-Ask me 3-5 pointed, high-level questions to determine the "Mood and Feel" and functional requirements of the application.
-- Do not ask for hex codes or specific font names.
-- Ask about the desired emotional impact and brand voice (e.g., "Minimalist and Sophisticated" vs. "Energetic and Bold").
-- Ask about information density and user flow (e.g., "Data-dense analytics platform" vs. "Clean, conversion-focused landing page").
-- Ask about the target audience and their primary goals.
-- Inquire about specific accessibility needs or environmental constraints (e.g., "Used in high-glare environments" or "Focus on elder usability").
+- Use the `design-strategy-interview` skill to gather high-level design requirements.
+- Focus on the "Mood and Feel" and functional requirements of the application.
+- **Ensure you adhere to the skill's guidelines on what NOT to ask.**
+
 
 Step 2: The Execution (To be done AFTER I answer)
 Once I answer, YOU will make the executive design decisions. You will engineer a design system that balances beautiful aesthetics with rigorous usability and accessibility standards (ensuring color contrast ratios meet WCAG AA/AAA).

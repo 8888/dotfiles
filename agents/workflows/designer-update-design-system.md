@@ -14,11 +14,9 @@ Process:
 Step 1: Context Loading & Strategy Interview
 - READ the existing `styleguide.toml` and relevant component files (including stories) to understand the current design language.
 - ANALYZE the user's request for updates (e.g., "Make it darker", "Add a dashboard layout", "Fix contrast").
-- ASK 3-5 pointed, high-level questions to ensure you understand the *intent*, *mood*, and *scope* of the update.
-    - Do NOT ask for specific implementation details (like hex codes, pixels, or font names). YOU are the designer; you will make those choices.
-    - Probe for the "Why": "Are we shifting the brand voice to be more playful, or is this a strict enterprise requirement?"
-    - Check constraints: "Does this new view need to handle dense data for power users, or is it a high-level summary for executives?"
-    - Confirm scope: "Should this visual change ripple through the entire system (updating tokens), or is it a bespoke variation?"
+- Use the `design-strategy-interview` skill to ensure you understand the *intent*, *mood*, and *scope* of the update.
+- **Ensure you adhere to the skill's guidelines on what NOT to ask.**
+
 
 Step 2: The Execution (To be done AFTER I answer)
 Once I answer, YOU will make the executive design decisions. You will use your expert judgment to engineer the update.
