@@ -31,6 +31,8 @@ alias serve='python -m http.server 8000'
 
 # Gemini aliases
 alias gemini='gemini --include-directories ~/.gemini/docs'
+alias agy='antigravity'
+alias ag='antigravity'
 
 ### Custom functions
 # add ssh keys to keychain

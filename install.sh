@@ -138,7 +138,9 @@ done
 
 # Cleanup previous attempts and legacy paths
 rm -rf ~/.agents
-rm -rf ~/.antigravity
+for dir_name in "workflows" "global_workflows" "skills" "global_skills" "rules"; do
+    rm -rf "$HOME/.antigravity/$dir_name"
+done
 
 
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"

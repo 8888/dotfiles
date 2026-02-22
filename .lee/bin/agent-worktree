@@ -1,0 +1,117 @@
+#!/bin/bash
+
+# agent-worktree: Manage Git worktrees for isolated agent tasks.
+# Part of the Dotfiles Agentic Workflow.
+
+set -e
+
+COMMAND=$1
+BRANCH=$2
+
+# Determine repository details
+if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    echo "Error: Not in a git repository."
+    exit 1
+fi
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+REPO_NAME=$(basename "$REPO_ROOT")
+# Place worktrees in a centralized directory in HOME
+WORKTREES_DIR="$HOME/.agent-worktrees"
+
+mkdir -p "$WORKTREES_DIR"
+
+usage() {
+    echo "Usage: agent-worktree {start|list|cleanup} [branch-name]"
+    echo ""
+    echo "Commands:"
+    echo "  start <branch>   Create a new worktree and branch for an agent task."
+    echo "  list             Show all active worktrees."
+    echo "  cleanup <branch> Remove the worktree and the associated branch."
+    exit 1
+}
+
+case "$COMMAND" in
+    start)
+        if [ -z "$BRANCH" ]; then
+            usage
+        fi
+
+        # Sanitize branch name for directory use
+        SAFE_BRANCH=$(echo "$BRANCH" | sed 's/\//-/g')
+        DEST="$WORKTREES_DIR/$REPO_NAME-$SAFE_BRANCH"
+
+        if [ -d "$DEST" ]; then
+            echo "Error: Worktree directory already exists at $DEST"
+            exit 1
+        fi
+
+        echo "Creating worktree for branch '$BRANCH' at '$DEST'..."
+
+        # Check if the branch already exists
+        if git show-ref --verify --quiet "refs/heads/$BRANCH"; then
+            echo "Branch '$BRANCH' already exists. Adding worktree using existing branch..."
+            git worktree add "$DEST" "$BRANCH"
+        else
+            echo "Creating new branch '$BRANCH' and worktree..."
+            git worktree add -b "$BRANCH" "$DEST"
+        fi
+
+        # Resource management: Symlink node_modules if they exist in root
+        # This prevents multi-GB duplication for every agent task.
+        if [ -d "$REPO_ROOT/node_modules" ]; then
+            echo "Symlinking node_modules from $REPO_ROOT/node_modules..."
+            ln -sf "$REPO_ROOT/node_modules" "$DEST/node_modules"
+        fi
+
+        # Env Sync: Symlink important environment and config files
+        # We use symlinks to maintain the "Single Source of Truth" philosophy.
+        configs=(".env" ".env.local" ".env.development" ".npmrc" ".yarnrc" ".gemini")
+        for file in "${configs[@]}"; do
+            if [ -e "$REPO_ROOT/$file" ]; then
+                echo "Symlinking $file..."
+                ln -sf "$REPO_ROOT/$file" "$DEST/$file"
+            fi
+        done
+
+        echo "---------------------------------------------------"
+        echo "Success: Agent worktree ready."
+        echo "Path: $DEST"
+        echo "Next: cd $DEST && antigravity \"Your task description\""
+        echo "---------------------------------------------------"
+        ;;
+
+    list)
+        git worktree list
+        ;;
+
+    cleanup)
+        if [ -z "$BRANCH" ]; then
+            usage
+        fi
+
+        SAFE_BRANCH=$(echo "$BRANCH" | sed 's/\//-/g')
+        DEST="$WORKTREES_DIR/$REPO_NAME-$SAFE_BRANCH"
+
+        echo "Cleaning up worktree '$BRANCH' at '$DEST'..."
+
+        if [ -d "$DEST" ]; then
+            git worktree remove "$DEST" || (echo "Forcefully removing directory..." && rm -rf "$DEST")
+        else
+            echo "Warning: Worktree directory $DEST not found."
+        fi
+
+        # Check if branch exists before trying to delete
+        if git show-ref --verify --quiet "refs/heads/$BRANCH"; then
+            echo "Deleting branch '$BRANCH'..."
+            git branch -D "$BRANCH"
+        fi
+
+        git worktree prune
+        echo "Cleanup complete."
+        ;;
+
+    *)
+        usage
+        ;;
+esac
