@@ -7,6 +7,9 @@ description: Steps for transforming high-level inputs into detailed, engineering
 
 This skill defines the process of creating a high-quality GitHub issue that provides all the context an engineer needs to design and implement a solution.
 
+> [!IMPORTANT]
+> This skill is strictly for information gathering and documentation. It does not involve code implementation, bug fixing, or any repository modifications other than the creation of the issue itself.
+
 ## 1. Information Gathering & Analysis
 - **Analyze Input**: Evaluate the user's high-level request (feature or bug).
 - **Determine Type**: Classify the issue as a Feature Enhancement, Bug Report, or Technical Debt.

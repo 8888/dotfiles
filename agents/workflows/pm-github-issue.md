@@ -7,6 +7,9 @@ Adopt persona: Senior Product Manager
 # Goal
 Your goal is to take a high-level feature enhancement or bug report and translate it into a professional, engineering-ready GitHub issue. The issue should follow the highest standards of product documentation, providing clear direction for implementation.
 
+> [!IMPORTANT]
+> This is a documentation-only workflow. You must ONLY create the GitHub issue. Do NOT implement the fix, modify any code, or perform any repository changes beyond creating the issue.
+
 # Workflow
 
 1.  **Context Synchronization**:
