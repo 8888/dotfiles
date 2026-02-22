@@ -16,7 +16,7 @@ This skill provides instructions on how to use the `agent-worktree` utility to i
 The utility is located in `.lee/bin/agent-worktree` (which should be in your `PATH`).
 
 ### Commands
-- `agent-worktree start <branch-name>`: Spawns a new worktree in `../worktrees/<repo-name>-<branch-name>`.
+- `agent-worktree start <branch-name>`: Spawns a new worktree in `~/.agent-worktrees/<repo-name>-<branch-name>`.
 - `agent-worktree cleanup <branch-name>`: Deletes the worktree directory and the associated branch.
 
 ## Execution Rules
@@ -25,7 +25,7 @@ The utility is located in `.lee/bin/agent-worktree` (which should be in your `PA
 When you are tasked with a significant feature or a background task, you should:
 1. Determine an appropriate branch name (e.g., `feature/awesome-ui`).
 2. Run `agent-worktree start feature/awesome-ui`.
-3. Read the output to find the exact destination path (usually `../worktrees/<repo>-<branch>`).
+3. Read the output to find the exact destination path (usually `~/.agent-worktrees/<repo>-<branch>`).
 
 ### 2. Operating Within the Worktree
 Once the worktree is created:
@@ -43,7 +43,7 @@ After you have completed your task (commits pushed, PR created, or work presente
 agent-worktree start feature/fix-login-bug
 
 # 2. Work in the new directory
-cd ../worktrees/dotfiles-feature-fix-login-bug
+cd ~/.agent-worktrees/dotfiles-feature-fix-login-bug
 # ... implement fix, run tests, commit ...
 
 # 3. Cleanup after finishing

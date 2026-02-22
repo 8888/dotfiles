@@ -20,7 +20,7 @@ Use this workflow to kick off a complex development task in an isolated Git work
      ```bash
      agent-worktree start <branch-name>
      ```
-   - Note the destination path returned by the command (usually `../worktrees/<repo>-<branch>`).
+   - Note the destination path returned by the command (usually `~/.agent-worktrees/<repo>-<branch>`).
 
 3. **Workspace Transition**:
    - Inform the user that you are moving the task to the isolated worktree.
