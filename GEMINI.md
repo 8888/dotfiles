@@ -55,8 +55,9 @@ For a deep dive into how to extend or use these agentic tools, see [GEMINI_AGENT
 
 ## Compilation & Installation
 The `install.sh` script automatically handles:
-1. **Symlinking**: Maps dotfiles, `agents/` components, and `gemini/settings.json` into the appropriate `~/.gemini/` and Antigravity directories.
-2. **CLI Command Compilation**: Runs `.lee/bin/compile_cli_commands.py` to generate the TOML command structure for the Gemini CLI from the Markdown workflows.
+1. **Gemini Configuration**: Manages `~/.gemini/settings.json` and `~/.gemini/trustedFolders.json` (with dynamic path expansion).
+2. **Symlinking**: Maps dotfiles and `agents/` components into the appropriate `~/.gemini/` and Antigravity directories.
+3. **CLI Command Compilation**: Runs `.lee/bin/compile_cli_commands.py` to generate the TOML command structure for the Gemini CLI from the Markdown workflows.
 
 To update your agents after making changes to `agents/workflows/`, just re-run:
 ```bash

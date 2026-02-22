@@ -1,0 +1,4 @@
+{
+  "{{HOME}}/.agent-worktrees": "TRUST_PARENT",
+  "{{HOME}}/dotfiles": "TRUST_FOLDER"
+}

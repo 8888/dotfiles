@@ -101,6 +101,13 @@ mkdir -p ~/.gemini
 rm -f ~/.gemini/settings.json
 ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
 
+# Process Trusted Folders Template
+if [ -f "${dir}/gemini/trustedFolders.json" ]; then
+    echo -e "${BLUE}Configuring Trusted Folders...${NC}"
+    # Expand {{HOME}} and write to ~/.gemini/trustedFolders.json
+    sed "s|{{HOME}}|$HOME|g" "${dir}/gemini/trustedFolders.json" > ~/.gemini/trustedFolders.json
+fi
+
 # Optional: Check for project-local MCP overrides
 if [ -f ".mcp/settings.json" ]; then
     echo -e "${BLUE}Project-specific MCP settings detected in .mcp/settings.json${NC}"
