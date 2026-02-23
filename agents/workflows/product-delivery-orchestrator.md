@@ -18,7 +18,7 @@ Your role is to manage the end-to-end delivery of a feature request. You are res
 
 ## Step 2: Isolated Environment Setup
 1. **Spawn Worktree**: Use the `agent-worktree` skill to create an isolated environment.
-   // turbo
+   // turbo - This notation allows the agent to auto-run the specific shell command below.
    ```bash
    agent-worktree start <branch-name>
    ```
@@ -32,7 +32,7 @@ Your role is to manage the end-to-end delivery of a feature request. You are res
    - **Verification**: The sub-agent must confirm all tests pass before returning control.
 
 ## Step 4: Pull Request Creation
-1. **GitHub PR**: Once implementation is verified, use the `github-feature-workflow` skill to:
+1. **GitHub PR**: Once implementation is verified, use the `git-feature-workflow` skill to:
    - Commit all changes with a descriptive message.
    - Push the branch to the remote repository.
    - Open a Pull Request targeting `main`.
@@ -46,7 +46,7 @@ Your role is to manage the end-to-end delivery of a feature request. You are res
 3. **Address Feedback**: Invoke `@dev-github-respond-to-review` to evaluate and address the comments.
 4. **Respond Reporting**: Wait for the `@dev-github-respond-to-review` agent to report back when all fixes are implemented and pushed.
 5. **Re-Validate**: Once fixes are pushed, re-invoke `@dev-github-code-review` to verify the branch.
-6. **Iteration Control**: Use your judgment as the orchestrator to decide if the back-and-forth is productive. If the agents are stuck or repeating themselves, stop and report the conflict to the human user.
+6. **Iteration Control**: Use your judgment as the orchestrator to decide if the back-and-forth is productive. **Limit the review/respond cycle to a maximum of 3 iterations.** If the agents are stuck, repeating themselves, or exceed this limit, stop and report the conflict to the human user.
 
 ## Step 6: Finalization
 1. **No Auto-Merge**: DO NOT merge the PR. It must remain open for final human approval.
