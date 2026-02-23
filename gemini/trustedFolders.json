@@ -1,4 +1,5 @@
 {
   "{{HOME}}/.agent-worktrees": "TRUST_PARENT",
-  "{{HOME}}/dotfiles": "TRUST_FOLDER"
+  "{{HOME}}/dotfiles": "TRUST_FOLDER",
+  "{{HOME}}/Documents/code/lee": "TRUST_PARENT"
 }
