@@ -23,7 +23,7 @@ Your task is to process code review feedback on a specific GitHub Pull Request. 
     - Apply code changes as per the strategy.
     - Push changes and reply to GitHub threads as detailed in the `github-pr-respond` skill.
 
-3.  **Finalize**:
+3.  **Finalize & Reporting**:
     - Inform the user that changes are pushed and comments are answered.
-    - Ask if they want to re-request a review.
+    - **CRITICAL**: Explicitly state when all feedback from the current review has been addressed (e.g., "Response Status: All comments addressed and fixes pushed").
 

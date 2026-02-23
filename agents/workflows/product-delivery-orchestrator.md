@@ -40,9 +40,13 @@ Your role is to manage the end-to-end delivery of a feature request. You are res
 
 ## Step 5: Automated Review Loop
 1. **Peer Review**: Invoke `@dev-github-code-review` to perform a technical review of the PR.
-2. **Address Feedback**: Invoke `@dev-github-respond-to-review` to evaluate and implement necessary changes.
-3. **Re-Validate**: Ensure tests are re-run after any feedback-driven changes.
-4. **Termination Condition**: Repeat this loop until a reviewer (or the user) explicitly states "work is complete" or the PR is approved.
+2. **Review Status Reporting**: Wait for the `@dev-github-code-review` agent to report back.
+   - **Approved**: If the agent reports "Approved", skip to Step 6.
+   - **Changes Requested**: If the agent reports issues or requests changes, proceed to address feedback.
+3. **Address Feedback**: Invoke `@dev-github-respond-to-review` to evaluate and address the comments.
+4. **Respond Reporting**: Wait for the `@dev-github-respond-to-review` agent to report back when all fixes are implemented and pushed.
+5. **Re-Validate**: Once fixes are pushed, re-invoke `@dev-github-code-review` to verify the branch.
+6. **Iteration Control**: Use your judgment as the orchestrator to decide if the back-and-forth is productive. If the agents are stuck or repeating themselves, stop and report the conflict to the human user.
 
 ## Step 6: Finalization
 1. **No Auto-Merge**: DO NOT merge the PR. It must remain open for final human approval.
