@@ -30,6 +30,7 @@ Located in `agents/rules/`, these files establish the persona and operational st
 | [environment-and-ops.md](file:///Users/leecostello/dotfiles/agents/rules/environment-and-ops.md) | Rules for OS interaction, package management, and error handling. |
 | [git-workflow-rules.md](file:///Users/leecostello/dotfiles/agents/rules/git-workflow-rules.md) | Mandates for version control hygiene and commit organization. |
 | [product-management-standards.md](file:///Users/leecostello/dotfiles/agents/rules/product-management-standards.md) | Standards for requirement gathering and ticket refinement. |
+| [orchestration-standards.md](file:///Users/leecostello/dotfiles/agents/rules/orchestration-standards.md) | Standards for sub-agent spawning and headless execution. |
 | [principal-architect-persona.md](file:///Users/leecostello/dotfiles/agents/rules/principal-architect-persona.md) | Focuses on high-level cloud architecture and system design. |
 | [senior-developer-persona.md](file:///Users/leecostello/dotfiles/agents/rules/senior-developer-persona.md) | Expert coding, debugging, and implementation focus. |
 | [senior-designer-persona.md](file:///Users/leecostello/dotfiles/agents/rules/senior-designer-persona.md) | Focuses on UI/UX, design systems, and visual excellence. |

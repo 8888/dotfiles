@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Gemini-Exec: Robust headless agent execution wrapper
+# Usage: gemini-exec "<agent_persona>" "<prompt>"
+
+AGENT_PERSONA=$1
+PROMPT=$2
+
+if [ -z "$AGENT_PERSONA" ] || [ -z "$PROMPT" ]; then
+    echo "Usage: gemini-exec \"<agent_persona>\" \"<prompt>\""
+    exit 1
+fi
+
+# Resolve the actual gemini binary
+GEMINI_BIN=$(command -v gemini)
+if [ -z "$GEMINI_BIN" ]; then
+    echo "Error: 'gemini' command not found in PATH."
+    exit 1
+fi
+
+# Execute headless
+# Combine persona and prompt for the cleanest execution
+$GEMINI_BIN --include-directories ~/.gemini/docs --approval-mode yolo -p "$AGENT_PERSONA: $PROMPT"
