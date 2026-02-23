@@ -30,5 +30,37 @@
   localhost:5432:<dbname>:<user>:<password>
   ```
 
-## Agent Configuration
-Gemini CLI and Antigravity are configured via `agents/` and `gemini/settings.json`. See [GEMINI_AGENT_ARCHITECTURE.md](GEMINI_AGENT_ARCHITECTURE.md) for full details.
+## AI & Agent Infrastructure
+
+This repository features a unified, Markdown-first agent architecture that integrates seamlessly with both the **Gemini CLI** and **Antigravity**.
+
+### Core Architecture
+- **Markdown-First**: Personas, rules, and workflows are authored as standard Markdown files in `agents/`.
+- **Unified Configuration**: A single source of truth for all tools. `install.sh` automatically compiles and symlinks these configurations into the appropriate local directories (`~/.gemini/`).
+- **MCP Integration**: Uses the Model Context Protocol (MCP) to provide agents with powerful tools like GitHub repository management, Azure cloud integration, and Chrome browser automation.
+
+### Gemini CLI
+Run specialized agent tasks directly from your terminal.
+- **Usage**: `gemini <namespace>:<command>` (e.g., `gemini dev:task "fix the bug"`).
+- **Compilation**: Workflows in `agents/workflows/` are automatically mapped to CLI namespaces. A file named `pm-prd.md` becomes the `pm:prd` command.
+
+### Antigravity
+The high-performance agent platform used within this workspace.
+- **Slash Commands**: Trigger workflows using `/` commands (e.g., `/dev-ticket`).
+- **Skills**: Specialized modules in `agents/skills/` extend Antigravity's capabilities (e.g., `tdd-workflow`).
+- **Task View**: Uses `task_boundary` and `task.md` to provide transparent, multi-step progress tracking.
+
+### MCP Servers
+- **GitHub (`github`)**: Full repository management, PR creation, and code search. Requires `$GITHUB_PERSONAL_ACCESS_TOKEN`.
+- **Azure (`azure`)**: Integration with Azure cloud services.
+- **Chrome DevTools (`chrome-devtools`)**: Browser automation and GUI testing.
+
+### Extending the System
+1. **Rules**: Add `.md` files to `agents/rules/` to define new personas or engineering standards.
+2. **Workflows**: Add `.md` files with YAML frontmatter to `agents/workflows/`.
+3. **Skills**: Create new directories in `agents/skills/` with a `SKILL.md` file.
+4. **Sync**: Run `./install.sh [home|work]` to apply your changes.
+
+---
+
+For a full catalog of available rules, workflows, and skills, see [GEMINI_AGENT_ARCHITECTURE.md](GEMINI_AGENT_ARCHITECTURE.md).

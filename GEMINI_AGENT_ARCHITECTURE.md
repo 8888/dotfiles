@@ -19,7 +19,61 @@ The `agents/` directory is the single source of truth for all agentic configurat
 - `skills/`: Complex tool sets and modular agent capabilities.
   - **Antigravity**: Symlinked to `~/.gemini/antigravity/global_skills`.
   - **Gemini CLI**: Accessible via the shared symlink.
-  - Current skills: `java-gradle-diagnostics`, `mood-board-capture`
+
+## Rules Catalog
+Located in `agents/rules/`, these files establish the persona and operational standards.
+
+| File | Description |
+|---|---|
+| [GLOBAL_RULES.md](file:///Users/leecostello/dotfiles/agents/rules/GLOBAL_RULES.md) | Universal directives for efficiency, tone, and safety. |
+| [engineering-standards.md](file:///Users/leecostello/dotfiles/agents/rules/engineering-standards.md) | Explicit rules for code quality, system design, and testing. |
+| [environment-and-ops.md](file:///Users/leecostello/dotfiles/agents/rules/environment-and-ops.md) | Rules for OS interaction, package management, and error handling. |
+| [git-workflow-rules.md](file:///Users/leecostello/dotfiles/agents/rules/git-workflow-rules.md) | Mandates for version control hygiene and commit organization. |
+| [product-management-standards.md](file:///Users/leecostello/dotfiles/agents/rules/product-management-standards.md) | Standards for requirement gathering and ticket refinement. |
+| [principal-architect-persona.md](file:///Users/leecostello/dotfiles/agents/rules/principal-architect-persona.md) | Focuses on high-level cloud architecture and system design. |
+| [senior-developer-persona.md](file:///Users/leecostello/dotfiles/agents/rules/senior-developer-persona.md) | Expert coding, debugging, and implementation focus. |
+| [senior-designer-persona.md](file:///Users/leecostello/dotfiles/agents/rules/senior-designer-persona.md) | Focuses on UI/UX, design systems, and visual excellence. |
+| [senior-product-manager-persona.md](file:///Users/leecostello/dotfiles/agents/rules/senior-product-manager-persona.md) | Focuses on PRDs, user stories, and feature prioritization. |
+
+## Workflows Catalog
+Located in `agents/workflows/`. These are reproducible multi-step tasks.
+
+| Command | Description |
+|---|---|
+| `architect:cloud-architect` | Cloud architecture design & implementation. |
+| `dev:task` | Flexible developer for ad-hoc tasks. |
+| `dev:ticket` | Structured feature implementation (SDLC). |
+| `dev:github-code-review` | Review PRs with professional feedback. |
+| `dev:github-respond-to-review` | Address PR feedback & manage reviews. |
+| `pm:prd` | Generate PRDs from ideas or problems. |
+| `pm:github-issue` | Create a highly-detailed GitHub issue. |
+| `pm:prioritize` | Analyze and prioritize feature roadmaps. |
+| `pm:refine` | Resolve PM questions & doc updates. |
+| `pm:stories` | Break requirements into User Stories. |
+| `pm:task` | Flexible PM for ad-hoc tasks. |
+| `designer:feature-design` | Create and refine new feature designs. |
+| `designer:create-design-system` | Create React/Storybook design systems. |
+| `designer:update-design-system` | Expand and iterate existing design systems. |
+| `designer:create-style-guide` | Create web style guides & systems. |
+| `product:delivery-orchestrator` | End-to-end delivery management from intake to PR. |
+| `start-agent-task` | Start an isolated agent task using Git Worktrees. |
+
+## Skills Catalog
+Located in `agents/skills/`. Specialized toolsets that extend agent capabilities.
+
+| Skill | Description |
+|---|---|
+| `agent-worktree` | Managing and operating within isolated Git worktrees. |
+| `architecture-design-process` | Guidelines for cloud architecture design & documentation. |
+| `design-strategy-interview` | Guidelines for conducting design discovery interviews. |
+| `git-feature-workflow` | Standardized Git operations for feature development. |
+| `github-issue-creation` | Transforming inputs into engineering-ready GitHub issues. |
+| `github-pr-respond` | Processing and responding to GitHub PR feedback. |
+| `github-pr-review` | Performing technical PR reviews using MCP tools. |
+| `java-gradle-diagnostics` | Diagnosing and repairing Java/Gradle environment issues. |
+| `mood-board-capture` | Capture text, images, or links into the local Mood Board. |
+| `tdd-workflow` | Formalized steps for Test-Driven Development (TDD). |
+| `ui-mockups` | Guidance on producing UI wireframes and concept mockups. |
 
 ## Gemini Settings (`~/dotfiles/gemini/settings.json`)
 

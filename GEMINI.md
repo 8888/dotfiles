@@ -63,3 +63,13 @@ To update your agents after making changes to `agents/workflows/`, just re-run:
 ```bash
 ./install.sh [home|work]
 ```
+
+## Documentation Maintenance
+
+When adding, removing, or significantly modifying the following components, you **must** update the corresponding catalogs in [GEMINI_AGENT_ARCHITECTURE.md](GEMINI_AGENT_ARCHITECTURE.md):
+
+1.  **Rules/Personas**: Update the "Rules Catalog".
+2.  **Workflows**: Update the "Workflows Catalog".
+3.  **Skills**: Update the "Skills Catalog".
+
+This ensures that the documentation remains a reliable source of truth for both the Gemini CLI and Antigravity users.
