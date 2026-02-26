@@ -98,13 +98,18 @@ ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/set
 
 # Gemini CLI & Antigravity Workflows
 mkdir -p ~/.gemini
-rm -f ~/.gemini/settings.json
-ln -s ${dir}/gemini/settings.json ~/.gemini/settings.json
+if [ -f "${dir}/gemini/settings.json" ]; then
+    echo -e "${BLUE}Configuring Gemini Settings...${NC}"
+    # Expand {{HOME}} to ~/.gemini/settings.json (removes symlink if it exists to avoid truncation)
+    rm -f ~/.gemini/settings.json
+    sed "s|{{HOME}}|$HOME|g" "${dir}/gemini/settings.json" > ~/.gemini/settings.json
+fi
 
 # Process Trusted Folders Template
 if [ -f "${dir}/gemini/trustedFolders.json" ]; then
     echo -e "${BLUE}Configuring Trusted Folders...${NC}"
-    # Expand {{HOME}} and write to ~/.gemini/trustedFolders.json
+    # Expand {{HOME}} and write to ~/.gemini/trustedFolders.json (removes symlink if it exists to avoid truncation)
+    rm -f ~/.gemini/trustedFolders.json
     sed "s|{{HOME}}|$HOME|g" "${dir}/gemini/trustedFolders.json" > ~/.gemini/trustedFolders.json
 fi
 

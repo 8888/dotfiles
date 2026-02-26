@@ -1,4 +1,7 @@
 {
+  "allowedWorkspaces": [
+    "{{HOME}}/.agent-worktrees"
+  ],
   "ide": {
     "hasSeenNudge": true,
     "enabled": true
