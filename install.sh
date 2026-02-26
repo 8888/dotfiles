@@ -108,7 +108,8 @@ fi
 # Process Trusted Folders Template
 if [ -f "${dir}/gemini/trustedFolders.json" ]; then
     echo -e "${BLUE}Configuring Trusted Folders...${NC}"
-    # Expand {{HOME}} and write to ~/.gemini/trustedFolders.json
+    # Expand {{HOME}} and write to ~/.gemini/trustedFolders.json (removes symlink if it exists to avoid truncation)
+    rm -f ~/.gemini/trustedFolders.json
     sed "s|{{HOME}}|$HOME|g" "${dir}/gemini/trustedFolders.json" > ~/.gemini/trustedFolders.json
 fi
 
