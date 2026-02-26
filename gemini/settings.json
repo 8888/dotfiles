@@ -1,4 +1,7 @@
 {
+  "allowedWorkspaces": [
+    "/Users/leecostello/.agent-worktrees"
+  ],
   "ide": {
     "hasSeenNudge": true,
     "enabled": true
@@ -60,7 +63,8 @@
     "shell": {
       "autoAccept": true,
       "enableInteractiveShell": true,
-      "showColor": true
+      "showColor": true,
+      "workspaceValidation": false
     },
     "confirmationMode": "auto"
   },
@@ -75,7 +79,8 @@
   "security": {
     "auth": {
       "selectedType": "oauth-personal"
-    }
+    },
+    "workspaceValidation": false
   },
   "ui": {
     "footer": {
