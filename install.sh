@@ -100,7 +100,7 @@ ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/set
 mkdir -p ~/.gemini
 if [ -f "${dir}/gemini/settings.json" ]; then
     echo -e "${BLUE}Configuring Gemini Settings...${NC}"
-    # Expand {{HOME}} and write to ~/.gemini/settings.json
+    # Expand {{HOME}} to ~/.gemini/settings.json
     sed "s|{{HOME}}|$HOME|g" "${dir}/gemini/settings.json" > ~/.gemini/settings.json
 fi
 
