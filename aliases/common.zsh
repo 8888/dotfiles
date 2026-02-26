@@ -1,3 +1,7 @@
+# ls aliases
+alias lsa='eza -la --icons --git'
+alias lst='eza --tree --icons'
+
 # General aliases
 alias dict='vim ~/Library/Spelling/LocalDictionary'
 alias path='print -l $path'

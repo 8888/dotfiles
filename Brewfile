@@ -16,8 +16,10 @@ brew "gemini-cli"
 brew "mise"
 
 # Apps
+cask "claude-code"
 cask "visual-studio-code"
 
 # Tools
+brew "eza"
 cask "font-meslo-lg-nerd-font"
 cask "ngrok"
