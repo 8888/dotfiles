@@ -63,8 +63,7 @@
     "shell": {
       "autoAccept": true,
       "enableInteractiveShell": true,
-      "showColor": true,
-      "workspaceValidation": false
+      "showColor": true
     },
     "confirmationMode": "auto"
   },
