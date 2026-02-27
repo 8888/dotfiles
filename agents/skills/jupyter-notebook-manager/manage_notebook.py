@@ -6,7 +6,7 @@ import os
 
 def load_notebook(path):
     if not os.path.exists(path):
-        # Create a new empty notebook if it doesn't exist
+        # Default for new notebooks
         return {
             "cells": [],
             "metadata": {},
@@ -43,11 +43,8 @@ def insert_cell(nb, index, cell_type, source):
     new_cell = {
         "cell_type": cell_type,
         "metadata": {},
-        "source": [line + '\n' for line in source.split('\n')]
+        "source": source.splitlines(keepends=True)
     }
-    # Clean up trailing newline in the last line if source didn't have it
-    if new_cell["source"] and not source.endswith('\n'):
-        new_cell["source"][-1] = new_cell["source"][-1][:-1]
 
     if cell_type == "code":
         new_cell["execution_count"] = None
@@ -61,9 +58,7 @@ def insert_cell(nb, index, cell_type, source):
 def replace_cell(nb, index, source):
     try:
         cell = nb['cells'][index]
-        cell['source'] = [line + '\n' for line in source.split('\n')]
-        if cell['source'] and not source.endswith('\n'):
-            cell['source'][-1] = cell['source'][-1][:-1]
+        cell['source'] = source.splitlines(keepends=True)
     except IndexError:
         print(f"Error: Cell index {index} out of range.", file=sys.stderr)
         sys.exit(1)

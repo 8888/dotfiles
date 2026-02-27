@@ -1,5 +1,5 @@
 ---
-name: jupyter_notebook_manager
+name: jupyter-notebook-manager
 description: Programmatic manipulation of Jupyter Notebook (.ipynb) files.
 ---
 
@@ -16,7 +16,7 @@ The `manage_notebook.py` script provides a CLI for common notebook operations.
 #### 1. List Cells
 Always start by listing cells to understand the notebook structure and identify target indices.
 ```bash
-python3 path/to/manage_notebook.py notebook.ipynb list
+python3 path/to/jupyter-notebook-manager/manage_notebook.py notebook.ipynb list
 ```
 
 #### 2. View a Cell
