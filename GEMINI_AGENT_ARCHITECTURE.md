@@ -72,6 +72,7 @@ Located in `agents/skills/`. Specialized toolsets that extend agent capabilities
 | `github-pr-respond` | Processing and responding to GitHub PR feedback. |
 | `github-pr-review` | Performing technical PR reviews using MCP tools. |
 | `java-gradle-diagnostics` | Diagnosing and repairing Java/Gradle environment issues. |
+| `jupyter-notebook-manager` | Programmatic manipulation of Jupyter Notebook (.ipynb) files. |
 | `mood-board-capture` | Capture text, images, or links into the local Mood Board. |
 | `tdd-workflow` | Formalized steps for Test-Driven Development (TDD). |
 | `ui-mockups` | Guidance on producing UI wireframes and concept mockups. |
