@@ -16,7 +16,6 @@ brew "gemini-cli"
 brew "mise"
 
 # Apps
-cask "claude-code"
 cask "visual-studio-code"
 
 # Tools
