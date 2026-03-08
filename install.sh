@@ -96,6 +96,13 @@ mkdir -p ~/Library/Application\ Support/Cursor/User
 rm -f ~/Library/Application\ Support/Cursor/User/settings.json
 ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/settings.json
 
+# Claude Code
+mkdir -p ~/.claude
+rm -f ~/.claude/settings.json
+ln -s ${dir}/claude/settings.json ~/.claude/settings.json
+rm -f ~/.claude/CLAUDE.md
+ln -s ${dir}/agents/rules/GLOBAL_RULES.md ~/.claude/CLAUDE.md
+
 # Gemini CLI & Antigravity Workflows
 mkdir -p ~/.gemini
 if [ -f "${dir}/gemini/settings.json" ]; then
