@@ -1,6 +1,6 @@
 # ls aliases
 alias lsa='eza -la --icons --git'
-alias lst='eza --tree --icons'
+alias lst='eza --tree --icons --git-ignore --git --group-directories-first --ignore-glob "node_modules|.git|venv|.venv|target|dist|build"'
 
 # General aliases
 alias dict='vim ~/Library/Spelling/LocalDictionary'
