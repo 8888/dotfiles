@@ -103,6 +103,17 @@ ln -sf ${dir}/claude/settings.json ~/.claude/settings.json
 rm -f ~/.claude/CLAUDE.md
 ln -sf ${dir}/claude/CLAUDE.md ~/.claude/CLAUDE.md
 
+# Claude Code skill commands
+mkdir -p ~/.claude/commands
+for skill_dir in "${dir}/agents/skills"/*/; do
+    skill_name=$(basename "$skill_dir")
+    skill_file="${skill_dir}SKILL.md"
+    if [ -f "$skill_file" ]; then
+        rm -f ~/.claude/commands/"${skill_name}.md"
+        ln -sf "$skill_file" ~/.claude/commands/"${skill_name}.md"
+    fi
+done
+
 # Gemini CLI
 mkdir -p ~/.gemini
 if [ -f "${dir}/gemini/settings.json" ]; then
