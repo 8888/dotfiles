@@ -1,0 +1,28 @@
+name = "dev:respond-to-review"
+description = "Address PR feedback, implement fixes, and reply to reviewers"
+
+prompt = """
+# Goal
+
+Process code review feedback on a GitHub Pull Request. Read review comments, decide the appropriate action (implement, discuss, or respectfully decline), modify code accordingly, and reply to reviewers on GitHub.
+
+When responding to reviewers:
+- Acknowledge feedback professionally (e.g., "Good catch," "Thanks for spotting this").
+- Use precise technical language when explaining changes or disagreements.
+- If you disagree, explain *why* based on principles (SOLID, performance, security) — not opinion.
+
+Follow the standards in `~/.gemini/docs/engineering.md`.
+
+# Workflow
+
+1. **Process Feedback**:
+   - Use the `github-pr-respond` skill to gather context, analyze review comments, and formulate a response strategy.
+
+2. **Implementation**:
+   - Apply code changes as per the strategy.
+   - Push changes and reply to GitHub threads.
+
+3. **Finalize**:
+   - Inform the user that changes are pushed and comments are answered.
+   - **Explicitly state when all feedback is addressed** (e.g., "Response Status: All comments addressed and fixes pushed").
+"""

@@ -5,38 +5,30 @@
 This repository uses a modular, profile-based architecture to manage configurations for both **Home** and **Work** environments from a single codebase.
 
 ### Core Philosophy
-*   **Commonality**: 90% of configurations (Git aliases, core ZSH logic, general tools) are shared.
-*   **Isolation**: Work-specific aliases (e.g., RubiconMD tools), professional Git identities, and sensitive credentials are isolated into specific profiles.
-*   **Portability**: Symbolic links and dynamic sourcing ensure that updates to common files propagate to all machines.
+- **Commonality**: 90% of configurations (Git aliases, core ZSH logic, general tools) are shared.
+- **Isolation**: Work-specific aliases, professional Git identities, and sensitive credentials are isolated into specific profiles.
+- **Portability**: Symbolic links and dynamic sourcing ensure updates propagate to all machines.
 
 ## Directory Structure
 
-*   `zsh/`: Modular shell initialization.
-    *   `common.zsh`: Core setup (OMZ, mise, Java, PATH).
-    *   `home.zsh` / `work.zsh`: Profile-specific environment variables.
-*   `aliases/`: Command shortcuts.
-    *   `common.zsh`: General purpose tools (Git, Docker, Python).
-    *   `home.zsh` / `work.zsh`: Environment-specific shortcuts.
-*   `git/`: Git configuration modules.
-    *   `common.gitconfig`: Shared settings (editor, core behaviors).
-    *   `work.gitconfig`: Professional identity (email, work-specific paths).
-    *   `home.gitconfig`: Personal identity.
-*   `agents/`: Unified agent configurations (rules, workflows, skills).
-*   `gemini/`: Gemini CLI & Antigravity configuration.
-    *   `settings.json`: MCP server definitions, tool permissions, and CLI settings. Symlinked to `~/.gemini/settings.json`.
-*   `.lee/bin/`: Custom utility scripts (including the command compiler).
+- `zsh/`: Modular shell initialization (`common.zsh`, `home.zsh`, `work.zsh`).
+- `aliases/`: Command shortcuts (`common.zsh`, `home.zsh`, `work.zsh`).
+- `git/`: Git configuration modules (`common.gitconfig`, `work.gitconfig`, `home.gitconfig`).
+- `agents/`: Tool-agnostic AI agent resources.
+  - `standards/`: Domain knowledge (engineering, product management, git, cloud, design). Auto-loaded by Gemini via `~/.gemini/docs/`.
+  - `skills/`: Specialized skill modules (`SKILL.md` per directory).
+- `claude/`: Claude Code configuration (`CLAUDE.md`, `settings.json`, `hooks/`).
+- `gemini/`: Gemini CLI configuration (`AGENTS.md`, `settings.json`, `commands/`, `trustedFolders.json`).
+- `.lee/bin/`: Custom utility scripts.
 
 ## Key Files
 
-*   `.zshrc`: The bootstrap script. It reads `~/.dotfiles_profile` and dynamically sources the correct modular files.
-*   `.gitconfig`: The main Git template. Uses `includeIf` to switch identities automatically based on the directory (e.g., switches to Work email in `~/Documents/work/`).
-*   `install.sh`: The setup script. Creates all necessary symlinks and sets the local machine profile.
-*   `personal-install.sh`: Legacy/Optional script for manual linking of non-versioned sensitive files.
+- `.zshrc`: Bootstrap script. Reads `~/.dotfiles_profile` and sources the correct modular files.
+- `.gitconfig`: Main Git template. Uses `includeIf` to switch identities by directory.
+- `install.sh`: Setup script. Creates all symlinks and sets the local machine profile.
 
 ## Usage
 
-### 1. Installation
-Run the installer with the desired profile:
 ```bash
 # Home machine
 ./install.sh home
@@ -45,31 +37,10 @@ Run the installer with the desired profile:
 ./install.sh work
 ```
 
-### 2. Switching Profiles
-To switch profiles manually, change the content of `~/.dotfiles_profile` to either `home` or `work` and restart the shell.
+## Agent System
 
-## Agent Configuration & Unified Architecture
-We use a unified Markdown-first approach for both the Gemini CLI and Antigravity. Personas, workflows, and skills are authored once in `agents/` and applied everywhere.
+Standards files in `agents/standards/` are the authoritative source for engineering, product management, git workflow, cloud architecture, and design conventions. They are:
+- Auto-loaded by Gemini CLI via `~/.gemini/docs/` symlink
+- Referenced from `claude/CLAUDE.md` for Claude Code sessions
 
-For a deep dive into how to extend or use these agentic tools, see [GEMINI_AGENT_ARCHITECTURE.md](file:///Users/leecostello/dotfiles/GEMINI_AGENT_ARCHITECTURE.md).
-
-## Compilation & Installation
-The `install.sh` script automatically handles:
-1. **Gemini Configuration**: Manages `~/.gemini/settings.json` and `~/.gemini/trustedFolders.json` (with dynamic path expansion).
-2. **Symlinking**: Maps dotfiles and `agents/` components into the appropriate `~/.gemini/` and Antigravity directories.
-3. **CLI Command Compilation**: Runs `.lee/bin/compile_cli_commands.py` to generate the TOML command structure for the Gemini CLI from the Markdown workflows.
-
-To update your agents after making changes to `agents/workflows/`, just re-run:
-```bash
-./install.sh [home|work]
-```
-
-## Documentation Maintenance
-
-When adding, removing, or significantly modifying the following components, you **must** update the corresponding catalogs in [GEMINI_AGENT_ARCHITECTURE.md](GEMINI_AGENT_ARCHITECTURE.md):
-
-1.  **Rules/Personas**: Update the "Rules Catalog".
-2.  **Workflows**: Update the "Workflows Catalog".
-3.  **Skills**: Update the "Skills Catalog".
-
-This ensures that the documentation remains a reliable source of truth for both the Gemini CLI and Antigravity users.
+Gemini CLI commands live in `gemini/commands/` as hand-written TOML files, organized by role (`dev/`, `pm/`, `designer/`, `architect/`). Symlinked to `~/.gemini/commands/` at install time.

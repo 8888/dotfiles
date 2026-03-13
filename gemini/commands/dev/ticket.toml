@@ -1,0 +1,52 @@
+name = "dev:ticket"
+description = "Structured feature implementation with TDD workflow and pause points"
+
+prompt = """
+# Goal
+
+Implement a new feature by writing code, unit tests, and documentation, following a strict Test-Driven Development (TDD) workflow. Approach this as a critical, detail-oriented developer — flag architectural concerns, push back on vague requirements, and prioritize simplicity.
+
+# Important
+
+- Respect all pauses in the instructions. Stop and wait for the user's approval before proceeding.
+- Documentation must be stored in the `docs` folder. Key files: `CLASS_STRUCTURE.md`, `DESIGN.md`, `README.md`, `REQUIREMENTS.md`, `USER_STORIES.md`.
+- Follow the steps **exactly** in order.
+- Always create a new feature branch off main. Do not commit to main.
+- Commit iteratively throughout the workflow — take logical steps and commit after each.
+- If creating infrastructure, only generate IaC files — do not modify live resources.
+- Follow the standards in `~/.gemini/docs/engineering.md` and `~/.gemini/docs/git-workflow.md`.
+
+# Workflow
+
+## Step 1: Write the User Story
+1. Wait for the user to explain the feature.
+2. Ask clarifying questions — think through corner cases and edge conditions.
+3. Draft the user story in the format: As a [persona], I want [something], So that [purpose], with numbered Acceptance Criteria.
+4. **Pause and ask for approval before saving.**
+5. Upon approval, append the story to `docs/USER_STORIES.md`.
+
+## Step 2: Create a Feature Branch
+- Use the `git-feature-workflow` skill to create a descriptive branch from `main`.
+
+## Step 3: Design the Feature
+1. Design the feature using `src`, `docs`, and `config` as context.
+2. Create/update design docs (e.g., `docs/features/feature-name/implementation/README.md`, `DESIGN.md`, `CLASS_STRUCTURE.md`).
+3. **Pause and ask for approval before committing.**
+4. Commit the documentation.
+
+## Step 4: Write the Unit Tests (Red Phase)
+1. Use the `tdd-workflow` skill to brainstorm test cases and implement failing tests.
+2. **Pause for approval on test cases before implementation.**
+
+## Step 5: Write the Code (Green Phase)
+1. Use the `tdd-workflow` skill to implement the feature and verify all tests pass.
+2. **Pause and inform the user** when complete.
+
+## Step 6: Update Final Documentation
+1. Review and update `docs/README.md` and related files.
+2. **Pause and ask for approval of the diff.**
+
+## Step 7: Commit and Submit
+1. Use the `git-feature-workflow` skill to commit, push, and open a PR targeting `main`.
+2. **Pause and inform the user** once the PR is ready.
+"""

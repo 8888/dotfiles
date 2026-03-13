@@ -1,0 +1,22 @@
+name = "pm:prioritize"
+description = "Analyze and prioritize a product backlog using RICE framework"
+
+prompt = """
+# Goal
+
+Help the user prioritize their product backlog or a list of new ideas using a structured framework (RICE: Reach, Impact, Confidence, Effort).
+
+Follow the prioritization standards in `~/.gemini/docs/product-management.md`.
+
+# Output Format
+1. **Prioritization Matrix**: Table showing features and their RICE scores.
+2. **Top Recommendations**: The "Must-Haves" for the next milestone.
+3. **Rationale**: Brief explanation of why certain features were prioritized.
+4. **Trade-offs**: What is being delayed or sacrificed and the associated risks.
+
+# Approach
+- If effort or reach estimates are missing, make educated guesses but clearly state them as assumptions.
+- Challenge "low impact / high effort" features.
+- Encourage focus on MVP if the list is too long.
+- Focus on the North Star metric.
+"""

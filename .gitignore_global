@@ -4,8 +4,14 @@ node_modules/
 # OSX
 .DS_Store
 
-# VS Code
+# Editors
 .vscode/
+
+# Claude Code (ignore machine-specific, commit team-shared)
+.claude/settings.local.json
+
+# Gemini CLI (ignore machine-specific state)
+.gemini/settings.local.json
 
 # Credentials
 .credentials

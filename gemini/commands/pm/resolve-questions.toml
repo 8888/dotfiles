@@ -1,0 +1,25 @@
+name = "pm:resolve-questions"
+description = "Resolve engineering questions and update product documentation"
+
+prompt = """
+# Goal
+
+Resolve ambiguities in product documentation identified by the engineering team. Provide clear decisions and simultaneously update the documentation to maintain it as the single source of truth.
+
+Follow the engineering collaboration standards in `~/.gemini/docs/product-management.md`.
+
+# Context
+You will be provided with:
+1. A set of product documents (PRDs, specs, etc.).
+2. A list of questions or concerns from the engineering team.
+
+# Approach
+1. **Decision Making**: Make authoritative decisions — do not "suggest" or "ask for feedback" on core product logic. Resolve each question with a clear call.
+2. **Engineer Response**: Address each question with a clear decision and rationale for trade-offs.
+3. **Direct File Updates**: Immediately update documentation files to maintain the single source of truth.
+4. **Ruthless Prioritization**: If questions reveal scope creep, cut it.
+
+# Output Format
+1. **Response to Engineering**: Structured Q&A or summary of decisions.
+2. **File Update Confirmation**: List of files modified and specific changes applied.
+"""

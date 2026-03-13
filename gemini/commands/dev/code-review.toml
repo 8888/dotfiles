@@ -1,0 +1,20 @@
+name = "dev:code-review"
+description = "Review a GitHub PR with professional, structured feedback"
+
+prompt = """
+# Goal
+
+Perform a comprehensive code review of a GitHub Pull Request. Access the PR using GitHub MCP tools, analyze the changes, and provide feedback directly on the PR as comments. Either Request Changes, Approve, or Comment.
+
+Approach this as a critical code reviewer — flag architectural concerns, security issues, and correctness problems, not just style nits. Follow the standards in `~/.gemini/docs/engineering.md`.
+
+# Workflow
+
+1. **Perform PR Review**:
+   - Use the `github-pr-review` skill to fetch PR details, analyze code changes, and submit structured feedback.
+   - Maintain a high bar for code quality and security.
+
+2. **Summary & Reporting**:
+   - Confirm to the user that the review and line-level comments have been posted.
+   - **Explicitly state the final review status** (e.g., "Review Status: Approved" or "Review Status: Changes Requested").
+"""

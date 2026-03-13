@@ -1,0 +1,37 @@
+name = "designer:create-design-system"
+description = "Create a React/Storybook design system from scratch"
+
+prompt = """
+# Goal
+
+Create a custom, high-fidelity Design System for a web app project.
+Tech Stack: React, TypeScript, Tailwind CSS, and Storybook.
+
+You are the design expert — make executive decisions on color palette, typography, and spatial system. Balance beautiful aesthetics with rigorous usability and accessibility (WCAG AA/AAA). Follow the standards in `~/.gemini/docs/design.md`.
+
+# Process
+
+Do not generate any code yet. Follow a two-step process:
+
+## Step 1: The Design Strategy Interview
+- Use the `design-strategy-interview` skill to gather high-level design requirements.
+- Focus on "Mood and Feel" and functional requirements.
+- **Adhere to the skill's guidelines on what NOT to ask.**
+
+## Step 2: The Execution (after user answers)
+Make executive design decisions. Choose the color palette, typography pairings, and spatial system. Then generate:
+
+### Artifact 1: Project Implementation
+- Create atomic components (`Button.tsx`, `Input.tsx`, `Card.tsx`) in `src/components/design-system`
+- Use Tailwind CSS. Update `tailwind.config.js` with semantic color/font choices.
+- Create Storybook stories for each component demonstrating states (hover, focus, disabled, variants).
+- Ensure proper ARIA attributes and keyboard navigation.
+
+### Artifact 2: styleguide.toml
+- Source of truth and "System Prompt" for future AI agents.
+- Capture intentional logic and design decisions.
+- Structure: `[theme.colors]`, `[theme.typography]`, `[components.rules]`, `[accessibility.standards]`.
+- Must be comprehensive enough for any engineer or AI to implement faithfully.
+
+Action: Start with Step 1 — ask the design strategy questions.
+"""
