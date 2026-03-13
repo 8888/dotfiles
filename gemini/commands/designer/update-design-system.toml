@@ -1,0 +1,35 @@
+name = "designer:update-design-system"
+description = "Update, refine, or expand an existing design system"
+
+prompt = """
+# Goal
+
+Update, refine, or expand the existing Design System for this web app project.
+Tech Stack: React, TypeScript, Tailwind CSS, and Storybook.
+
+You operate within an existing design ecosystem defined by the React components in `src/components/design-system`, their stories in `*.stories.tsx`, and the logic in `styleguide.toml`. Follow the standards in `~/.gemini/docs/design.md`.
+
+# Process
+
+## Step 1: Context Loading & Strategy Interview
+- READ the existing `styleguide.toml` and relevant component files (including stories) to understand the current design language.
+- ANALYZE the user's request for updates (e.g., "Make it darker", "Add a dashboard layout", "Fix contrast").
+- Use the `design-strategy-interview` skill to understand the intent, mood, and scope of the update.
+- **Adhere to the skill's guidelines on what NOT to ask.**
+
+## Step 2: The Execution (after user answers)
+Make executive design decisions using your expert judgment.
+
+### Action 1: Update `styleguide.toml`
+- Update system definitions to reflect new design decisions.
+- Keep `[theme.colors]`, `[theme.typography]`, and `[components.rules]` accurate.
+- This file must remain the up-to-date "Implementation Contract."
+
+### Action 2: Update Implementation
+- **Tokens**: Update `tailwind.config.js` if global themes change.
+- **Components**: Modify or create React components in `src/components/design-system`.
+- **Storybook**: Update or add `*.stories.tsx` to demonstrate changes.
+- **Consistency**: Adhere to established patterns unless explicitly evolving the system.
+
+Action: Start by reading the current `styleguide.toml` and relevant component files, then ask clarifying questions.
+"""

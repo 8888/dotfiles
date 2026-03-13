@@ -99,11 +99,11 @@ ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/set
 # Claude Code
 mkdir -p ~/.claude
 rm -f ~/.claude/settings.json
-ln -s ${dir}/claude/settings.json ~/.claude/settings.json
+ln -sf ${dir}/claude/settings.json ~/.claude/settings.json
 rm -f ~/.claude/CLAUDE.md
-ln -s ${dir}/agents/rules/GLOBAL_RULES.md ~/.claude/CLAUDE.md
+ln -sf ${dir}/claude/CLAUDE.md ~/.claude/CLAUDE.md
 
-# Gemini CLI & Antigravity Workflows
+# Gemini CLI
 mkdir -p ~/.gemini
 if [ -f "${dir}/gemini/settings.json" ]; then
     echo -e "${BLUE}Configuring Gemini Settings...${NC}"
@@ -115,47 +115,20 @@ fi
 # Process Trusted Folders Template
 if [ -f "${dir}/gemini/trustedFolders.json" ]; then
     echo -e "${BLUE}Configuring Trusted Folders...${NC}"
-    # Expand {{HOME}} and write to ~/.gemini/trustedFolders.json (removes symlink if it exists to avoid truncation)
     rm -f ~/.gemini/trustedFolders.json
     sed "s|{{HOME}}|$HOME|g" "${dir}/gemini/trustedFolders.json" > ~/.gemini/trustedFolders.json
 fi
 
-# Optional: Check for project-local MCP overrides
-if [ -f ".mcp/settings.json" ]; then
-    echo -e "${BLUE}Project-specific MCP settings detected in .mcp/settings.json${NC}"
-    echo -e "${BLUE}To use these, you can merge them into ~/.gemini/settings.json or use a project-local agent config.${NC}"
-fi
-
-rm -f ~/.gemini/GEMINI.md
-ln -s ${dir}/agents/rules/GLOBAL_RULES.md ~/.gemini/GEMINI.md
+rm -f ~/.gemini/AGENTS.md
+ln -sf ${dir}/gemini/AGENTS.md ~/.gemini/AGENTS.md
 rm -rf ~/.gemini/docs
-ln -s ${dir}/agents/rules ~/.gemini/docs
-
-# Compile Gemini CLI Commands
+ln -sf ${dir}/agents/standards ~/.gemini/docs
 rm -rf ~/.gemini/commands
-if [ -f "${dir}/.lee/bin/compile_cli_commands.py" ]; then
-    echo -e "${BLUE}Compiling Gemini CLI Commands...${NC}"
-    python3 "${dir}/.lee/bin/compile_cli_commands.py"
-fi
+ln -sf ${dir}/gemini/commands ~/.gemini/commands
 
-# Link Antigravity globally
-# Path: ~/.gemini/antigravity/ used for global discovery
-antigravity_dir="$HOME/.gemini/antigravity"
-mkdir -p "$antigravity_dir"
-
-for dir_name in "workflows" "skills" "rules"; do
-    target_name="global_$dir_name"
-    if [ "$dir_name" == "rules" ]; then target_name="rules"; fi
-
-    rm -rf "$antigravity_dir/$target_name"
-    case $dir_name in
-        workflows) ln -s "${dir}/agents/workflows" "$antigravity_dir/$target_name" ;;
-        skills)    ln -s "${dir}/agents/skills" "$antigravity_dir/$target_name" ;;
-        rules)     ln -s "${dir}/agents/rules" "$antigravity_dir/$target_name" ;;
-    esac
-done
-
-# Cleanup previous attempts and legacy paths
+# Cleanup legacy paths
+rm -f ~/.gemini/GEMINI.md
+rm -rf ~/.gemini/antigravity
 rm -rf ~/.agents
 for dir_name in "workflows" "global_workflows" "skills" "global_skills" "rules"; do
     rm -rf "$HOME/.antigravity/$dir_name"

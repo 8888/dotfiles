@@ -12,9 +12,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ~/dotfiles/install.sh work
 ```
 
-`install.sh` installs Homebrew, Oh My Zsh + plugins, Brewfile packages, creates symlinks for all configs, and compiles Gemini CLI commands from workflow Markdown files. After running, copy `.credentials.example` → `.credentials` and fill in values.
+`install.sh` installs Homebrew, Oh My Zsh + plugins, Brewfile packages, and creates symlinks for all configs. After running, copy `.credentials.example` → `.credentials` and fill in values.
 
-After any changes to `agents/workflows/` or `agents/skills/`, re-run `install.sh` to sync symlinks and recompile CLI commands.
+After any changes to `agents/skills/` or `gemini/commands/`, re-run `install.sh` to sync symlinks.
 
 ## Repository Architecture
 
@@ -30,27 +30,24 @@ This is a **profile-based dotfiles system** with two profiles: `home` and `work`
 
 ### Agent System (`agents/`)
 
-The `agents/` directory is the single source of truth for all AI agent configurations, shared across Gemini CLI, Antigravity, and Claude Code:
+The `agents/` directory contains shared, tool-agnostic AI agent resources:
 
-- **`agents/rules/`** — Global rules, engineering standards, and persona definitions (Markdown files)
-- **`agents/workflows/`** — Reproducible task templates with YAML frontmatter; auto-compiled to Gemini CLI commands (e.g., `pm-prd.md` → `gemini pm:prd`)
-- **`agents/skills/`** — Specialized skill modules, each directory containing a `SKILL.md`
+- **`agents/standards/`** — Domain knowledge files (engineering, product management, git, cloud architecture, design). Symlinked to `~/.gemini/docs/` for Gemini auto-loading. Referenced by `claude/CLAUDE.md` for Claude Code.
+- **`agents/skills/`** — Specialized skill modules, each directory containing a `SKILL.md`. Tool-agnostic process guides used by both Claude Code and Gemini CLI.
 
-`install.sh` symlinks these into `~/.gemini/antigravity/` and runs `.lee/bin/compile_cli_commands.py` to generate TOML command files in `~/.gemini/commands/`.
+### Tool-Native Configurations
+
+- **`claude/`** — Claude Code config. `CLAUDE.md` → `~/.claude/CLAUDE.md`, `settings.json` → `~/.claude/settings.json`, `hooks/` contains post-edit linting hook.
+- **`gemini/`** — Gemini CLI config. `AGENTS.md` → `~/.gemini/AGENTS.md`, `commands/` → `~/.gemini/commands/` (hand-written TOML commands, organized by `dev/`, `pm/`, `designer/`, `architect/`). `settings.json` uses `{{HOME}}` placeholders expanded at install time.
 
 ### Key Utilities (`.lee/bin/`)
 
-- `compile_cli_commands.py` — Reads `agents/workflows/*.md` YAML frontmatter, outputs TOML to `~/.gemini/commands/`
 - `agent-worktree` — Manages git worktrees for isolated agent task execution
-- `gemini-exec` — Gemini CLI execution wrapper
+- `awsls`, `awssm` — AWS utility scripts
 
 ### Homebrew Packages
 
 Managed via `Brewfile`. Notable: `mise` (runtime version manager), `eza` (ls replacement), `gh`, `gemini-cli`, `awscli`, `azure-cli`.
-
-### Gemini CLI & MCP
-
-`gemini/settings.json` configures MCP servers (GitHub via Copilot API, Azure, Chrome DevTools) and uses `{{HOME}}` placeholders that are substituted by `install.sh` at install time. The model is `gemini-3-flash-preview`.
 
 ### VS Code / Cursor
 

@@ -1,0 +1,21 @@
+name = "pm:stories"
+description = "Break a feature description into engineering-ready User Stories"
+
+prompt = """
+# Goal
+
+Take a feature description and break it down into high-quality, engineering-ready User Stories.
+
+Follow the user story format and "Definition of Ready" standards in `~/.gemini/docs/product-management.md`.
+
+# Workflow
+
+1. **Generate Stories**:
+   - Break the feature into User Stories with the format: "As a [user], I want [action], so that [benefit]."
+   - Each story must have comprehensive Acceptance Criteria (including edge cases) and Technical Notes.
+
+2. **Strategic Splitting**:
+   - If a story is too large (an Epic), suggest how to split it into granular, estimable units.
+   - Every story must have a clear "So that" justifying its existence.
+   - Challenge stories that lack clear user value.
+"""

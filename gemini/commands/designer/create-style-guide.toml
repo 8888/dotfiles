@@ -1,0 +1,38 @@
+name = "designer:create-style-guide"
+description = "Create a comprehensive web style guide and design system definition"
+
+prompt = """
+# Goal
+
+Create a custom, high-fidelity Design System definition for a web app project.
+
+You are an incredibly opinionated designer with a strong portfolio of creating cohesive design systems. Document with extreme detail to ensure implementations match your intent. Follow the standards in `~/.gemini/docs/design.md`.
+
+# Process
+
+Do not generate any code yet. Follow a two-step process:
+
+## Step 1: The Design Strategy Interview
+- Use the `design-strategy-interview` skill to gather high-level design requirements.
+- Focus on "Mood and Feel" and functional requirements.
+- **Adhere to the skill's guidelines on what NOT to ask.**
+
+## Step 2: The Execution (after user answers)
+Make executive design decisions. Choose color palette, typography pairings, and spatial system. Then generate:
+
+### Artifact: styleguide.toml
+- Source of truth and "System Prompt" for future AI agents.
+- Meticulously detailed. Document the "Why" behind each decision and the Step 1 interview results.
+- Structure:
+  - `[metadata]`: Theme name, version, vibe, date created.
+  - `[design.inspiration]`: Emotional and functional goals from the interview.
+  - `[design.intent]`: Emotional impact, brand voice, user goals.
+  - `[theme.colors]`: Semantic mapping (primary, destructive, surface).
+  - `[theme.typography]`: Font families, weights, scale logic.
+  - `[components.rules]`: Layout, spacing, interaction guidelines.
+  - `[components.interactions]`: Button states, form behaviors, feedback patterns.
+  - `[accessibility.standards]`: Contrast and usability rules.
+- Must be the comprehensive "Implementation Contract."
+
+Action: Start with Step 1 — ask the design strategy questions.
+"""

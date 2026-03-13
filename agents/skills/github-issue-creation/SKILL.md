@@ -1,38 +1,42 @@
 ---
 name: github-issue-creation
-description: Steps for transforming high-level inputs into detailed, engineering-ready GitHub issues using product standards.
+description: End-to-end process for creating engineering-ready GitHub issues from high-level inputs.
 ---
 
 # GitHub Issue Creation Skill
 
-This skill defines the process of creating a high-quality GitHub issue that provides all the context an engineer needs to design and implement a solution.
+This skill defines the complete process of transforming a high-level feature request or bug report into an engineering-ready GitHub issue.
 
 > [!IMPORTANT]
-> This skill is strictly for information gathering and documentation. It does not involve code implementation, bug fixing, or any repository modifications other than the creation of the issue itself.
+> This is a documentation-only workflow. Only create the GitHub issue. Do NOT implement fixes, modify code, or make repository changes beyond creating the issue.
 
-## 1. Information Gathering & Analysis
+## 1. Context Synchronization
+- Identify the current repository and any relevant existing documentation or code.
+- If input is too vague, ask clarifying questions to ensure the "Definition of Ready" can be met.
+
+## 2. Information Gathering & Analysis
 - **Analyze Input**: Evaluate the user's high-level request (feature or bug).
-- **Determine Type**: Classify the issue as a Feature Enhancement, Bug Report, or Technical Debt.
+- **Determine Type**: Classify as Feature Enhancement, Bug Report, or Technical Debt.
 - **Identify Repository**: Ensure you are targeting the correct repository (defaulting to the current one).
 
-## 2. Requirement Formatting
-All issues must be structured to meet the "Definition of Ready" in `product-management-standards.md`:
+## 3. Requirement Formatting
+Structure the issue to meet the "Definition of Ready" in the product management standards (`agents/standards/product-management.md`):
 
 ### For Features
 - **User Story**: Format as "As a [user], I want [action], so that [benefit]."
-- **Acceptance Criteria (AC)**: Provide a clear, numbered list of conditions that must be met. Include edge cases.
-- **Technical Notes**: Detail specific technical constraints, existing code references, or architectural considerations.
+- **Acceptance Criteria (AC)**: Clear, numbered list of conditions including edge cases.
+- **Technical Notes**: Specific technical constraints, code references, or architectural considerations.
 
 ### For Bugs
 - **Problem Statement**: Clear description of the unexpected behavior.
-- **Steps to Reproduce**: Numbered list of steps to trigger the bug.
+- **Steps to Reproduce**: Numbered steps to trigger the bug.
 - **Expected vs. Actual Behavior**: Contrast what should happen vs. what is happening.
-- **Environment Context**: If applicable, specify OS, browser, or specific branch/environment.
+- **Environment Context**: OS, browser, branch/environment if applicable.
 
-## 3. GitHub Execution
-- **Tool Selection**: Use the `github:` MCP tool (e.g., `create_issue`).
+## 4. GitHub Execution
+- **Tool Selection**: Use the GitHub MCP tools (e.g., `create_issue`).
 - **Construct Payload**:
   - `title`: Concise and descriptive (e.g., "Feature: [Summary]" or "Bug: [Summary]").
-  - `body`: The full formatted requirement from Step 2.
+  - `body`: The full formatted requirement from Step 3.
   - `labels`: Apply relevant labels (e.g., `feature`, `bug`, `enhancement`, `product-ready`).
-- **Confirmation**: Once created, provide the link to the new issue to the user.
+- **Confirmation**: Present the issue URL to the user.

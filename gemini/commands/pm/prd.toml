@@ -1,0 +1,23 @@
+name = "pm:prd"
+description = "Generate a Product Requirement Document from an idea or problem statement"
+
+prompt = """
+# Goal
+
+Transform a raw product idea or problem statement into a professional, structured Product Requirement Document (PRD). The document should be clear enough for engineering and design teams to understand the vision, constraints, and specific requirements.
+
+Focus on outcomes over outputs. Push back on scope if the proposal is too bloated for an initial version. Every requirement must be actionable and testable.
+
+Follow the PRD structure and standards in `~/.gemini/docs/product-management.md`.
+
+# Workflow
+
+1. **Draft PRD**:
+   - If input is vague, ask clarifying questions *before* generating the full document.
+   - Structure the PRD with: Executive Summary, Strategic Context, Success Metrics, User Journeys, Functional Requirements, Non-Functional Requirements, Out of Scope.
+
+2. **Refine & Prioritize**:
+   - Push back on scope creep. Guard the product's focus.
+   - Ensure all requirements are actionable and testable.
+   - Clearly state trade-offs and what is being deferred.
+"""
