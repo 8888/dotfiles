@@ -76,7 +76,7 @@ links=(
 
 for file in "${links[@]}"; do
     rm -f ~/"$file"
-    ln -s "${dir}/${file}" ~/"$file"
+    ln -sf "${dir}/${file}" ~/"$file"
 done
 
 # Legacy alias file cleanup (we now use aliases/*.zsh)
@@ -84,17 +84,17 @@ rm -f ~/.aliases.zsh
 
 # Symlink .lee directory
 rm -rf ~/.lee
-ln -s ${dir}/.lee ~/.lee
+ln -sf ${dir}/.lee ~/.lee
 
 ## symlink for configs
 # VS Code & Cursor
 mkdir -p ~/Library/Application\ Support/Code/User
 rm -f ~/"Library/Application Support/Code/User/settings.json"
-ln -s ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
+ln -sf ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
 
 mkdir -p ~/Library/Application\ Support/Cursor/User
 rm -f ~/Library/Application\ Support/Cursor/User/settings.json
-ln -s ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/settings.json
+ln -sf ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/settings.json
 
 # Claude Code
 mkdir -p ~/.claude
