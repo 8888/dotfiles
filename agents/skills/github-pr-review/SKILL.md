@@ -19,7 +19,7 @@ This skill provides the exact sequence of MCP tool calls and logic required to p
 ### Read Documentation & History
 - Use `pull_request_read(method='get')` for description and metadata.
 - Use `pull_request_read(method='get_diff')` for the actual code changes.
-- **Deduplication Check**: Use `pull_request_read` with methods `get_review_comments`, `get_comments`, and `get_reviews`. 
+- Use `pull_request_read` with methods `get_review_comments`, `get_comments`, and `get_reviews`.
   - **CRITICAL**: Read all existing feedback to avoid repeating comments.
 
 ## 2. Technical Analysis
@@ -33,7 +33,9 @@ Review the diff for:
 ## 3. Submit Feedback
 
 ### Initialize Review
-- Use `pull_request_review_write(method='create')` without an `event` to create a pending review.
+- Check `get_reviews` for any review from your account with state `PENDING`.
+  - If one exists, use its `id` — **do not call `create`** again, just add comments to the existing pending review.
+  - If none exists, call `pull_request_review_write(method='create')` without an `event` to create a new pending review.
 
 ### Post Findings
 - Iterate through unique findings.
