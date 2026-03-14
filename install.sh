@@ -45,6 +45,11 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 fi
 
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+    echo -e "${BLUE}Installing zsh-syntax-highlighting...${NC}"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+fi
+
 if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
     echo -e "${BLUE}Installing powerlevel10k...${NC}"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
@@ -56,6 +61,11 @@ if [ -f "${dir}/Brewfile" ]; then
     brew bundle --file="${dir}/Brewfile"
 else
     echo -e "${RED}Brewfile not found in ${dir}${NC}"
+fi
+
+if [ -f "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ]; then
+    echo -e "${BLUE}Linking WezTerm shell integration...${NC}"
+    ln -sf "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ~/.wezterm-shell-integration.sh
 fi
 
 # --- Symlinking ---
@@ -136,6 +146,12 @@ rm -rf ~/.gemini/docs
 ln -sf ${dir}/agents/standards ~/.gemini/docs
 rm -rf ~/.gemini/commands
 ln -sf ${dir}/gemini/commands ~/.gemini/commands
+
+# WezTerm
+rm -f ~/.wezterm.lua
+mkdir -p ~/.config
+rm -rf ~/.config/wezterm
+ln -sf ${dir}/wezterm ~/.config/wezterm
 
 # Cleanup legacy paths
 rm -f ~/.gemini/GEMINI.md

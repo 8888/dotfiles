@@ -12,7 +12,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 ### Environment variables
 export LANG=en_US.UTF-8
-export TERM="xterm-256color"
 
 # Load secrets/credentials
 if [[ -f "$DOTFILES_DIR/.credentials" ]]; then
@@ -32,19 +31,22 @@ plugins=(
   git
   virtualenv
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+
+if [[ "$TERM_PROGRAM" == "WezTerm" && -f ~/.wezterm-shell-integration.sh ]]; then
+  source ~/.wezterm-shell-integration.sh
+fi
 
 ### PATH additions
 path+=("/opt/homebrew/bin")
 path+=("$HOME/.local/bin")
 path+=("$HOME/.lee/bin")
-path+=("$HOME/.rbenv/bin")
 path+=("/usr/local/opt/libpq/bin")
 
 ### Initializers
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which mise > /dev/null; then eval "$(mise activate zsh)"; fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
