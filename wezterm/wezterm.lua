@@ -11,13 +11,16 @@ config.font_size = 13.0
 -- Color scheme — change THEME to switch
 local THEME = 'PixelGrim'
 -- local THEME = 'SquirrelsongDark'
+-- local THEME = 'CandyWave'
 -- local THEME = 'Tokyo Night'
 
 local pixelgrim       = require('colors.pixelgrim')
 local squirrelsong    = require('colors.squirrelsong_dark')
+local candywave       = require('colors.candywave')
 config.color_schemes  = {
-  ['PixelGrim']       = pixelgrim,
+  ['PixelGrim']        = pixelgrim,
   ['SquirrelsongDark'] = squirrelsong,
+  ['CandyWave']        = candywave,
 }
 config.color_scheme = THEME
 
