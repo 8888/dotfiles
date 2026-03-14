@@ -6,6 +6,8 @@ node_modules/
 
 # Editors
 .vscode/
+*.swp
+*.swo
 
 # Claude Code (ignore machine-specific, commit team-shared)
 .claude/settings.local.json

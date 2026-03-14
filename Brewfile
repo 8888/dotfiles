@@ -20,6 +20,7 @@ cask "visual-studio-code"
 cask "wezterm"
 
 # Tools
+brew "bat"
 brew "eza"
 cask "font-meslo-lg-nerd-font"
 cask "font-jetbrains-mono-nerd-font"

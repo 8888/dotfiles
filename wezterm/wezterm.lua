@@ -25,7 +25,7 @@ config.color_scheme = THEME
 config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
 config.window_decorations = 'TITLE | RESIZE'
 config.window_background_opacity = 1.0
-config.inactive_pane_hsb = { saturation = 0.8, brightness = 0.7 }
+config.inactive_pane_hsb = { saturation = 0.8, brightness = 0.5 }
 
 -- Tab bar
 config.hide_tab_bar_if_only_one_tab = false
