@@ -19,9 +19,6 @@ brew "mise"
 cask "visual-studio-code"
 cask "wezterm"
 
-# Shell prompt
-brew "starship"
-
 # Tools
 brew "bat"
 brew "eza"

@@ -3,7 +3,7 @@ ZSH_DISABLE_COMPFIX=true
 
 HIST_STAMPS="yyyy-mm-dd"
 ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME=""
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 ### Environment variables
 export LANG=en_US.UTF-8
@@ -44,8 +44,8 @@ path+=("/usr/local/opt/libpq/bin")
 ### Initializers
 if which mise > /dev/null; then eval "$(mise activate zsh)"; fi
 
-# Starship prompt
-eval "$(starship init zsh)"
+# Powerlevel10k config
+[[ ! -f ~/dotfiles/p10k.zsh ]] || source ~/dotfiles/p10k.zsh
 
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"

@@ -50,6 +50,11 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 fi
 
+if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+    echo -e "${BLUE}Installing Powerlevel10k...${NC}"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
+fi
+
 # Install Brew packages via Brewfile
 echo -e "${BLUE}Installing packages from Brewfile...${NC}"
 if [ -f "${dir}/Brewfile" ]; then
@@ -147,10 +152,6 @@ mkdir -p ~/.config
 rm -rf ~/.config/wezterm
 ln -sf ${dir}/wezterm ~/.config/wezterm
 
-# Starship
-rm -f ~/.config/starship.toml
-ln -sf "${dir}/starship.toml" ~/.config/starship.toml
-
 # Cleanup legacy paths
 rm -f ~/.gemini/GEMINI.md
 rm -rf ~/.gemini/antigravity
@@ -158,6 +159,5 @@ rm -rf ~/.agents
 for dir_name in "workflows" "global_workflows" "skills" "global_skills" "rules"; do
     rm -rf "$HOME/.antigravity/$dir_name"
 done
-
 
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"
