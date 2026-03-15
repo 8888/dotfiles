@@ -1,11 +1,20 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
--- Theme — change active line to switch
+-- Theme — controlled by ~/.wezterm_theme (use `weztheme` to switch)
 local themes = require('themes')
---local THEME = themes['PixelGrim']
---local THEME = themes['SquirrelsongDark']
-local THEME = themes['CandyWave']
+local theme_file = wezterm.home_dir .. '/.wezterm_theme'
+wezterm.watch_file(theme_file)
+local function active_theme()
+  local f = io.open(theme_file, 'r')
+  if f then
+    local name = f:read('*l')
+    f:close()
+    if themes[name] then return name end
+  end
+  return 'CandyWave'
+end
+local THEME = themes[active_theme()]
 
 -- Font
 config.font        = THEME.font

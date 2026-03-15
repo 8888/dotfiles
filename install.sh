@@ -151,6 +151,9 @@ rm -f ~/.wezterm.lua
 mkdir -p ~/.config
 rm -rf ~/.config/wezterm
 ln -sf ${dir}/wezterm ~/.config/wezterm
+if [ ! -f ~/.wezterm_theme ]; then
+    echo "PixelGrim" > ~/.wezterm_theme
+fi
 
 # Cleanup legacy paths
 rm -f ~/.gemini/GEMINI.md

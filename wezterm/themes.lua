@@ -51,15 +51,14 @@ local themes = {
     line_height = 1.0,
     window_padding            = { left = 6, right = 6, top = 6, bottom = 6 },
     window_background_opacity = 1.0,
-    -- Radial vignette: warm amethyst core fades to near-void black at the
-    -- edges — lit stage with darkness closing in. Slightly high center (cy=0.4)
-    -- so the glow sits behind the text area rather than dead center.
+    -- Cotton candy storm: deep storm-pink core vignettes outward through violet
+    -- into midnight blue at the edges — retro squall closing in.
     window_background_gradient = {
       orientation   = { Radial = { cx = 0.5, cy = 0.4, radius = 0.9 } },
-      colors        = { '#2A0A32', '#1A0D2E', '#080412' },
+      colors        = { '#2A0A26', '#1A0D2E', '#0A1A3A', '#040C20' },
       interpolation = 'CatmullRom',
       blend         = 'LinearRgb',
-      noise         = 58,
+      noise         = 72,
     },
     default_cursor_style = 'BlinkingBlock',
     inactive_pane_hsb    = { saturation = 0.75, brightness = 0.5 },
