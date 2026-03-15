@@ -1,0 +1,89 @@
+# ~/.config/starship.toml (managed via dotfiles/starship.toml)
+
+# 2-line prompt layout
+format = """
+$directory$git_branch$git_status$git_state\
+$fill\
+$status$cmd_duration$jobs$direnv$python$nodejs$golang$ruby$terraform$kubernetes$aws$azure$gcloud$username$hostname\
+$line_break\
+$character"""
+
+[fill]
+symbol = " "
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+[git_status]
+style = "bold red"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+staged = "[+${count}](green)"
+modified = "[!${count}](yellow)"
+untracked = "[?${count}](red)"
+deleted = "[-${count}](red)"
+
+[character]
+success_symbol = "[🧛🏻‍♂️](`bold green)"
+error_symbol = "[🧛🏻‍♂️](bold red)"
+
+[status]
+disabled = false
+style = "bold red"
+
+[cmd_duration]
+min_time = 2_000
+format = "[$duration](bold yellow) "
+
+[jobs]
+symbol = "✦"
+style = "bold blue"
+
+[direnv]
+disabled = false
+format = '[$symbol$loaded/$allowed]($style) '
+
+[python]
+symbol = " "
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[nodejs]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[terraform]
+format = "[$symbol$workspace]($style) "
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context( \($namespace\))]($style) '
+
+[aws]
+format = '[$symbol($profile )(\[$duration\] )]($style)'
+
+[azure]
+disabled = false
+format = '[$symbol($subscription)]($style) '
+
+[gcloud]
+format = '[$symbol$account(@$domain)(\($project\))]($style) '
+
+[username]
+show_always = false
+format = "[$user]($style)@"
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style) "

@@ -1,34 +1,34 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+-- Theme — change active line to switch
+local themes = require('themes')
+local THEME = themes['PixelGrim']
+-- local THEME = themes['SquirrelsongDark']
+-- local THEME = themes['CandyWave']
+
 -- Font
-config.font = wezterm.font_with_fallback({
-  { family = 'JetBrainsMono Nerd Font', weight = 'Regular' },
-  { family = 'JetBrains Mono',          weight = 'Regular' },
-})
-config.font_size = 13.0
+config.font        = THEME.font
+config.font_size   = THEME.font_size
+config.line_height = THEME.line_height
 
--- Color scheme — change THEME to switch
-local THEME = 'PixelGrim'
--- local THEME = 'SquirrelsongDark'
--- local THEME = 'CandyWave'
--- local THEME = 'Tokyo Night'
-
-local pixelgrim       = require('colors.pixelgrim')
-local squirrelsong    = require('colors.squirrelsong_dark')
-local candywave       = require('colors.candywave')
-config.color_schemes  = {
-  ['PixelGrim']        = pixelgrim,
-  ['SquirrelsongDark'] = squirrelsong,
-  ['CandyWave']        = candywave,
+-- Color scheme
+config.color_schemes = {
+  [THEME.color_scheme_name] = THEME.color_scheme_table,
 }
-config.color_scheme = THEME
+config.color_scheme = THEME.color_scheme_name
 
 -- Window
-config.window_padding = { left = 8, right = 8, top = 8, bottom = 8 }
-config.window_decorations = 'TITLE | RESIZE'
-config.window_background_opacity = 1.0
-config.inactive_pane_hsb = { saturation = 0.8, brightness = 0.5 }
+config.window_padding            = THEME.window_padding
+config.window_decorations        = 'TITLE | RESIZE'
+config.window_background_opacity = THEME.window_background_opacity
+config.inactive_pane_hsb         = THEME.inactive_pane_hsb
+if THEME.window_background_gradient then
+  config.window_background_gradient = THEME.window_background_gradient
+end
+
+-- Cursor
+config.default_cursor_style = THEME.default_cursor_style
 
 -- Tab bar
 config.hide_tab_bar_if_only_one_tab = false

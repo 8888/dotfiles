@@ -50,11 +50,6 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 fi
 
-if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
-    echo -e "${BLUE}Installing powerlevel10k...${NC}"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
-fi
-
 # Install Brew packages via Brewfile
 echo -e "${BLUE}Installing packages from Brewfile...${NC}"
 if [ -f "${dir}/Brewfile" ]; then
@@ -79,7 +74,6 @@ links=(
     ".bash_profile"
     ".gitconfig"
     ".gitignore_global"
-    ".p10k.zsh"
     ".vimrc"
     ".zshrc"
 )
@@ -152,6 +146,10 @@ rm -f ~/.wezterm.lua
 mkdir -p ~/.config
 rm -rf ~/.config/wezterm
 ln -sf ${dir}/wezterm ~/.config/wezterm
+
+# Starship
+rm -f ~/.config/starship.toml
+ln -sf "${dir}/starship.toml" ~/.config/starship.toml
 
 # Cleanup legacy paths
 rm -f ~/.gemini/GEMINI.md

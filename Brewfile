@@ -19,9 +19,12 @@ brew "mise"
 cask "visual-studio-code"
 cask "wezterm"
 
+# Shell prompt
+brew "starship"
+
 # Tools
 brew "bat"
 brew "eza"
-cask "font-meslo-lg-nerd-font"
-cask "font-jetbrains-mono-nerd-font"
+cask "font-geist-mono-nerd-font"
+cask "font-departure-mono-nerd-font"
 cask "ngrok"

@@ -1,14 +1,9 @@
-# Enable Powerlevel10k instant prompt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # skip verification of insecure directories
 ZSH_DISABLE_COMPFIX=true
 
 HIST_STAMPS="yyyy-mm-dd"
 ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME=""
 
 ### Environment variables
 export LANG=en_US.UTF-8
@@ -49,8 +44,8 @@ path+=("/usr/local/opt/libpq/bin")
 ### Initializers
 if which mise > /dev/null; then eval "$(mise activate zsh)"; fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Starship prompt
+eval "$(starship init zsh)"
 
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
