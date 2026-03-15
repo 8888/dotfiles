@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 -- Theme — controlled by ~/.wezterm_theme (use `weztheme` to switch)
 local themes = require('themes')
 local theme_file = wezterm.home_dir .. '/.wezterm_theme'
-wezterm.watch_file(theme_file)
+wezterm.add_to_config_reload_watch_list(theme_file)
 local function active_theme()
   local f = io.open(theme_file, 'r')
   if f then
