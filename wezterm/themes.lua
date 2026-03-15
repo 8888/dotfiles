@@ -3,6 +3,7 @@ local wezterm = require 'wezterm'
 local pixelgrim    = require('colors.pixelgrim')
 local squirrelsong = require('colors.squirrelsong_dark')
 local candywave    = require('colors.candywave')
+local vortexbloom  = require('colors.vortexbloom')
 
 local themes = {
   PixelGrim = {
@@ -62,6 +63,28 @@ local themes = {
     },
     default_cursor_style = 'BlinkingBlock',
     inactive_pane_hsb    = { saturation = 0.75, brightness = 0.5 },
+  },
+
+  VortexBloom = {
+    color_scheme_name  = 'VortexBloom',
+    color_scheme_table = vortexbloom,
+    font = wezterm.font_with_fallback({
+      { family = 'GeistMono Nerd Font', weight = 'Regular' },
+      { family = 'JetBrains Mono',      weight = 'Regular' },
+    }),
+    font_size   = 14.0,
+    line_height = 1.1,
+    window_padding            = { left = 10, right = 10, top = 10, bottom = 10 },
+    window_background_opacity = 1.0,
+    window_background_gradient = {
+      orientation   = { Radial = { cx = 0.5, cy = 0.45, radius = 0.85 } },
+      colors        = { '#2E1460', '#1A0C3C', '#0E0A28', '#060510' },
+      interpolation = 'CatmullRom',
+      blend         = 'LinearRgb',
+      noise         = 80,
+    },
+    default_cursor_style = 'BlinkingBlock',
+    inactive_pane_hsb    = { saturation = 0.7, brightness = 0.35 },
   },
 }
 
