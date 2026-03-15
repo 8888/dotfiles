@@ -3,9 +3,9 @@ local config = wezterm.config_builder()
 
 -- Theme — change active line to switch
 local themes = require('themes')
-local THEME = themes['PixelGrim']
+--local THEME = themes['PixelGrim']
 --local THEME = themes['SquirrelsongDark']
---local THEME = themes['CandyWave']
+local THEME = themes['CandyWave']
 
 -- Font
 config.font        = THEME.font

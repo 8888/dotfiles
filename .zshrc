@@ -28,3 +28,6 @@ source "$DOTFILES_DIR/aliases/common.zsh"
 if [[ -f "$DOTFILES_DIR/aliases/$DOTFILES_PROFILE.zsh" ]]; then
   source "$DOTFILES_DIR/aliases/$DOTFILES_PROFILE.zsh"
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/p10k.zsh.
+[[ ! -f ~/dotfiles/p10k.zsh ]] || source ~/dotfiles/p10k.zsh
