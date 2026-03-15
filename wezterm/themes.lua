@@ -47,7 +47,7 @@ local themes = {
       { family = 'DepartureMono Nerd Font', weight = 'Regular' },
       { family = 'JetBrains Mono',          weight = 'Regular' },
     }),
-    font_size   = 13.5,
+    font_size   = 14,
     line_height = 1.0,
     window_padding            = { left = 6, right = 6, top = 6, bottom = 6 },
     window_background_opacity = 0.97,

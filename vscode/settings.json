@@ -8,7 +8,7 @@
 	"editor.cursorBlinking": "phase",
 	"editor.cursorSmoothCaretAnimation": "on",
 	"editor.detectIndentation": true,
-	"editor.fontFamily": "MesloLGS NF",
+	"editor.fontFamily": "GeistMono Nerd Font",
 	"editor.inlineSuggest.enabled": true,
 	"editor.insertSpaces": true,
 	"editor.minimap.enabled": true,
