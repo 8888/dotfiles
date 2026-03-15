@@ -18,7 +18,7 @@ local themes = {
     line_height = 1.05,
     -- Window
     window_padding             = { left = 8, right = 8, top = 8, bottom = 8 },
-    window_background_opacity  = 0.95,
+    window_background_opacity  = 1.0,
     -- Cursor
     default_cursor_style = 'BlinkingBlock',
     -- Inactive pane
@@ -50,7 +50,7 @@ local themes = {
     font_size   = 14,
     line_height = 1.0,
     window_padding            = { left = 6, right = 6, top = 6, bottom = 6 },
-    window_background_opacity = 0.97,
+    window_background_opacity = 1.0,
     -- Radial vignette: warm amethyst core fades to near-void black at the
     -- edges — lit stage with darkness closing in. Slightly high center (cy=0.4)
     -- so the glow sits behind the text area rather than dead center.
