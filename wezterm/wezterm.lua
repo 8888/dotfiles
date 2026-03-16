@@ -8,11 +8,11 @@ wezterm.add_to_config_reload_watch_list(theme_file)
 local function active_theme()
   local f = io.open(theme_file, 'r')
   if f then
-    local name = f:read('*l')
+    local name = f:read('*l'):lower()
     f:close()
     if themes[name] then return name end
   end
-  return 'CandyWave'
+  return 'candywave'
 end
 local THEME = themes[active_theme()]
 

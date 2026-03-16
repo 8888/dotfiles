@@ -6,7 +6,7 @@ local candywave    = require('colors.candywave')
 local vortexbloom  = require('colors.vortexbloom')
 
 local themes = {
-  PixelGrim = {
+  pixelgrim = {
     -- Identity
     color_scheme_name = 'PixelGrim',
     color_scheme_table = pixelgrim,
@@ -26,7 +26,7 @@ local themes = {
     inactive_pane_hsb = { saturation = 0.8, brightness = 0.55 },
   },
 
-  SquirrelsongDark = {
+  squirrelsongdark = {
     color_scheme_name  = 'SquirrelsongDark',
     color_scheme_table = squirrelsong,
     font = wezterm.font_with_fallback({
@@ -41,7 +41,7 @@ local themes = {
     inactive_pane_hsb         = { saturation = 0.9, brightness = 0.65 },
   },
 
-  CandyWave = {
+  candywave = {
     color_scheme_name  = 'CandyWave',
     color_scheme_table = candywave,
     font = wezterm.font_with_fallback({
@@ -65,7 +65,7 @@ local themes = {
     inactive_pane_hsb    = { saturation = 0.75, brightness = 0.5 },
   },
 
-  VortexBloom = {
+  vortexbloom = {
     color_scheme_name  = 'VortexBloom',
     color_scheme_table = vortexbloom,
     font = wezterm.font_with_fallback({
