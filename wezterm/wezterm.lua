@@ -68,17 +68,37 @@ end)
 config.scrollback_lines = 50000
 config.audible_bell = 'Disabled'
 
--- Workspace keybindings
+-- Leader key: Ctrl+Space, then a single key
+config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1500 }
+
+-- Keybindings (all triggered after Ctrl+Space leader)
 config.keys = {
-  -- Switch to next/prev workspace
-  { key = ']', mods = 'CTRL|SHIFT', action = wezterm.action.SwitchWorkspaceRelative(1) },
-  { key = '[', mods = 'CTRL|SHIFT', action = wezterm.action.SwitchWorkspaceRelative(-1) },
-  -- Show workspace/session launcher
-  { key = 'Space', mods = 'CTRL|SHIFT', action = wezterm.action.ShowLauncherArgs { flags = 'WORKSPACES' } },
-  -- Prompt to create a new named workspace
+  -- Panes: split
+  { key = '\\', mods = 'LEADER', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  { key = '-',  mods = 'LEADER', action = wezterm.action.SplitVertical   { domain = 'CurrentPaneDomain' } },
+  -- Panes: navigate (vim-style)
+  { key = 'h', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Left' },
+  { key = 'j', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Down' },
+  { key = 'k', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Up' },
+  { key = 'l', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },
+  -- Panes: zoom / close
+  { key = 'z', mods = 'LEADER', action = wezterm.action.TogglePaneZoomState },
+  { key = 'x', mods = 'LEADER', action = wezterm.action.CloseCurrentPane { confirm = true } },
+
+  -- Tabs: create / navigate
+  { key = 't', mods = 'LEADER', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
+  { key = ',', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(-1) },
+  { key = '.', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(1) },
+  -- Windows: new
+  { key = 'Enter', mods = 'LEADER', action = wezterm.action.SpawnWindow },
+
+  -- Workspaces: switch / manage
+  { key = ']', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
+  { key = '[', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
+  { key = 'w', mods = 'LEADER', action = wezterm.action.ShowLauncherArgs { flags = 'WORKSPACES' } },
   {
     key = 'n',
-    mods = 'CTRL|SHIFT|ALT',
+    mods = 'LEADER',
     action = wezterm.action.PromptInputLine {
       description = 'New workspace name:',
       action = wezterm.action_callback(function(window, pane, name)
