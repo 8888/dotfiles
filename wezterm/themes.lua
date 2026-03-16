@@ -16,14 +16,14 @@ local themes = {
       { family = 'JetBrains Mono',      weight = 'Regular' },
     }),
     font_size   = 14.0,
-    line_height = 1.05,
+    line_height = 1.2,
     -- Window
-    window_padding             = { left = 8, right = 8, top = 8, bottom = 8 },
+    window_padding             = { left = 12, right = 12, top = 12, bottom = 12 },
     window_background_opacity  = 1.0,
     -- Cursor
     default_cursor_style = 'BlinkingBlock',
     -- Inactive pane
-    inactive_pane_hsb = { saturation = 0.8, brightness = 0.4 },
+    inactive_pane_hsb = { saturation = 0.8, brightness = 0.55 },
   },
 
   SquirrelsongDark = {
@@ -49,8 +49,8 @@ local themes = {
       { family = 'JetBrains Mono',          weight = 'Regular' },
     }),
     font_size   = 13.5,
-    line_height = 1.0,
-    window_padding            = { left = 6, right = 6, top = 6, bottom = 6 },
+    line_height = 1.1,
+    window_padding            = { left = 10, right = 10, top = 10, bottom = 10 },
     window_background_opacity = 1.0,
     -- Cotton candy storm: deep storm-pink core vignettes outward through violet
     -- into midnight blue at the edges — retro squall closing in.
@@ -81,10 +81,10 @@ local themes = {
       colors        = { '#2E1460', '#1A0C3C', '#0E0A28', '#060510' },
       interpolation = 'CatmullRom',
       blend         = 'LinearRgb',
-      noise         = 80,
+      noise         = 40,
     },
     default_cursor_style = 'BlinkingBlock',
-    inactive_pane_hsb    = { saturation = 0.7, brightness = 0.35 },
+    inactive_pane_hsb    = { saturation = 0.7, brightness = 0.5 },
   },
 }
 

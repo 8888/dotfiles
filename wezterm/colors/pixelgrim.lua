@@ -12,7 +12,7 @@ return {
   ansi = {
     '#1A0E24',  -- black      (void variant)
     '#FF5A8D',  -- red        (vampire — hot pink)
-    '#05FFA1',  -- green      (ectoplasm — neon mint)
+    '#00D990',  -- green (ectoplasm — teal-shifted off cursor color to avoid collision)
     '#FFB800',  -- yellow     (gold — cursed gold)
     '#58A6FF',  -- blue       (pip — github blue)
     '#A890FF',  -- magenta    (witchcraft — lavender)
@@ -21,9 +21,9 @@ return {
   },
 
   brights = {
-    '#4A3358',  -- bright black   (medium purple — comments/dim)
+    '#9080B0',  -- bright black (comments — WCAG AA against void)
     '#FF2A6D',  -- bright red     (original vampire — intense)
-    '#00FF41',  -- bright green   (toxic — pure neon)
+    '#40FF80',  -- bright green (vivid but not maximum neon for daily driver comfort)
     '#FFD700',  -- bright yellow  (brighter gold)
     '#7DB8FF',  -- bright blue    (lighter pip)
     '#C4ADFF',  -- bright magenta (lighter witchcraft)
@@ -57,5 +57,5 @@ return {
   },
 
   split           = '#A890FF',  -- witchcraft pane dividers
-  scrollbar_thumb = '#4A3358',
+  scrollbar_thumb = '#7A6090',
 }
