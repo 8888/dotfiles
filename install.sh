@@ -63,6 +63,12 @@ else
     echo -e "${RED}Brewfile not found in ${dir}${NC}"
 fi
 
+PROFILE_BREWFILE="${dir}/Brewfile.${PROFILE}"
+if [ -f "$PROFILE_BREWFILE" ]; then
+    echo -e "${BLUE}Installing packages from Brewfile.${PROFILE}...${NC}"
+    brew bundle --file="$PROFILE_BREWFILE"
+fi
+
 if [ -f "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ]; then
     echo -e "${BLUE}Linking WezTerm shell integration...${NC}"
     ln -sf "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ~/.wezterm-shell-integration.sh

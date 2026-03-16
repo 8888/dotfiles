@@ -1,0 +1,9 @@
+# Home-specific packages
+
+# Cloud & Infrastructure
+brew "azure-cli"
+brew "azurite"
+
+# AI
+brew "gemini-cli"
+cask "claude-code"
