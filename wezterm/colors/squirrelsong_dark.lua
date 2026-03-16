@@ -4,12 +4,12 @@ return {
   foreground    = '#bfac99',
   background    = '#292019',
 
-  cursor_bg     = '#bfac99',
+  cursor_bg     = '#e8c97c',  -- warm amber: distinct from fg, stays on-palette
   cursor_fg     = '#292019',
-  cursor_border = '#bfac99',
+  cursor_border = '#e8c97c',
 
   selection_fg  = '#bfac99',
-  selection_bg  = '#574538',
+  selection_bg  = '#6e5645',  -- lifted from #574538: visible against #292019 bg
 
   ansi = {
     '#5b4839',  -- black
@@ -37,12 +37,12 @@ return {
     background = '#292019',
     active_tab = {
       bg_color  = '#4d3b2e',
-      fg_color  = '#bfac99',
+      fg_color  = '#ddc9b0',  -- brighter than fg: clear active state
       intensity = 'Bold',
     },
     inactive_tab = {
       bg_color = '#292019',
-      fg_color = '#bfac99',
+      fg_color = '#8a7a6a',  -- dimmer than fg: clear inactive state
     },
     inactive_tab_hover = {
       bg_color = '#453327',
@@ -50,7 +50,7 @@ return {
     },
     new_tab = {
       bg_color = '#292019',
-      fg_color = '#bfac99',
+      fg_color = '#8a7a6a',
     },
     new_tab_hover = {
       bg_color = '#453327',

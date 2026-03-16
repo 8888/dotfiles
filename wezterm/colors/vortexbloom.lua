@@ -1,5 +1,5 @@
 return {
-  foreground    = '#B8FF70',  -- neon phosphor: electric green, alive on screen
+  foreground    = '#C8FF88',  -- neon phosphor: warmer green, less wavelength fatigue
   background    = '#0D1228',  -- deep vortex indigo
 
   cursor_bg     = '#AAFF00',  -- acid chartreuse: blazing cursor
@@ -14,14 +14,14 @@ return {
     '#FF3D20',  -- red        (vermillion blaze — hotter, more orange-red)
     '#50FF22',  -- green      (radioactive lime — the spiral's core energy)
     '#FFD000',  -- yellow     (solar flare — vivid warm gold)
-    '#4455FF',  -- blue       (deep electric indigo — saturated)
+    '#6677FF',  -- blue       (lifted indigo — separates from #0D1228 background)
     '#BF30FF',  -- magenta    (ultraviolet — intense purple)
     '#00E8B0',  -- cyan       (vortex emerald — vivid teal-green)
     '#D0F0A0',  -- white      (phosphor lime)
   },
 
   brights = {
-    '#5555A8',  -- bright black   (twilight indigo — comments)
+    '#7080C8',  -- bright black   (twilight indigo — comments, lifted for readability)
     '#FF6040',  -- bright red     (warm coral flare)
     '#80FF50',  -- bright green   (neon chartreuse — extra pop)
     '#FFE040',  -- bright yellow  (electric gold)

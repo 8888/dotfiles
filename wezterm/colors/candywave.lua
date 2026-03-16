@@ -16,12 +16,12 @@ return {
     '#FFE566',  -- yellow     (candy corn — warm arcade gold)
     '#80CAFF',  -- blue       (periwinkle sky — cloud blue)
     '#FF79D8',  -- magenta    (cotton candy core — hot candy pink)
-    '#C4A0FF',  -- cyan       (lavender dream — violet instead of teal)
+    '#AABEFF',  -- cyan       (periwinkle — more blue, less semantic confusion)
     '#FAE8FA',  -- white      (marshmallow)
   },
 
   brights = {
-    '#7B54A8',  -- bright black   (purple-grey — comments/dim, readable)
+    '#9B78CC',  -- bright black   (lifted purple — comments more visible)
     '#FF1A8C',  -- bright red     (electric raspberry — intense)
     '#AAFFDD',  -- bright green   (bright mint — extra pop)
     '#FFF0A0',  -- bright yellow  (pastel gold — soft shimmer)
