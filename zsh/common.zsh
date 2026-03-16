@@ -40,6 +40,7 @@ path+=("/opt/homebrew/bin")
 path+=("$HOME/.local/bin")
 path+=("$HOME/.lee/bin")
 path+=("/usr/local/opt/libpq/bin")
+[[ -d /Library/TeX/texbin ]] && path+=("/Library/TeX/texbin")
 
 ### Initializers
 if which mise > /dev/null; then eval "$(mise activate zsh)"; fi
