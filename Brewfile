@@ -14,6 +14,10 @@ brew "mise"
 cask "visual-studio-code"
 cask "wezterm"
 
+# Document Processing
+brew "pandoc"
+cask "basictex"
+
 # Tools
 brew "bat"
 brew "eza"
