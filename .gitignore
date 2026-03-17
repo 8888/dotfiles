@@ -1,0 +1,3 @@
+# Installed agent skills (managed by `skills add`, not version controlled)
+.agents/
+.claude/

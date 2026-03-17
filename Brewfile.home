@@ -4,6 +4,10 @@
 brew "azure-cli"
 brew "azurite"
 
+# Google
+cask "gcloud-cli"
+brew "googleworkspace-cli"
+
 # AI
 brew "gemini-cli"
 cask "claude-code"

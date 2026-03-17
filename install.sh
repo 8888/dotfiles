@@ -169,4 +169,8 @@ for dir_name in "workflows" "global_workflows" "skills" "global_skills" "rules";
     rm -rf "$HOME/.antigravity/$dir_name"
 done
 
+# Install Google Workspace CLI skills
+echo -e "${BLUE}Installing Google Workspace CLI skills...${NC}"
+skills add --yes https://github.com/googleworkspace/cli
+
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"

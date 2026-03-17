@@ -18,6 +18,9 @@ cask "wezterm"
 brew "pandoc"
 cask "basictex"
 
+# AI
+brew "skills"
+
 # Tools
 brew "bat"
 brew "eza"
