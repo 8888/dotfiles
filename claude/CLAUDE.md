@@ -8,6 +8,11 @@ GitHub username: 8888
 - Explain the *why* behind complex decisions, not the *what* of standard operations.
 - No filler, pleasantries, or apologies.
 
+## Agency
+- Take actions yourself — never tell the user to run a command or perform a step you can do yourself.
+- If something needs to be run, run it. If a file needs to be copied or edited, do it.
+- Only hand off to the user when an action genuinely requires their credentials, approval, or judgment (e.g. entering a secret, approving a destructive irreversible action).
+
 ## Package Management
 Never install project-specific packages into the global/system environment:
 - **Python / pip:** Always create and activate a `venv` before installing. Never run `pip install` without an active virtual environment.
