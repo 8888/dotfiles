@@ -19,7 +19,7 @@
     "gws-calendar-insert": {
       "source": "googleworkspace/cli",
       "sourceType": "github",
-      "computedHash": "d07a2c5f533a792f2451c963b06a098b9c97b6529eab0257fcf72a5908652a44"
+      "computedHash": "98fafba868b5112bf812933948ccfb4ba13ea8fbda03f365bbd393b253223333"
     },
     "gws-chat": {
       "source": "googleworkspace/cli",
@@ -79,27 +79,32 @@
     "gws-gmail": {
       "source": "googleworkspace/cli",
       "sourceType": "github",
-      "computedHash": "91a803ad581831993d71f4f563ae7d3c871d7dbcd7ffa6af1ceb622f6a7eae64"
+      "computedHash": "f8aaa614fa5dfc6faaad00b04ba1618208130d65ae12f39675afe3630ba5d0f8"
     },
     "gws-gmail-forward": {
       "source": "googleworkspace/cli",
       "sourceType": "github",
-      "computedHash": "da9319066fb4f56b6dd288ea3e21256a6a6670b7178bf8930942b628473275e0"
+      "computedHash": "e4fe41e707764d6e24c9a42d9713be1c1e2d007611ac70f8b870b77b394c1fd5"
+    },
+    "gws-gmail-read": {
+      "source": "googleworkspace/cli",
+      "sourceType": "github",
+      "computedHash": "37ca10c2bf8d59ba79034a556d90921fa1f2a94e36ffd1cded655a1284988e32"
     },
     "gws-gmail-reply": {
       "source": "googleworkspace/cli",
       "sourceType": "github",
-      "computedHash": "6c34ecb7549e9d51499d3f49409697f72f6419b8056e434b8b7f1a33ed719b64"
+      "computedHash": "361cc5153513a7b0f67f667082abe4dad41ca4dda099ff570d5feeac460e0523"
     },
     "gws-gmail-reply-all": {
       "source": "googleworkspace/cli",
       "sourceType": "github",
-      "computedHash": "8197832a2bf8c329cab419e4a7fd3aabfbca034f0a822ad863aef37b948de97d"
+      "computedHash": "11cf72e0e7ae514d03e04131d3b6b42df49f154e6339b1b7b802e2944868853c"
     },
     "gws-gmail-send": {
       "source": "googleworkspace/cli",
       "sourceType": "github",
-      "computedHash": "2348d2ec3e06dd4fb24f5e844d8f2ec96ba9a8147ef8abfe02303e3edf49a48e"
+      "computedHash": "b17a468e8aa192eb675120966b05392c2a6ba05e94424bda051803a88aa2c14f"
     },
     "gws-gmail-triage": {
       "source": "googleworkspace/cli",
@@ -119,7 +124,7 @@
     "gws-meet": {
       "source": "googleworkspace/cli",
       "sourceType": "github",
-      "computedHash": "0ffd5adb978b96ec307db2fc04fdf1b50a6a25d96297d9a6d4e0e2ad10d9fbe4"
+      "computedHash": "bdbef1d22cb4bc66c7c860a338fdd35dc722ef3229c185030f576c3c4b0973a0"
     },
     "gws-modelarmor": {
       "source": "googleworkspace/cli",
