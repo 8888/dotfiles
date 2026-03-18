@@ -1,10 +1,18 @@
 #!/bin/bash
+set -eo pipefail
 
-# Define colors for output
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+LOG_FILE=$(mktemp /tmp/dotfiles-install.XXXXXX.log)
+trap 'echo "Install failed. See log: $LOG_FILE" >&2' ERR
+
+# Colors only when stdout is a terminal and NO_COLOR is unset
+if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
+    GREEN='\033[0;32m'
+    BLUE='\033[0;34m'
+    RED='\033[0;31m'
+    NC='\033[0m'
+else
+    GREEN='' BLUE='' RED='' NC=''
+fi
 
 dir=~/dotfiles
 
@@ -23,7 +31,7 @@ echo -e "${GREEN}Installing dotfiles with profile: $PROFILE${NC}"
 # Check for Homebrew
 if ! command -v brew &> /dev/null; then
     echo -e "${BLUE}Installing Homebrew...${NC}"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" >> "$LOG_FILE" 2>&1
     eval "$(/opt/homebrew/bin/brew shellenv)"
 else
     echo -e "${BLUE}Homebrew already installed.${NC}"
@@ -32,7 +40,7 @@ fi
 # Check for Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo -e "${BLUE}Installing Oh My Zsh...${NC}"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc >> "$LOG_FILE" 2>&1
 else
     echo -e "${BLUE}Oh My Zsh already installed.${NC}"
 fi
@@ -42,31 +50,32 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
     echo -e "${BLUE}Installing zsh-autosuggestions...${NC}"
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" >> "$LOG_FILE" 2>&1
 fi
 
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
     echo -e "${BLUE}Installing zsh-syntax-highlighting...${NC}"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" >> "$LOG_FILE" 2>&1
 fi
 
 if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
     echo -e "${BLUE}Installing Powerlevel10k...${NC}"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k" >> "$LOG_FILE" 2>&1
 fi
 
 # Install Brew packages via Brewfile
 echo -e "${BLUE}Installing packages from Brewfile...${NC}"
 if [ -f "${dir}/Brewfile" ]; then
-    brew bundle --file="${dir}/Brewfile"
+    brew bundle --file="${dir}/Brewfile" >> "$LOG_FILE" 2>&1
 else
-    echo -e "${RED}Brewfile not found in ${dir}${NC}"
+    echo -e "${RED}Brewfile not found in ${dir}${NC}" >&2
+    exit 1
 fi
 
 PROFILE_BREWFILE="${dir}/Brewfile.${PROFILE}"
 if [ -f "$PROFILE_BREWFILE" ]; then
     echo -e "${BLUE}Installing packages from Brewfile.${PROFILE}...${NC}"
-    brew bundle --file="$PROFILE_BREWFILE"
+    brew bundle --file="$PROFILE_BREWFILE" >> "$LOG_FILE" 2>&1
 fi
 
 if [ -f "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ]; then
@@ -174,6 +183,11 @@ done
 
 # Install Google Workspace CLI skills
 echo -e "${BLUE}Installing Google Workspace CLI skills...${NC}"
-skills add --yes https://github.com/googleworkspace/cli
+if command -v skills &> /dev/null; then
+    skills add --yes https://github.com/googleworkspace/cli >> "$LOG_FILE" 2>&1
+else
+    echo -e "${RED}Warning: 'skills' not in PATH, skipping Google Workspace CLI skills${NC}" >&2
+fi
 
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"
+echo "Full log: $LOG_FILE"
