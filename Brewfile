@@ -9,6 +9,7 @@ brew "awscli"
 
 # Runtimes
 brew "mise"
+brew "uv"
 
 # Apps
 cask "visual-studio-code"

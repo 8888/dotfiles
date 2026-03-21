@@ -181,6 +181,10 @@ for dir_name in "workflows" "global_workflows" "skills" "global_skills" "rules";
     rm -rf "$HOME/.antigravity/$dir_name"
 done
 
+# Install spec-kit (specify CLI) — tracks main, upgrades on every install run
+echo -e "${BLUE}Installing/upgrading spec-kit (specify CLI)...${NC}"
+uv tool install --upgrade "specify-cli @ git+https://github.com/github/spec-kit.git@main" >> "$LOG_FILE" 2>&1
+
 # Install Google Workspace CLI skills
 echo -e "${BLUE}Installing Google Workspace CLI skills...${NC}"
 if command -v skills &> /dev/null; then
