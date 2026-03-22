@@ -16,6 +16,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 After any changes to `agents/skills/` or `gemini/commands/`, re-run `install.sh` to sync symlinks.
 
+## Agent Rule: Never Edit Config Files Directly
+
+Never edit files in their installed locations (e.g. `~/.zshrc`, `~/.gitconfig`, `~/.claude/settings.json`). Always edit the source file in this repo and let `install.sh` handle symlinking. If a config location is not yet tracked in this repo, add the file here and add the symlink to `install.sh` first.
+
 ## Agent Rule: Auto-run install.sh
 
 After making any changes to files that require `install.sh` to take effect, **run it yourself** before finishing the task. Do not leave it for the user to run manually.
