@@ -1,8 +1,4 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline-command.sh"
-  },
   "permissions": {
     "allow": [
       "Bash(git status:*)",
@@ -22,6 +18,11 @@
       "Bash(git rev-parse:*)",
       "Bash(git show:*)",
       "Bash(git ls-files:*)",
+      "Bash(git tag:*)",
+      "Bash(git blame:*)",
+      "Bash(git worktree:*)",
+      "Bash(git clean:*)",
+      "Bash(git config:*)",
       "Bash(gh :*)",
       "Bash(ls:*)",
       "Bash(pwd:*)",
@@ -39,18 +40,65 @@
       "Bash(mkdir:*)",
       "Bash(cp:*)",
       "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Bash(ln:*)",
       "Bash(touch:*)",
       "Bash(chmod:*)",
+      "Bash(stat:*)",
+      "Bash(file:*)",
+      "Bash(open:*)",
+      "Bash(pbcopy:*)",
+      "Bash(pbpaste:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(cut:*)",
+      "Bash(tr:*)",
+      "Bash(tee:*)",
+      "Bash(xargs:*)",
+      "Bash(diff:*)",
+      "Bash(column:*)",
+      "Bash(ps:*)",
+      "Bash(kill:*)",
+      "Bash(pkill:*)",
+      "Bash(uname:*)",
+      "Bash(whoami:*)",
+      "Bash(env:*)",
+      "Bash(printenv:*)",
+      "Bash(df:*)",
+      "Bash(du:*)",
+      "Bash(zip:*)",
+      "Bash(unzip:*)",
+      "Bash(tar:*)",
+      "Bash(gzip:*)",
+      "Bash(gunzip:*)",
+      "Bash(base64:*)",
+      "Bash(seq:*)",
+      "Bash(bc:*)",
+      "Bash(expr:*)",
+      "Bash(printf:*)",
+      "Bash(source:*)",
+      "Bash(zsh:*)",
+      "Bash(bash:*)",
       "Bash(python3:*)",
       "Bash(python:*)",
       "Bash(pip:*)",
+      "Bash(uv:*)",
       "Bash(node:*)",
       "Bash(npm:*)",
       "Bash(npx:*)",
       "Bash(mise:*)",
       "Bash(brew:*)",
       "Bash(curl:*)",
+      "Bash(wget:*)",
       "Bash(jq:*)",
+      "Bash(bat:*)",
+      "Bash(eza:*)",
+      "Bash(aws:*)",
+      "Bash(az:*)",
+      "Bash(gcloud:*)",
+      "Bash(gemini:*)",
+      "Bash(ngrok:*)",
+      "Bash(pandoc:*)",
       "Bash(date:*)",
       "Bash(realpath:*)",
       "Bash(dirname:*)",
@@ -61,7 +109,9 @@
       "Glob",
       "Grep",
       "mcp__github__*",
-      "mcp__azure__*"
+      "mcp__azure__*",
+      "WebSearch",
+      "WebFetch"
     ],
     "deny": []
   },
@@ -78,5 +128,20 @@
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "chrome-devtools-mcp@chrome-devtools-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    }
   }
 }
