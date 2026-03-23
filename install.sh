@@ -163,6 +163,8 @@ rm -rf ~/.gemini/docs
 ln -sf ${dir}/agents/standards ~/.gemini/docs
 rm -rf ~/.gemini/commands
 ln -sf ${dir}/gemini/commands ~/.gemini/commands
+rm -rf ~/.gemini/policies
+ln -sf ${dir}/gemini/policies ~/.gemini/policies
 
 # WezTerm
 rm -f ~/.wezterm.lua
