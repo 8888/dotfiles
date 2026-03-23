@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-LOG_FILE=$(mktemp /tmp/dotfiles-install.XXXXXX.log)
+LOG_FILE=$(mktemp /tmp/dotfiles-install.log.XXXXXX)
 trap 'echo "Install failed. See log: $LOG_FILE" >&2' ERR
 
 # Colors only when stdout is a terminal and NO_COLOR is unset
