@@ -112,9 +112,13 @@
       "mcp__azure__*",
       "WebSearch",
       "WebFetch",
-      "Bash(.specify/scripts/bash/:*)"
+      "Bash(.specify/scripts/bash/:*)",
+      "Bash(specify:*)"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": [
+      "~/.agent-worktrees"
+    ]
   },
   "hooks": {
     "PostToolUse": [
@@ -145,5 +149,5 @@
       }
     }
   },
-  "model": "opus"
+  "effortLevel": "medium"
 }
