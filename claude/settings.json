@@ -111,7 +111,8 @@
       "mcp__github__*",
       "mcp__azure__*",
       "WebSearch",
-      "WebFetch"
+      "WebFetch",
+      "Bash(.specify/scripts/bash/:*)"
     ],
     "deny": []
   },
@@ -143,5 +144,6 @@
         "repo": "ChromeDevTools/chrome-devtools-mcp"
       }
     }
-  }
+  },
+  "model": "opus"
 }
