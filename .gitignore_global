@@ -18,3 +18,4 @@ node_modules/
 # Credentials
 .credentials
 .expo_credentials
+.claude_credentials.work
