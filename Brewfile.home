@@ -10,4 +10,3 @@ brew "googleworkspace-cli"
 
 # AI
 brew "gemini-cli"
-cask "claude-code"

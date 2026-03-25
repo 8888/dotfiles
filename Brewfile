@@ -21,6 +21,7 @@ cask "basictex"
 
 # AI
 brew "skills"
+cask "claude-code"
 
 # Tools
 brew "bat"
