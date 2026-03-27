@@ -103,6 +103,12 @@ for file in "${links[@]}"; do
     ln -sf "${dir}/${file}" ~/"$file"
 done
 
+# Profile-specific credential symlinks
+if [ "$PROFILE" = "work" ]; then
+    rm -f ~/.claude_credentials.work
+    ln -sf "${dir}/.claude_credentials.work" ~/.claude_credentials.work
+fi
+
 # Legacy alias file cleanup (we now use aliases/*.zsh)
 rm -f ~/.aliases.zsh
 
