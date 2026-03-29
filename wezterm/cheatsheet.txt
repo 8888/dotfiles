@@ -1,0 +1,25 @@
+
+  WezTerm Keybindings  (leader: Ctrl+Space)
+
+  Panes
+    \          split horizontal
+    -          split vertical
+    h j k l    navigate panes
+    z          zoom pane
+    x          close pane
+
+  Tabs
+    t          new tab
+    , .        prev / next tab
+
+  Workspaces
+    w          workspace picker
+    n          new workspace
+    [ ]        prev / next workspace
+
+  Other
+    Enter      new window
+    ?          this cheat sheet
+
+
+  Press q to close.

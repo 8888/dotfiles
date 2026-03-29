@@ -43,6 +43,7 @@ config.default_cursor_style = THEME.default_cursor_style
 config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
+config.tab_max_width = 32
 
 -- Show cwd + workspace name in right status
 wezterm.on('update-right-status', function(window, pane)
@@ -96,6 +97,18 @@ config.keys = {
   { key = ']', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
   { key = '[', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
   { key = 'w', mods = 'LEADER', action = wezterm.action.ShowLauncherArgs { flags = 'WORKSPACES' } },
+  -- Cheat sheet: opens in a bottom pane, press any key to dismiss
+  {
+    key = '?',
+    mods = 'LEADER',
+    action = wezterm.action.SplitPane {
+      direction = 'Down',
+      size = { Cells = 22 },
+      command = {
+        args = { 'sh', '-c', 'cat ~/.config/wezterm/cheatsheet.txt; read -n1 -s' },
+      },
+    },
+  },
   {
     key = 'n',
     mods = 'LEADER',
