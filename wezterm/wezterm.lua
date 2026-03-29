@@ -97,16 +97,12 @@ config.keys = {
   { key = ']', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
   { key = '[', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
   { key = 'w', mods = 'LEADER', action = wezterm.action.ShowLauncherArgs { flags = 'WORKSPACES' } },
-  -- Cheat sheet: opens in a bottom pane, press any key to dismiss
+  -- Cheat sheet: opens in a temporary tab, press any key to dismiss
   {
     key = '?',
     mods = 'LEADER',
-    action = wezterm.action.SplitPane {
-      direction = 'Down',
-      size = { Cells = 22 },
-      command = {
-        args = { 'sh', '-c', 'cat ~/.config/wezterm/cheatsheet.txt; read -n1 -s' },
-      },
+    action = wezterm.action.SpawnCommandInNewTab {
+      args = { 'sh', '-c', 'cat ~/.config/wezterm/cheatsheet.txt; read -n1 -s' },
     },
   },
   {
