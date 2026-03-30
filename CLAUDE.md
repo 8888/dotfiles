@@ -31,7 +31,7 @@ Changes that require `install.sh`:
 - `claude/settings.json`, `claude/CLAUDE.md`, `claude/statusline-command.sh` — Claude Code config symlinks
 - `Brewfile` or `Brewfile.home` / `Brewfile.work` — package installation
 - `.zshrc`, `.gitconfig`, `.gitignore_global`, `.vimrc`, `.bash_profile` — dotfile symlinks
-- `vscode/settings.json` — VS Code / Cursor symlinks
+- `vscode/settings.json` — VS Code symlink
 - `wezterm/` — WezTerm config symlinks
 
 Use the active profile (read from `~/.dotfiles_profile`) when running:
@@ -72,6 +72,6 @@ The `agents/` directory contains shared, tool-agnostic AI agent resources:
 
 Managed via `Brewfile`. Notable: `mise` (runtime version manager), `eza` (ls replacement), `gh`, `gemini-cli`, `awscli`, `azure-cli`.
 
-### VS Code / Cursor
+### VS Code
 
-`vscode/settings.json` is symlinked to both VS Code and Cursor user settings directories.
+`vscode/settings.json` is symlinked to the VS Code user settings directory.

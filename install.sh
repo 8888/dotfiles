@@ -117,14 +117,10 @@ rm -rf ~/.lee
 ln -sf ${dir}/.lee ~/.lee
 
 ## symlink for configs
-# VS Code & Cursor
+# VS Code
 mkdir -p ~/Library/Application\ Support/Code/User
 rm -f ~/"Library/Application Support/Code/User/settings.json"
 ln -sf ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
-
-mkdir -p ~/Library/Application\ Support/Cursor/User
-rm -f ~/Library/Application\ Support/Cursor/User/settings.json
-ln -sf ${dir}/vscode/settings.json ~/Library/Application\ Support/Cursor/User/settings.json
 
 # Claude Code
 mkdir -p ~/.claude
