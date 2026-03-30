@@ -105,6 +105,14 @@ config.keys = {
       args = { 'sh', '-c', 'cat ~/.config/wezterm/cheatsheet.txt; read -n1 -s' },
     },
   },
+  -- ASCII animation: campfire in a new tab, Ctrl+C or close tab to stop
+  {
+    key = '!',
+    mods = 'LEADER',
+    action = wezterm.action.SpawnCommandInNewTab {
+      args = { 'sh', '-c', '~/.config/wezterm/animate.sh' },
+    },
+  },
   {
     key = 'n',
     mods = 'LEADER',
