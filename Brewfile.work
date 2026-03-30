@@ -1,1 +1,4 @@
 # Work-specific packages
+brew "shared-mime-info"
+brew "libpq"
+brew "postgresql"

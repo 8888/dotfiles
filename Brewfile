@@ -14,6 +14,7 @@ brew "uv"
 # Apps
 cask "visual-studio-code"
 cask "wezterm"
+cask "docker-desktop"
 
 # Document Processing
 brew "pandoc"
