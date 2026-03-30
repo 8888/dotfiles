@@ -20,7 +20,15 @@ while true; do
     fi
     # move cursor home and overwrite in place (no clear = no flicker)
     printf '\033[H'
-    cat "$frame"
+    sed \
+      -e 's/[()]/\x1b[1;33m&\x1b[0m/g' \
+      -e 's/[V]/\x1b[1;31m&\x1b[0m/g' \
+      -e 's/[/\\]/\x1b[31m&\x1b[0m/g' \
+      -e 's/"/\x1b[33m&\x1b[0m/g' \
+      -e 's/[=]/\x1b[90m&\x1b[0m/g' \
+      -e 's/~/\x1b[36m&\x1b[0m/g' \
+      -e 's/CAMP  FIRE/\x1b[1;36m&\x1b[0m/g' \
+      "$frame"
     sleep "$FPS"
   done
 done
