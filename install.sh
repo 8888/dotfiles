@@ -131,6 +131,9 @@ ln -sf ${dir}/claude/CLAUDE.md ~/.claude/CLAUDE.md
 rm -f ~/.claude/statusline-command.sh
 ln -sf ${dir}/claude/statusline-command.sh ~/.claude/statusline-command.sh
 chmod +x ${dir}/claude/statusline-command.sh
+rm -f ~/.claude/chrome-devtools-mcp.sh
+ln -sf ${dir}/claude/chrome-devtools-mcp.sh ~/.claude/chrome-devtools-mcp.sh
+chmod +x ${dir}/claude/chrome-devtools-mcp.sh
 
 # Claude Code skill commands
 mkdir -p ~/.claude/commands

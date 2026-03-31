@@ -113,7 +113,8 @@
       "WebSearch",
       "WebFetch",
       "Bash(.specify/scripts/bash/:*)",
-      "Bash(specify:*)"
+      "Bash(specify:*)",
+      "mcp__chrome-devtools__*"
     ],
     "deny": [],
     "additionalDirectories": [
@@ -138,17 +139,6 @@
     "type": "command",
     "command": "~/.claude/statusline-command.sh"
   },
-  "enabledPlugins": {
-    "chrome-devtools-mcp@chrome-devtools-plugins": true
-  },
-  "extraKnownMarketplaces": {
-    "chrome-devtools-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "ChromeDevTools/chrome-devtools-mcp"
-      }
-    }
-  },
-  "effortLevel": "medium",
-  "model": "claude-sonnet-4-6"
+  "enabledPlugins": {},
+  "effortLevel": "medium"
 }
