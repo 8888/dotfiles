@@ -41,6 +41,7 @@ Use skills in `~/dotfiles/agents/skills/` for specific processes:
 - `architecture-design-process/` — architecture discovery and design
 - `design-strategy-interview/` — design requirements gathering
 - `ui-mockups/` — wireframe and mockup generation
+- `review-permissions/` — audit conversation permission prompts, explain suppression config, recommend what to allow
 
 ## Git Commit Safety
 
