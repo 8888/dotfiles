@@ -114,7 +114,8 @@
       "WebFetch",
       "Bash(.specify/scripts/bash/:*)",
       "Bash(specify:*)",
-      "mcp__chrome-devtools__*"
+      "mcp__chrome-devtools__*",
+      "Bash(gws:*)"
     ],
     "deny": [],
     "additionalDirectories": [
