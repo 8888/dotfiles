@@ -16,6 +16,7 @@ cask "visual-studio-code"
 cask "wezterm"
 cask "docker-desktop"
 cask "tableplus"
+cask "obsidian"
 
 # Document Processing
 brew "pandoc"
