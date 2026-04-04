@@ -1,9 +1,0 @@
-s#\[#\x1b[33m&\x1b[0m#g
-s#\]#\x1b[33m&\x1b[0m#g
-s#[|_]#\x1b[37m&\x1b[0m#g
-s#\*#\x1b[1;31m&\x1b[0m#g
-s#\.#\x1b[1;37m&\x1b[0m#g
-s#)#\x1b[1;33m&\x1b[0m#g
-s#=#\x1b[90m&\x1b[0m#g
-s#-#\x1b[33m&\x1b[0m#g
-s#!#\x1b[90m&\x1b[0m#g
