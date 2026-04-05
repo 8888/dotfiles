@@ -4,7 +4,9 @@ alias lst='eza --tree --icons --git-ignore --git --group-directories-first --ign
 
 # General aliases
 alias cat='bat'
-alias dict='vim ~/Library/Spelling/LocalDictionary'
+if [[ "$(uname)" == "Darwin" ]]; then
+  alias dict='vim ~/Library/Spelling/LocalDictionary'
+fi
 alias path='print -l $path'
 alias sz='source ~/.zshrc'
 alias utcdate='date -u +%FT%TZ'
@@ -44,7 +46,11 @@ alias ag='antigravity'
 # add ssh keys to keychain
 function sak() {
   for filename in ~/.ssh/*.pem; do
-    ssh-add --apple-use-keychain "$filename"
+    if [[ "$(uname)" == "Darwin" ]]; then
+      ssh-add --apple-use-keychain "$filename"
+    else
+      ssh-add "$filename"
+    fi
   done
 }
 
@@ -75,5 +81,9 @@ function gweb() {
   fi
 
   local url=$(echo "$remote_url" | sed -E "s/^git@([^:]*):(.*)$/https:\/\/\1\/\2/" | sed "s/\.git$//")
-  open "$url"
+  if [[ "$(uname)" == "Darwin" ]]; then
+    open "$url"
+  else
+    xdg-open "$url" 2>/dev/null || echo "$url"
+  fi
 }

@@ -10,9 +10,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 # Work machine
 ~/dotfiles/install.sh work
+
+# Remote server (Ubuntu)
+# First run: server/bootstrap.sh as root on a fresh droplet
+# Then: ~/dotfiles/install.sh server
+~/dotfiles/install.sh server
 ```
 
-`install.sh` installs Homebrew, Oh My Zsh + plugins, Brewfile packages, and creates symlinks for all configs. After running, copy `.credentials.example` → `.credentials` and fill in values.
+`install.sh` installs packages (Homebrew on macOS, apt on Linux server), Oh My Zsh + plugins, and creates symlinks for all configs. After running, copy `.credentials.example` → `.credentials` and fill in values.
 
 After any changes to `agents/skills/` or `gemini/commands/`, re-run `install.sh` to sync symlinks.
 

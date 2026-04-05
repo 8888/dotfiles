@@ -36,10 +36,10 @@ if [[ "$TERM_PROGRAM" == "WezTerm" && -f ~/.wezterm-shell-integration.sh ]]; the
 fi
 
 ### PATH additions
-path+=("/opt/homebrew/bin")
+[[ -d /opt/homebrew/bin ]] && path+=("/opt/homebrew/bin")
 path+=("$HOME/.local/bin")
 path+=("$HOME/.lee/bin")
-path+=("/usr/local/opt/libpq/bin")
+[[ -d /usr/local/opt/libpq/bin ]] && path+=("/usr/local/opt/libpq/bin")
 [[ -d /Library/TeX/texbin ]] && path+=("/Library/TeX/texbin")
 
 ### Initializers

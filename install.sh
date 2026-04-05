@@ -20,21 +20,72 @@ dir=~/dotfiles
 PROFILE=$1
 if [ -z "$PROFILE" ]; then
     echo -e "${BLUE}No profile specified. Defaulting to 'home'.${NC}"
-    echo -e "Usage: ./install.sh [home|work]"
+    echo -e "Usage: ./install.sh [home|work|server]"
     PROFILE="home"
+fi
+
+IS_MACOS=false
+IS_SERVER=false
+if [[ "$(uname)" == "Darwin" ]]; then
+    IS_MACOS=true
+fi
+if [[ "$PROFILE" == "server" ]]; then
+    IS_SERVER=true
 fi
 
 echo -e "${GREEN}Installing dotfiles with profile: $PROFILE${NC}"
 
 # --- Prerequisites ---
 
-# Check for Homebrew
-if ! command -v brew &> /dev/null; then
-    echo -e "${BLUE}Installing Homebrew...${NC}"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" >> "$LOG_FILE" 2>&1
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+if $IS_SERVER; then
+    # Server profile: install packages via apt
+    echo -e "${BLUE}Installing system packages via apt...${NC}"
+    sudo apt-get update >> "$LOG_FILE" 2>&1
+    sudo apt-get install -y \
+        git gh jq tmux zsh curl wget build-essential ripgrep unzip \
+        bat eza >> "$LOG_FILE" 2>&1
+
+    # Install gitleaks if not present
+    if ! command -v gitleaks &> /dev/null; then
+        echo -e "${BLUE}Installing gitleaks...${NC}"
+        GITLEAKS_VERSION=$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest | jq -r .tag_name | sed 's/v//')
+        curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | \
+            sudo tar -xz -C /usr/local/bin gitleaks >> "$LOG_FILE" 2>&1
+    fi
+
+    # Install mise if not present
+    if ! command -v mise &> /dev/null; then
+        echo -e "${BLUE}Installing mise...${NC}"
+        curl https://mise.run | sh >> "$LOG_FILE" 2>&1
+    fi
+
+    # Install Node.js via mise, then Claude Code via npm
+    if ! command -v node &> /dev/null; then
+        echo -e "${BLUE}Installing Node.js via mise...${NC}"
+        ~/.local/bin/mise install node@lts >> "$LOG_FILE" 2>&1
+        ~/.local/bin/mise use --global node@lts >> "$LOG_FILE" 2>&1
+    fi
+
+    if ! command -v claude &> /dev/null; then
+        echo -e "${BLUE}Installing Claude Code via npm...${NC}"
+        npm install -g @anthropic-ai/claude-code >> "$LOG_FILE" 2>&1
+    fi
+
+    # Install uv if not present
+    if ! command -v uv &> /dev/null; then
+        echo -e "${BLUE}Installing uv...${NC}"
+        curl -LsSf https://astral.sh/uv/install.sh | sh >> "$LOG_FILE" 2>&1
+    fi
 else
-    echo -e "${BLUE}Homebrew already installed.${NC}"
+    # macOS profiles: use Homebrew
+    # Check for Homebrew
+    if ! command -v brew &> /dev/null; then
+        echo -e "${BLUE}Installing Homebrew...${NC}"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" >> "$LOG_FILE" 2>&1
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+        echo -e "${BLUE}Homebrew already installed.${NC}"
+    fi
 fi
 
 # Check for Oh My Zsh
@@ -63,24 +114,26 @@ if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k" >> "$LOG_FILE" 2>&1
 fi
 
-# Install Brew packages via Brewfile
-echo -e "${BLUE}Installing packages from Brewfile...${NC}"
-if [ -f "${dir}/Brewfile" ]; then
-    brew bundle --file="${dir}/Brewfile" >> "$LOG_FILE" 2>&1
-else
-    echo -e "${RED}Brewfile not found in ${dir}${NC}" >&2
-    exit 1
-fi
+if ! $IS_SERVER; then
+    # Install Brew packages via Brewfile
+    echo -e "${BLUE}Installing packages from Brewfile...${NC}"
+    if [ -f "${dir}/Brewfile" ]; then
+        brew bundle --file="${dir}/Brewfile" >> "$LOG_FILE" 2>&1
+    else
+        echo -e "${RED}Brewfile not found in ${dir}${NC}" >&2
+        exit 1
+    fi
 
-PROFILE_BREWFILE="${dir}/Brewfile.${PROFILE}"
-if [ -f "$PROFILE_BREWFILE" ]; then
-    echo -e "${BLUE}Installing packages from Brewfile.${PROFILE}...${NC}"
-    brew bundle --file="$PROFILE_BREWFILE" >> "$LOG_FILE" 2>&1
-fi
+    PROFILE_BREWFILE="${dir}/Brewfile.${PROFILE}"
+    if [ -f "$PROFILE_BREWFILE" ]; then
+        echo -e "${BLUE}Installing packages from Brewfile.${PROFILE}...${NC}"
+        brew bundle --file="$PROFILE_BREWFILE" >> "$LOG_FILE" 2>&1
+    fi
 
-if [ -f "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ]; then
-    echo -e "${BLUE}Linking WezTerm shell integration...${NC}"
-    ln -sf "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ~/.wezterm-shell-integration.sh
+    if [ -f "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ]; then
+        echo -e "${BLUE}Linking WezTerm shell integration...${NC}"
+        ln -sf "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ~/.wezterm-shell-integration.sh
+    fi
 fi
 
 # --- Symlinking ---
@@ -117,10 +170,18 @@ rm -rf ~/.lee
 ln -sf ${dir}/.lee ~/.lee
 
 ## symlink for configs
-# VS Code
-mkdir -p ~/Library/Application\ Support/Code/User
-rm -f ~/"Library/Application Support/Code/User/settings.json"
-ln -sf ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
+# VS Code (macOS only)
+if $IS_MACOS; then
+    mkdir -p ~/Library/Application\ Support/Code/User
+    rm -f ~/"Library/Application Support/Code/User/settings.json"
+    ln -sf ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
+fi
+
+# tmux (server profile)
+if $IS_SERVER && [ -f "${dir}/tmux/tmux.conf" ]; then
+    rm -f ~/.tmux.conf
+    ln -sf ${dir}/tmux/tmux.conf ~/.tmux.conf
+fi
 
 # Claude Code
 mkdir -p ~/.claude
@@ -171,13 +232,15 @@ ln -sf ${dir}/gemini/commands ~/.gemini/commands
 rm -rf ~/.gemini/policies
 ln -sf ${dir}/gemini/policies ~/.gemini/policies
 
-# WezTerm
-rm -f ~/.wezterm.lua
-mkdir -p ~/.config
-rm -rf ~/.config/wezterm
-ln -sf ${dir}/wezterm ~/.config/wezterm
-if [ ! -f ~/.wezterm_theme ]; then
-    echo "PixelGrim" > ~/.wezterm_theme
+# WezTerm (macOS only)
+if $IS_MACOS; then
+    rm -f ~/.wezterm.lua
+    mkdir -p ~/.config
+    rm -rf ~/.config/wezterm
+    ln -sf ${dir}/wezterm ~/.config/wezterm
+    if [ ! -f ~/.wezterm_theme ]; then
+        echo "PixelGrim" > ~/.wezterm_theme
+    fi
 fi
 
 # Cleanup legacy paths
@@ -200,5 +263,18 @@ else
     echo -e "${RED}Warning: 'skills' not in PATH, skipping Google Workspace CLI skills${NC}" >&2
 fi
 
+# Server-specific directories
+if $IS_SERVER; then
+    mkdir -p ~/projects
+    mkdir -p ~/logs
+fi
+
 echo -e "${GREEN}Installation complete! Please restart your terminal or run 'source ~/.zshrc'${NC}"
+if $IS_SERVER; then
+    echo ""
+    echo -e "${BLUE}Server setup next steps:${NC}"
+    echo "  1. claude login"
+    echo "  2. gh auth login"
+    echo "  3. cp ${dir}/.credentials.example ~/.credentials && vi ~/.credentials"
+fi
 echo "Full log: $LOG_FILE"
