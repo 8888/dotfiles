@@ -180,10 +180,14 @@ if $IS_MACOS; then
     ln -sf ${dir}/vscode/settings.json ~/"Library/Application Support/Code/User/settings.json"
 fi
 
-# tmux (server profile)
-if $IS_SERVER && [ -f "${dir}/tmux/tmux.conf" ]; then
-    rm -f ~/.tmux.conf
-    ln -sf ${dir}/tmux/tmux.conf ~/.tmux.conf
+# tmux and zshenv (server profile)
+if $IS_SERVER; then
+    if [ -f "${dir}/tmux/tmux.conf" ]; then
+        rm -f ~/.tmux.conf
+        ln -sf ${dir}/tmux/tmux.conf ~/.tmux.conf
+    fi
+    rm -f ~/.zshenv
+    ln -sf ${dir}/zsh/server.zshenv ~/.zshenv
 fi
 
 # Claude Code
