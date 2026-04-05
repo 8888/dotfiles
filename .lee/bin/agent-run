@@ -1,0 +1,45 @@
+#!/bin/bash
+# agent-run: Fire-and-forget Claude Code execution for a project.
+# Designed for non-interactive use (iOS Shortcuts, cron, scripts).
+#
+# Usage:
+#   agent-run <project> <prompt>
+#   agent-run life "add buy groceries to my todo list"
+#   agent-run second-brain "summarize today's notes"
+
+set -eo pipefail
+
+PROJECT=$1
+PROMPT=$2
+
+if [ -z "$PROJECT" ] || [ -z "$PROMPT" ]; then
+    echo "Usage: agent-run <project> <prompt>"
+    echo ""
+    echo "Available projects:"
+    ls -1 ~/projects 2>/dev/null
+    exit 1
+fi
+
+PROJECT_DIR="$HOME/projects/$PROJECT"
+
+if [ ! -d "$PROJECT_DIR" ]; then
+    echo "Error: Project '$PROJECT' not found at $PROJECT_DIR"
+    echo ""
+    echo "Available projects:"
+    ls -1 ~/projects 2>/dev/null
+    exit 1
+fi
+
+# Ensure mise shims are in PATH (node, claude, npm)
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
+
+# Source credentials for MCP access (GitHub, etc.)
+if [ -f "$HOME/dotfiles/.credentials" ]; then
+    source "$HOME/dotfiles/.credentials"
+fi
+
+cd "$PROJECT_DIR"
+
+# Run Claude in print mode (non-interactive, exits when done)
+# --dangerously-skip-permissions: no prompts, fire-and-forget
+claude -p --dangerously-skip-permissions "$PROMPT"
