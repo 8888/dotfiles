@@ -59,11 +59,14 @@ if $IS_SERVER; then
         curl https://mise.run | sh >> "$LOG_FILE" 2>&1
     fi
 
+    # Add mise shims to PATH for this script
+    export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
+
     # Install Node.js via mise, then Claude Code via npm
-    if ! command -v node &> /dev/null; then
+    if ! mise which node &> /dev/null; then
         echo -e "${BLUE}Installing Node.js via mise...${NC}"
-        ~/.local/bin/mise install node@lts >> "$LOG_FILE" 2>&1
-        ~/.local/bin/mise use --global node@lts >> "$LOG_FILE" 2>&1
+        mise install node@lts >> "$LOG_FILE" 2>&1
+        mise use --global node@lts >> "$LOG_FILE" 2>&1
     fi
 
     if ! command -v claude &> /dev/null; then
