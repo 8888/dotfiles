@@ -24,6 +24,7 @@ cask "basictex"
 
 # AI
 brew "skills"
+brew "googleworkspace-cli"
 cask "claude-code"
 
 # Tools

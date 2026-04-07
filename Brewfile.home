@@ -6,7 +6,6 @@ brew "azurite"
 
 # Google
 cask "gcloud-cli"
-brew "googleworkspace-cli"
 
 # AI
 brew "gemini-cli"

@@ -74,6 +74,11 @@ if $IS_SERVER; then
         npm install -g @anthropic-ai/claude-code >> "$LOG_FILE" 2>&1
     fi
 
+    if ! command -v gws &> /dev/null; then
+        echo -e "${BLUE}Installing Google Workspace CLI via npm...${NC}"
+        npm install -g @googleworkspace/cli >> "$LOG_FILE" 2>&1
+    fi
+
     # Install uv if not present
     if ! command -v uv &> /dev/null; then
         echo -e "${BLUE}Installing uv...${NC}"

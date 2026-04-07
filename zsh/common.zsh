@@ -8,6 +8,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ### Environment variables
 export LANG=en_US.UTF-8
 
+# Use file-based encryption key for gws (Google Workspace CLI) instead of OS keyring
+export GOOGLE_WORKSPACE_CLI_KEYRING_BACKEND=file
+
 # Load secrets/credentials
 if [[ -f "$DOTFILES_DIR/.credentials" ]]; then
   source "$DOTFILES_DIR/.credentials"

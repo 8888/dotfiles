@@ -25,24 +25,6 @@ After any changes to `agents/skills/` or `gemini/commands/`, re-run `install.sh`
 
 Never edit files in their installed locations (e.g. `~/.zshrc`, `~/.gitconfig`, `~/.claude/settings.json`). Always edit the source file in this repo and let `install.sh` handle symlinking. If a config location is not yet tracked in this repo, add the file here and add the symlink to `install.sh` first.
 
-## Agent Rule: Auto-run install.sh
-
-After making any changes to files that require `install.sh` to take effect, **run it yourself** before finishing the task. Do not leave it for the user to run manually.
-
-Changes that require `install.sh`:
-- `agents/skills/` — skill symlinks to `~/.claude/commands/` and Gemini
-- `gemini/commands/` — Gemini command symlinks
-- `gemini/settings.json` or `gemini/trustedFolders.json` — require template expansion
-- `claude/settings.json`, `claude/CLAUDE.md`, `claude/statusline-command.sh` — Claude Code config symlinks
-- `Brewfile` or `Brewfile.home` / `Brewfile.work` — package installation
-- `.zshrc`, `.gitconfig`, `.gitignore_global`, `.vimrc`, `.bash_profile` — dotfile symlinks
-- `vscode/settings.json` — VS Code symlink
-- `wezterm/` — WezTerm config symlinks
-
-Use the active profile (read from `~/.dotfiles_profile`) when running:
-```zsh
-~/dotfiles/install.sh $(cat ~/.dotfiles_profile)
-```
 
 ## Repository Architecture
 
