@@ -28,6 +28,7 @@ brew "googleworkspace-cli"
 cask "claude-code"
 
 # Tools
+brew "gitleaks"
 brew "bat"
 brew "eza"
 cask "font-geist-mono-nerd-font"

@@ -18,9 +18,15 @@ if [ -z "$REPO_ROOT" ]; then
   exit 0
 fi
 
-# Scan staged changes for secrets
-OUTPUT=$(cd "$REPO_ROOT" && gitleaks protect --staged --no-banner 2>&1)
-EXIT_CODE=$?
+# Scan staged changes for secrets (skip if gitleaks not installed)
+if ! command -v gitleaks &>/dev/null; then
+  # Fall through to filename-pattern checks below
+  EXIT_CODE=0
+  OUTPUT=""
+else
+  OUTPUT=$(cd "$REPO_ROOT" && gitleaks protect --staged --no-banner 2>&1)
+  EXIT_CODE=$?
+fi
 
 if [ $EXIT_CODE -ne 0 ]; then
   echo "BLOCKED: gitleaks found secrets in staged changes:" >&2

@@ -3,7 +3,11 @@ alias lsa='eza -la --icons --git'
 alias lst='eza --tree --icons --git-ignore --git --group-directories-first --ignore-glob "node_modules|.git|venv|.venv|target|dist|build"'
 
 # General aliases
-alias cat='bat'
+if (( $+commands[bat] )); then
+  alias cat='bat'
+elif (( $+commands[batcat] )); then
+  alias cat='batcat'
+fi
 if [[ "$(uname)" == "Darwin" ]]; then
   alias dict='vim ~/Library/Spelling/LocalDictionary'
 fi
