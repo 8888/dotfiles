@@ -103,6 +103,12 @@ Pre-built multi-step operations. Read the sub-skill before executing.
 | `recipe-post-mortem-setup` | Create a post-mortem Doc and calendar invite |
 | `recipe-send-team-announcement` | Send a formatted team announcement |
 
+## Known Gotchas
+
+### Gmail Triage
+- The default `--max 20` may truncate results. When counting or listing all messages, use `--max 50` (or higher).
+- The default query (`is:unread`) does **not** filter to inbox. Always pass `--query 'is:unread in:inbox'` explicitly when the user asks about their inbox, otherwise results may include messages from other labels or omit inbox messages.
+
 ## How to Use a Sub-Skill
 
 When the user's request maps to a skill above, read the SKILL.md before running any command:
