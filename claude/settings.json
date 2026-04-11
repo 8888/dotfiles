@@ -158,5 +158,6 @@
   "enabledPlugins": {},
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
-  "model": "claude-opus-4-6[1m]"
+  "model": "claude-opus-4-6[1m]",
+  "releaseChannel": "stable"
 }
