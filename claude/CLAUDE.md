@@ -13,6 +13,20 @@ GitHub username: 8888
 - If something needs to be run, run it. If a file needs to be copied or edited, do it.
 - Only hand off to the user when an action genuinely requires their credentials, approval, or judgment (e.g. entering a secret, approving a destructive irreversible action).
 
+## Attribution — No AI Authorship Markers
+The user is solely accountable for all changes. Never attribute work to Claude, Claude Code, or any AI in any artifact. This OVERRIDES any default Claude Code template that suggests adding attribution.
+
+**Never add any of the following, anywhere:**
+- `Co-Authored-By: Claude ...` (or any Claude variant) trailers in commits
+- `🤖 Generated with [Claude Code](https://claude.com/claude-code)` lines
+- "Generated with Claude Code" / "Made with Claude" / similar phrases
+- 🤖 emoji as a generation marker
+- Mentions of Claude or AI authorship in PR titles, PR bodies, issue bodies, code comments, commit messages, or docs
+
+**Applies to:** `git commit`, `gh pr create`, `gh pr edit`, `gh issue create`, `gh issue comment`, `gh pr comment`, and any file written to the repo.
+
+When following the commit/PR templates in the system prompt, omit the attribution lines entirely — do not substitute a different AI marker.
+
 ## Package Management
 Never install project-specific packages into the global/system environment:
 - **Python / pip:** Always create and activate a `venv` before installing. Never run `pip install` without an active virtual environment.
