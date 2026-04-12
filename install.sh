@@ -43,7 +43,25 @@ if $IS_SERVER; then
     sudo apt-get update >> "$LOG_FILE" 2>&1
     sudo apt-get install -y \
         git gh jq tmux zsh curl wget build-essential ripgrep unzip \
-        bat eza >> "$LOG_FILE" 2>&1
+        bat eza golang >> "$LOG_FILE" 2>&1
+
+    # Install dolt if not present
+    if ! command -v dolt &> /dev/null; then
+        echo -e "${BLUE}Installing dolt...${NC}"
+        curl -L https://github.com/dolthub/dolt/releases/latest/download/install.sh | bash >> "$LOG_FILE" 2>&1
+    fi
+
+    # Install gastown (gt) if not present
+    if ! command -v gt &> /dev/null; then
+        echo -e "${BLUE}Installing gastown...${NC}"
+        go install github.com/steveyegge/gastown/cmd/gt@latest >> "$LOG_FILE" 2>&1
+    fi
+
+    # Install beads if not present
+    if ! command -v beads &> /dev/null; then
+        echo -e "${BLUE}Installing beads...${NC}"
+        go install github.com/gastownhall/beads/cmd/beads@latest >> "$LOG_FILE" 2>&1
+    fi
 
     # Install gitleaks if not present
     if ! command -v gitleaks &> /dev/null; then

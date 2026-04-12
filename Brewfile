@@ -27,6 +27,13 @@ brew "skills"
 brew "googleworkspace-cli"
 cask "claude-code"
 
+# Agent Orchestration
+brew "gastown"
+brew "go"
+brew "dolt"
+brew "beads"
+brew "tmux"
+
 # Tools
 brew "gitleaks"
 brew "bat"
