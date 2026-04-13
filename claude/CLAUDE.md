@@ -56,6 +56,7 @@ Use skills in `~/dotfiles/agents/skills/` for specific processes:
 - `design-strategy-interview/` — design requirements gathering
 - `ui-mockups/` — wireframe and mockup generation
 - `review-permissions/` — audit conversation permission prompts, explain suppression config, recommend what to allow
+- `atlassian/` — Confluence and Jira API via curl (work profile only)
 
 ## Git Commit Safety
 
