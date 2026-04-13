@@ -37,7 +37,7 @@
 	"redhat.telemetry.enabled": false,
 	"svelte.enable-ts-plugin": true,
 	"terminal.integrated.copyOnSelection": true,
-	"terminal.integrated.fontFamily": "MesloLGS NF",
+	"terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
 	"terminal.integrated.profiles.osx": {
 		"zsh": {
 			"path": "/bin/zsh"

@@ -12,8 +12,7 @@ local themes = {
     color_scheme_table = pixelgrim,
     -- Font
     font = wezterm.font_with_fallback({
-      { family = 'GeistMono Nerd Font', weight = 'Regular' },
-      { family = 'JetBrains Mono',      weight = 'Regular' },
+      { family = 'JetBrainsMono Nerd Font', weight = 'Regular' },
     }),
     font_size   = 14.0,
     line_height = 1.2,
@@ -30,8 +29,7 @@ local themes = {
     color_scheme_name  = 'SquirrelsongDark',
     color_scheme_table = squirrelsong,
     font = wezterm.font_with_fallback({
-      { family = 'GeistMono Nerd Font', weight = 'Regular' },
-      { family = 'JetBrains Mono',      weight = 'Regular' },
+      { family = 'JetBrainsMono Nerd Font', weight = 'Regular' },
     }),
     font_size   = 14.0,
     line_height = 1.2,
@@ -45,8 +43,7 @@ local themes = {
     color_scheme_name  = 'CandyWave',
     color_scheme_table = candywave,
     font = wezterm.font_with_fallback({
-      { family = 'DepartureMono Nerd Font', weight = 'Regular' },
-      { family = 'JetBrains Mono',          weight = 'Regular' },
+      { family = 'JetBrainsMono Nerd Font', weight = 'Regular' },
     }),
     font_size   = 13.5,
     line_height = 1.1,
@@ -69,8 +66,7 @@ local themes = {
     color_scheme_name  = 'VortexBloom',
     color_scheme_table = vortexbloom,
     font = wezterm.font_with_fallback({
-      { family = 'GeistMono Nerd Font', weight = 'Regular' },
-      { family = 'JetBrains Mono',      weight = 'Regular' },
+      { family = 'JetBrainsMono Nerd Font', weight = 'Regular' },
     }),
     font_size   = 14.0,
     line_height = 1.1,
