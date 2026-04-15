@@ -5,10 +5,15 @@
 INPUT=$(cat)
 CMD=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
 
-# Block sudo (including in subshells, pipes, chains)
-if echo "$CMD" | grep -qE '(^|[|;&(])[ ]*sudo[ ]'; then
-  echo "BLOCKED: sudo not allowed" >&2
-  exit 2
+# Profile-aware sudo policy.
+# home/work = real machines, sudo stays blocked.
+# server    = disposable agent VM, sudo allowed so the agent can self-provision.
+PROFILE=$(cat "$HOME/.dotfiles_profile" 2>/dev/null || echo "home")
+if [ "$PROFILE" != "server" ]; then
+  if echo "$CMD" | grep -qE '(^|[|;&(])[ ]*sudo[ ]'; then
+    echo "BLOCKED: sudo not allowed (profile=$PROFILE)" >&2
+    exit 2
+  fi
 fi
 
 # Block catastrophic rm
