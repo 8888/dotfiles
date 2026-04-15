@@ -59,6 +59,10 @@ ssh agent-box
 
 # Mosh — resilient connection for unreliable networks (airplane WiFi, mobile)
 mosh agent-box
+
+# Direct connection (public IP, bypasses Tailscale — fallback for restricted networks)
+ssh agent-box-direct
+mosh agent-box-direct
 ```
 
 Mosh authenticates via SSH, then switches to UDP. It survives disconnects, IP changes, and sleep/wake — you reconnect instantly without losing your session.
@@ -80,6 +84,15 @@ Tailscale and Mullvad can run simultaneously but may conflict:
 - **Kill switch** — Mullvad's kill switch can block Tailscale traffic. Add Tailscale as a split-tunnel exception in Mullvad settings.
 - **macOS network extensions** — macOS may only allow one active network extension. If one disables the other, restart the affected app.
 - **Testing** — connect Mullvad first, then verify `ssh agent-box` works. If it fails, add Tailscale to Mullvad's split tunneling exclusion list.
+
+### Restricted Networks
+
+Some networks block WireGuard, which both Tailscale and Mullvad use by default.
+
+- **Mullvad** — enable obfuscation (WireGuard over Shadowsocks or TCP) in Mullvad settings. Without this, Mullvad may not connect on restricted networks.
+- **Tailscale** — may work via DERP relays but is not guaranteed. If Mullvad is connected with Tailscale split-tunneled, Tailscale traffic gets obfuscated through Mullvad's wrapper.
+- **Fallback** — if Tailscale can't connect, use `mosh agent-box-direct` to connect via the public IP through Mullvad's tunnel.
+- **Before travel** — download all VPN apps before arriving. Test Mullvad obfuscation + Tailscale together at home first.
 
 ### Troubleshooting
 
