@@ -41,26 +41,16 @@ if $IS_SERVER; then
     # Server profile: install packages via apt
     echo -e "${BLUE}Installing system packages via apt...${NC}"
     sudo apt-get update >> "$LOG_FILE" 2>&1
+    # Note: `golang` is NOT installed via apt — Ubuntu ships 1.22, gastown/beads
+    # require Go 1.25+. Go is installed via mise below instead.
     sudo apt-get install -y \
         git gh jq tmux zsh curl wget build-essential ripgrep unzip \
-        bat eza golang libicu-dev pkg-config mosh >> "$LOG_FILE" 2>&1
+        bat eza libicu-dev pkg-config mosh sqlite3 >> "$LOG_FILE" 2>&1
 
     # Install dolt if not present
     if ! command -v dolt &> /dev/null; then
         echo -e "${BLUE}Installing dolt...${NC}"
         curl -L https://github.com/dolthub/dolt/releases/latest/download/install.sh | sudo bash >> "$LOG_FILE" 2>&1
-    fi
-
-    # Install gastown (gt) if not present
-    if ! command -v gt &> /dev/null; then
-        echo -e "${BLUE}Installing gastown...${NC}"
-        go install github.com/steveyegge/gastown/cmd/gt@latest >> "$LOG_FILE" 2>&1
-    fi
-
-    # Install beads if not present
-    if ! command -v bd &> /dev/null; then
-        echo -e "${BLUE}Installing beads...${NC}"
-        go install github.com/steveyegge/beads/cmd/bd@latest >> "$LOG_FILE" 2>&1
     fi
 
     # Install gitleaks if not present
@@ -86,6 +76,39 @@ if $IS_SERVER; then
         mise install node@lts >> "$LOG_FILE" 2>&1
         mise use --global node@lts >> "$LOG_FILE" 2>&1
     fi
+
+    # Install Go via mise (gastown/beads require Go 1.25+, apt's golang is too old)
+    if ! mise which go &> /dev/null; then
+        echo -e "${BLUE}Installing Go via mise...${NC}"
+        mise install go@latest >> "$LOG_FILE" 2>&1
+        mise use --global go@latest >> "$LOG_FILE" 2>&1
+    fi
+
+    # Install gastown (gt) and beads (bd) by cloning and running `make install`.
+    # Both live at github.com/gastownhall/* but their go.mod still declares
+    # module github.com/steveyegge/*, so `go install` cannot work — the
+    # canonical path is clone + make install → ~/.local/bin/{gt,bd}.
+    # Both Makefiles have a `check-up-to-date` gate that re-fetches origin
+    # and fails if upstream moves while building. We always pull first, then
+    # bypass the check to install what we just built.
+    install_from_make() {
+        local name=$1 repo=$2 binary=$3 target=$4
+        local src_dir="$HOME/src/$name"
+        if command -v "$binary" &> /dev/null; then
+            return 0
+        fi
+        echo -e "${BLUE}Installing $name from source...${NC}"
+        mkdir -p "$HOME/src"
+        if [ ! -d "$src_dir" ]; then
+            git clone "https://github.com/$repo.git" "$src_dir" >> "$LOG_FILE" 2>&1
+        else
+            git -C "$src_dir" pull --ff-only >> "$LOG_FILE" 2>&1 || true
+        fi
+        (cd "$src_dir" && SKIP_UPDATE_CHECK=1 make "$target") >> "$LOG_FILE" 2>&1
+    }
+    # beads has a dedicated install-force target; gastown honors SKIP_UPDATE_CHECK
+    install_from_make beads gastownhall/beads bd install-force
+    install_from_make gastown gastownhall/gastown gt install
 
     if ! command -v claude &> /dev/null; then
         echo -e "${BLUE}Installing Claude Code via npm...${NC}"
