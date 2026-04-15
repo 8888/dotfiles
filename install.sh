@@ -241,7 +241,19 @@ fi
 # Claude Code
 mkdir -p ~/.claude
 rm -f ~/.claude/settings.json
-ln -sf ${dir}/claude/settings.json ~/.claude/settings.json
+if $IS_SERVER; then
+    # Server profile: agent-first disposable VM. Merge base settings with
+    # server overrides (defaultMode: bypassPermissions, skip dangerous-mode
+    # prompt) so Claude doesn't stop to ask approval for routine bash.
+    # This is a GENERATED file, not a symlink — re-run install.sh after
+    # editing either source file.
+    jq -s '.[0] * .[1]' \
+        "${dir}/claude/settings.json" \
+        "${dir}/claude/settings.server.overrides.json" \
+        > ~/.claude/settings.json
+else
+    ln -sf ${dir}/claude/settings.json ~/.claude/settings.json
+fi
 rm -f ~/.claude/CLAUDE.md
 ln -sf ${dir}/claude/CLAUDE.md ~/.claude/CLAUDE.md
 rm -f ~/.claude/statusline-command.sh
