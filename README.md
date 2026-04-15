@@ -30,6 +30,68 @@
   localhost:5432:<dbname>:<user>:<password>
   ```
 
+## Remote Server (agent-box)
+
+### Setup
+
+The server profile provisions an Ubuntu VM with all dev tools, tmux, and Tailscale.
+
+```zsh
+# On a fresh Ubuntu 24.04 droplet (as root):
+~/dotfiles/server/bootstrap.sh
+
+# Then as user lee:
+~/dotfiles/install.sh server
+```
+
+Post-install steps are printed by the script: `claude login`, `gh auth login`, credentials file, etc.
+
+### Connecting
+
+Access requires [Tailscale](https://tailscale.com) on both machines. The home profile installs it automatically (`Brewfile.home`).
+
+```zsh
+# Start Tailscale (first time only)
+tailscale up
+
+# SSH (uses ~/.ssh/config Host entry)
+ssh agent-box
+
+# Mosh — resilient connection for unreliable networks (airplane WiFi, mobile)
+mosh agent-box
+```
+
+Mosh authenticates via SSH, then switches to UDP. It survives disconnects, IP changes, and sleep/wake — you reconnect instantly without losing your session.
+
+### Session Persistence
+
+The server auto-attaches to a `main` tmux session on SSH login. If your connection drops, everything keeps running server-side. Reconnect and you're back where you left off.
+
+Useful tmux aliases on the server:
+- `tn <name>` — new named session
+- `ta <name>` — attach to session
+- `tl` — list sessions
+- `tk <name>` — kill session
+
+### Tailscale + Mullvad VPN
+
+Tailscale and Mullvad can run simultaneously but may conflict:
+
+- **Kill switch** — Mullvad's kill switch can block Tailscale traffic. Add Tailscale as a split-tunnel exception in Mullvad settings.
+- **macOS network extensions** — macOS may only allow one active network extension. If one disables the other, restart the affected app.
+- **Testing** — connect Mullvad first, then verify `ssh agent-box` works. If it fails, add Tailscale to Mullvad's split tunneling exclusion list.
+
+### Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| `ssh agent-box` hangs | Verify Tailscale is connected: `tailscale status`. Check the server is online. |
+| `mosh agent-box` fails | Ensure mosh is installed on both ends. Check UDP ports 60000-61000 are open (Tailscale handles this automatically). |
+| Connection drops frequently on WiFi | Use `mosh` instead of `ssh`. |
+| Tailscale not connecting | Run `tailscale up` and re-authenticate if needed. Check `tailscale status` for peer visibility. |
+| Mullvad blocks Tailscale | Add Tailscale to Mullvad's split tunnel list, or disconnect Mullvad temporarily. |
+| tmux session lost | Sessions survive SSH drops but not server reboots. Check `tl` for existing sessions. |
+
 ## AI & Agent Infrastructure
 
 This repository features a unified, Markdown-first agent architecture that integrates seamlessly with both the **Gemini CLI** and **Antigravity**.

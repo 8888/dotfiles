@@ -7,5 +7,9 @@ brew "azurite"
 # Google
 cask "gcloud-cli"
 
+# Networking
+cask "tailscale"
+brew "mosh"
+
 # AI
 brew "gemini-cli"

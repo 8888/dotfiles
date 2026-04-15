@@ -43,7 +43,7 @@ if $IS_SERVER; then
     sudo apt-get update >> "$LOG_FILE" 2>&1
     sudo apt-get install -y \
         git gh jq tmux zsh curl wget build-essential ripgrep unzip \
-        bat eza golang libicu-dev pkg-config >> "$LOG_FILE" 2>&1
+        bat eza golang libicu-dev pkg-config mosh >> "$LOG_FILE" 2>&1
 
     # Install dolt if not present
     if ! command -v dolt &> /dev/null; then
