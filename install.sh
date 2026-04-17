@@ -53,6 +53,12 @@ if $IS_SERVER; then
         curl -L https://github.com/dolthub/dolt/releases/latest/download/install.sh | sudo bash >> "$LOG_FILE" 2>&1
     fi
 
+    # Install beads if not present
+    if ! command -v bd &> /dev/null; then
+        echo -e "${BLUE}Installing beads...${NC}"
+        go install github.com/steveyegge/beads/cmd/bd@latest >> "$LOG_FILE" 2>&1
+    fi
+
     # Install gitleaks if not present
     if ! command -v gitleaks &> /dev/null; then
         echo -e "${BLUE}Installing gitleaks...${NC}"
@@ -77,38 +83,12 @@ if $IS_SERVER; then
         mise use --global node@lts >> "$LOG_FILE" 2>&1
     fi
 
-    # Install Go via mise (gastown/beads require Go 1.25+, apt's golang is too old)
+    # Install Go via mise
     if ! mise which go &> /dev/null; then
         echo -e "${BLUE}Installing Go via mise...${NC}"
         mise install go@latest >> "$LOG_FILE" 2>&1
         mise use --global go@latest >> "$LOG_FILE" 2>&1
     fi
-
-    # Install gastown (gt) and beads (bd) by cloning and running `make install`.
-    # Both live at github.com/gastownhall/* but their go.mod still declares
-    # module github.com/steveyegge/*, so `go install` cannot work — the
-    # canonical path is clone + make install → ~/.local/bin/{gt,bd}.
-    # Both Makefiles have a `check-up-to-date` gate that re-fetches origin
-    # and fails if upstream moves while building. We always pull first, then
-    # bypass the check to install what we just built.
-    install_from_make() {
-        local name=$1 repo=$2 binary=$3 target=$4
-        local src_dir="$HOME/src/$name"
-        if command -v "$binary" &> /dev/null; then
-            return 0
-        fi
-        echo -e "${BLUE}Installing $name from source...${NC}"
-        mkdir -p "$HOME/src"
-        if [ ! -d "$src_dir" ]; then
-            git clone "https://github.com/$repo.git" "$src_dir" >> "$LOG_FILE" 2>&1
-        else
-            git -C "$src_dir" pull --ff-only >> "$LOG_FILE" 2>&1 || true
-        fi
-        (cd "$src_dir" && SKIP_UPDATE_CHECK=1 make "$target") >> "$LOG_FILE" 2>&1
-    }
-    # beads has a dedicated install-force target; gastown honors SKIP_UPDATE_CHECK
-    install_from_make beads gastownhall/beads bd install-force
-    install_from_make gastown gastownhall/gastown gt install
 
     if ! command -v claude &> /dev/null; then
         echo -e "${BLUE}Installing Claude Code via npm...${NC}"
@@ -182,6 +162,13 @@ if ! $IS_SERVER; then
     if [ -f "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ]; then
         echo -e "${BLUE}Linking WezTerm shell integration...${NC}"
         ln -sf "/Applications/WezTerm.app/Contents/Resources/wezterm.sh" ~/.wezterm-shell-integration.sh
+    fi
+
+    # Install Go via mise (mise installed via Brewfile above)
+    if ! mise which go &> /dev/null 2>&1; then
+        echo -e "${BLUE}Installing Go via mise...${NC}"
+        mise install go@latest >> "$LOG_FILE" 2>&1
+        mise use --global go@latest >> "$LOG_FILE" 2>&1
     fi
 fi
 

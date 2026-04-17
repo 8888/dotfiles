@@ -28,8 +28,6 @@ brew "googleworkspace-cli"
 cask "claude-code"
 
 # Agent Orchestration
-brew "gastown"
-brew "go"
 brew "dolt"
 brew "beads"
 brew "tmux"
