@@ -115,6 +115,16 @@
   "hooks": {
     "PreToolUse": [
       {
+        "matcher": "mcp__chrome-devtools__",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/hooks/chrome-devtools-ensure.sh",
+            "timeout": 20
+          }
+        ]
+      },
+      {
         "matcher": "Bash",
         "hooks": [
           {
