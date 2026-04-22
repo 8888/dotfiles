@@ -1,3 +1,8 @@
+# Auto-attach to tmux on SSH login (must run before p10k instant prompt)
+if [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]] && [[ $- == *i* ]] && tty -s; then
+  exec tmux new-session -A -s main
+fi
+
 # Enable Powerlevel10k instant prompt (must be at the top)
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"

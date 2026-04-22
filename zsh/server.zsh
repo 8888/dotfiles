@@ -6,7 +6,3 @@
 # Source credentials
 [[ -f ~/.credentials ]] && source ~/.credentials
 
-# Auto-attach to tmux on SSH login (skip if already in tmux or non-interactive)
-if [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]] && [[ $- == *i* ]]; then
-  tmux new-session -A -s main
-fi
