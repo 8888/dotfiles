@@ -8,5 +8,5 @@
 
 # Auto-attach to tmux on SSH login (skip if already in tmux or non-interactive)
 if [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]] && [[ $- == *i* ]]; then
-  tmux attach-session -t main 2>/dev/null || tmux new-session -s main
+  tmux new-session -A -s main
 fi
