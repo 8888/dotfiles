@@ -24,9 +24,3 @@ function agents() {
     echo "$procs"
   fi
 }
-
-# Tmux shortcuts
-alias ta='tmux attach-session -t'
-alias tl='tmux list-sessions'
-alias tn='tmux new-session -s'
-alias tk='tmux kill-session -t'

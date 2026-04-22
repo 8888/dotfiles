@@ -1,25 +1,39 @@
 
-  WezTerm Keybindings  (leader: Ctrl+Space)
+  tmux Keybindings  (prefix: Ctrl+B)
 
-  Panes
-    \          split horizontal
+  Sessions
+    d          detach
+    s          session picker
+    $          rename session
+
+  Windows (Tabs)
+    c          new window
+    ,          rename window
+    1-9        jump to window
+    n / p      next / prev window
+    &          close window
+
+  Panes (Splits)
+    |          split horizontal
     -          split vertical
     h j k l    navigate panes
     z          zoom pane
     x          close pane
+    Space      cycle layouts
+    arrows     resize (with Ctrl held)
 
-  Tabs
-    t          new tab
-    , .        prev / next tab
+  Scrollback
+    [          enter copy mode (q to exit)
+    / ?        search fwd / back (in copy mode)
 
-  Workspaces
-    w          workspace picker
-    n          new workspace
-    [ ]        prev / next workspace
+  Shell Aliases
+    ta <name>  attach session
+    tl         list sessions
+    tn <name>  new session
+    tk <name>  kill session
 
-  Other
-    Enter      new window
+  WezTerm  (leader: Ctrl+Space)
     ?          this cheat sheet
+    !          animation
 
-
-  Press q to close.
+  Press any key to close.

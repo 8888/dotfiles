@@ -17,6 +17,12 @@ alias utcdate='date -u +%FT%TZ'
 alias c='claude'
 alias cy='claude --dangerously-skip-permissions'
 
+# Tmux shortcuts
+alias ta='tmux attach-session -t'
+alias tl='tmux list-sessions'
+alias tn='tmux new-session -s'
+alias tk='tmux kill-session -t'
+
 # Git aliases
 # Supplements oh-my-zsh git plugin aliases
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh

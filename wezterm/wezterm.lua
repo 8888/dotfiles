@@ -39,64 +39,16 @@ end
 -- Cursor
 config.default_cursor_style = THEME.default_cursor_style
 
--- Tab bar
-config.hide_tab_bar_if_only_one_tab = false
-config.tab_bar_at_bottom = true
-config.use_fancy_tab_bar = false
-config.tab_max_width = 32
+-- Tab bar — hidden, tmux handles multiplexing
+config.hide_tab_bar_if_only_one_tab = true
 
--- Show cwd + workspace name in right status
-wezterm.on('update-right-status', function(window, pane)
-  local cwd = ''
-  local cwd_uri = pane:get_current_working_dir()
-  if cwd_uri then
-    local path = cwd_uri.file_path
-    -- Shorten home directory to ~
-    path = path:gsub('^' .. os.getenv('HOME'), '~')
-    cwd = path
-  end
-
-  window:set_right_status(wezterm.format({
-    { Foreground = { AnsiColor = 'Silver' } },
-    { Text = cwd .. '  ' },
-    { Attribute = { Intensity = 'Bold' } },
-    { Foreground = { AnsiColor = 'Fuchsia' } },
-    { Text = window:active_workspace() .. '  ' },
-  }))
-end)
-
--- Scrollback / bell
-config.scrollback_lines = 50000
+-- Bell
 config.audible_bell = 'Disabled'
 
--- Leader key: Ctrl+Space, then a single key
+-- Leader key: Ctrl+Space (kept for WezTerm-only utilities)
 config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1500 }
 
--- Keybindings (all triggered after Ctrl+Space leader)
 config.keys = {
-  -- Panes: split
-  { key = '\\', mods = 'LEADER', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-  { key = '-',  mods = 'LEADER', action = wezterm.action.SplitVertical   { domain = 'CurrentPaneDomain' } },
-  -- Panes: navigate (vim-style)
-  { key = 'h', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Left' },
-  { key = 'j', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Down' },
-  { key = 'k', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Up' },
-  { key = 'l', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },
-  -- Panes: zoom / close
-  { key = 'z', mods = 'LEADER', action = wezterm.action.TogglePaneZoomState },
-  { key = 'x', mods = 'LEADER', action = wezterm.action.CloseCurrentPane { confirm = true } },
-
-  -- Tabs: create / navigate
-  { key = 't', mods = 'LEADER', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
-  { key = ',', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(-1) },
-  { key = '.', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(1) },
-  -- Windows: new
-  { key = 'Enter', mods = 'LEADER', action = wezterm.action.SpawnWindow },
-
-  -- Workspaces: switch / manage
-  { key = ']', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(1) },
-  { key = '[', mods = 'LEADER', action = wezterm.action.SwitchWorkspaceRelative(-1) },
-  { key = 'w', mods = 'LEADER', action = wezterm.action.ShowLauncherArgs { flags = 'WORKSPACES' } },
   -- Cheat sheet: opens in a temporary tab, press any key to dismiss
   {
     key = '?',
@@ -105,24 +57,12 @@ config.keys = {
       args = { 'sh', '-c', 'cat ~/.config/wezterm/cheatsheet.txt; read -n1 -s' },
     },
   },
-  -- ASCII animation: campfire in a new tab, Ctrl+C or close tab to stop
+  -- ASCII animation
   {
     key = '!',
     mods = 'LEADER',
     action = wezterm.action.SpawnCommandInNewTab {
       args = { 'sh', '-c', '~/.config/wezterm/animate.sh' },
-    },
-  },
-  {
-    key = 'n',
-    mods = 'LEADER',
-    action = wezterm.action.PromptInputLine {
-      description = 'New workspace name:',
-      action = wezterm.action_callback(function(window, pane, name)
-        if name then
-          window:perform_action(wezterm.action.SwitchToWorkspace { name = name }, pane)
-        end
-      end),
     },
   },
 }
