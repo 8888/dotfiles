@@ -65,6 +65,17 @@ config.keys = {
       args = { 'sh', '-c', '~/.config/wezterm/animate.sh' },
     },
   },
+  -- Pane splits (iTerm/Warp convention): Cmd-D splits right, Cmd-Shift-D splits down
+  {
+    key = 'd',
+    mods = 'CMD',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = 'd',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+  },
 }
 
 return config
