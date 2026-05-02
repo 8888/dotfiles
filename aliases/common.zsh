@@ -23,6 +23,10 @@ alias tl='tmux list-sessions'
 alias tn='tmux new-session -s'
 alias tk='tmux kill-session -t'
 
+# Gas Town tmux socket (gt manages its own tmux server on a separate socket
+# named gt-<sha256(town_root)[:6]>). Hardcoded for /home/lee/gt.
+alias gtt='tmux -L gt-5a172f'
+
 # Git aliases
 # Supplements oh-my-zsh git plugin aliases
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
