@@ -48,6 +48,7 @@ Use skills in `~/dotfiles/agents/skills/` for specific processes:
 - `github-pr-review/` — structured PR code review
 - `github-pr-respond/` — responding to PR feedback
 - `github-issue-creation/` — creating engineering-ready GitHub issues
+- `prd-collab/` — co-author a PRD with the user as a senior PM, output feeds spec-kit `/specify`
 - `git-feature-workflow/` — branch management and feature workflow
 - `tdd-workflow/` — test-driven development process
 - `jupyter-notebook-manager/` — Jupyter notebook operations
