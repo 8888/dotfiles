@@ -228,18 +228,7 @@ fi
 # Claude Code
 mkdir -p ~/.claude
 rm -f ~/.claude/settings.json
-CLAUDE_OVERRIDES="${dir}/claude/settings.${PROFILE}.overrides.json"
-if [ -f "$CLAUDE_OVERRIDES" ]; then
-    # Profile has overrides — deep-merge base settings with profile-specific
-    # values. This is a GENERATED file, not a symlink — re-run install.sh
-    # after editing either source file.
-    jq -s '.[0] * .[1]' \
-        "${dir}/claude/settings.json" \
-        "$CLAUDE_OVERRIDES" \
-        > ~/.claude/settings.json
-else
-    ln -sf ${dir}/claude/settings.json ~/.claude/settings.json
-fi
+ln -sf "${dir}/claude/settings.${PROFILE}.json" ~/.claude/settings.json
 rm -f ~/.claude/CLAUDE.md
 ln -sf ${dir}/claude/CLAUDE.md ~/.claude/CLAUDE.md
 rm -f ~/.claude/statusline-command.sh

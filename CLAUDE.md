@@ -47,7 +47,7 @@ The `agents/` directory contains shared, tool-agnostic AI agent resources:
 
 ### Tool-Native Configurations
 
-- **`claude/`** — Claude Code config. `CLAUDE.md` → `~/.claude/CLAUDE.md`, `settings.json` → `~/.claude/settings.json`, `hooks/` contains post-edit linting hook.
+- **`claude/`** — Claude Code config. `CLAUDE.md` → `~/.claude/CLAUDE.md`, `settings.{profile}.json` → `~/.claude/settings.json` (one complete file per profile), `hooks/` contains post-edit linting hook.
 - **`gemini/`** — Gemini CLI config. `AGENTS.md` → `~/.gemini/AGENTS.md`, `commands/` → `~/.gemini/commands/` (hand-written TOML commands, organized by `dev/`, `pm/`, `designer/`, `architect/`). `settings.json` uses `{{HOME}}` placeholders expanded at install time.
 
 ### Key Utilities (`.lee/bin/`)
