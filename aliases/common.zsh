@@ -86,6 +86,39 @@ function update_all_repos() {
   done
 }
 
+# gws auth login prints a multi-kilobyte OAuth URL that exceeds WezTerm's
+# clickable-hyperlink length cap. Wrap it so the URL opens in the default
+# browser as soon as it's printed. gws is run under a PTY via script(1) so
+# its stdout stays line-buffered and the post-callback success message
+# still reaches the terminal.
+function gws() {
+  if [[ "$1" == "auth" && "$2" == "login" && "$(uname)" == "Darwin" ]]; then
+    local logfile
+    logfile="$(mktemp -t gws-auth)"
+    (
+      local opened=0
+      while (( ! opened )); do
+        if [[ -s "$logfile" ]]; then
+          local url
+          url=$(grep -oE 'https://accounts\.google\.com/[^[:space:]]+' "$logfile" | head -1)
+          if [[ -n "$url" ]]; then
+            open "$url" && opened=1
+          fi
+        fi
+        sleep 0.3
+      done
+    ) &!
+    local watcher=$!
+    script -q "$logfile" gws "$@"
+    local rc=$?
+    kill "$watcher" 2>/dev/null
+    rm -f "$logfile"
+    return $rc
+  else
+    command gws "$@"
+  fi
+}
+
 # Open the current git repo in the browser
 function gweb() {
   local remote_url=$(git remote get-url origin 2>/dev/null)
