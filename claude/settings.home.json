@@ -172,5 +172,10 @@
   },
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
-  "releaseChannel": "stable"
+  "releaseChannel": "stable",
+  "voiceEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  }
 }
