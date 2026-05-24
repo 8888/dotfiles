@@ -27,6 +27,11 @@ alias tk='tmux kill-session -t'
 # named gt-<sha256(town_root)[:6]>). Hardcoded for /home/lee/gt.
 alias gtt='tmux -L gt-5a172f'
 
+# Vocal Dashboard operator session: launch from the life repo (keeps memory +
+# guides + corpus), add-dir the product repo for project context + pull-main.
+# Runbook: life/guides/vocal-dashboard-ops.md  (Mac-local workflow)
+alias vd-ops='cd ~/Documents/life && CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ~/Documents/code/lee/vocal-dashboard'
+
 # Git aliases
 # Supplements oh-my-zsh git plugin aliases
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
