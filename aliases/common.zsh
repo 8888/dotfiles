@@ -30,7 +30,7 @@ alias gtt='tmux -L gt-5a172f'
 # Vocal Dashboard operator session: launch from the life repo (keeps memory +
 # guides + corpus), add-dir the product repo for project context + pull-main.
 # Runbook: life/guides/vocal-dashboard-ops.md  (Mac-local workflow)
-alias vd-ops='cd ~/Documents/life && CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ~/Documents/code/lee/vocal-dashboard'
+alias vd-ops='cd ~/Documents/life && CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --dangerously-skip-permissions --add-dir ~/Documents/code/lee/vocal-dashboard'
 
 # Git aliases
 # Supplements oh-my-zsh git plugin aliases
