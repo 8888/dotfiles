@@ -3,6 +3,7 @@
 # Cloud & Infrastructure
 brew "azure-cli"
 brew "azurite"
+brew "doctl"            # DigitalOcean CLI — manage/resize the agent-box droplet (see life/guides/gascity-migration.md)
 
 # Google
 cask "gcloud-cli"
@@ -13,3 +14,8 @@ brew "mosh"
 
 # AI
 brew "gemini-cli"
+
+# Agent Orchestration — Gas City (vocal-dashboard delivery loop; see life/guides/gascity-migration.md)
+# Deps (dolt/beads/tmux) live in the base Brewfile. gc also runs on the VM — see server/bootstrap.sh.
+tap "gastownhall/gascity"
+brew "gastownhall/gascity/gascity"
