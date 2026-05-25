@@ -27,6 +27,15 @@ alias tk='tmux kill-session -t'
 # named gt-<sha256(town_root)[:6]>). Hardcoded for /home/lee/gt.
 alias gtt='tmux -L gt-5a172f'
 
+# Gas City: the native command is `gc`, but oh-my-zsh's git plugin already aliases
+# `gc` -> `git commit -v`. `gas` is the un-shadowed entry point for Gas City — use it
+# for all interactive gc commands (`gas status`, `gas dashboard`, `gas bd list`).
+# `command` bypasses the git alias and runs the real gc binary on PATH (you can't write
+# `alias gas='gc'` — zsh expands aliases recursively straight back into `git commit`).
+# That binary is BUILT FROM SOURCE onto PATH (e.g. ~/.local/bin/gc), not the Homebrew
+# formula (tap+formula removed 2026-05-25; see life/guides/gascity/README.md).
+alias gas='command gc'
+
 # Vocal Dashboard operator session: launch from the life repo (keeps memory +
 # guides + corpus), add-dir the product repo for project context + pull-main.
 # Runbook: life/guides/vocal-dashboard-ops.md  (Mac-local workflow)

@@ -27,10 +27,11 @@ brew "skills"
 brew "googleworkspace-cli"
 cask "claude-code"
 
-# Agent Orchestration
+# Agent Orchestration (Gas City runtime deps; gc itself is built from source, not Homebrew)
 brew "dolt"
 brew "beads"
 brew "tmux"
+brew "flock"
 
 # Tools
 brew "gitleaks"

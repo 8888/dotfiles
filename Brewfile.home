@@ -16,6 +16,5 @@ brew "mosh"
 brew "gemini-cli"
 
 # Agent Orchestration — Gas City (vocal-dashboard delivery loop; see life/guides/gascity-migration.md)
-# Deps (dolt/beads/tmux) live in the base Brewfile. gc also runs on the VM — see server/bootstrap.sh.
-tap "gastownhall/gascity"
-brew "gastownhall/gascity/gascity"
+# gc is now BUILT FROM SOURCE (github.com/gastownhall/gascity), NOT installed via Homebrew.
+# Do not re-add the tap/brew here. Runtime deps (dolt/beads/tmux/flock) live in the base Brewfile.
