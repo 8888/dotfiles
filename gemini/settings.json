@@ -7,18 +7,6 @@
     "enabled": true
   },
   "mcpServers": {
-    "azure": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@azure/mcp@latest",
-        "server",
-        "start",
-        "--transport",
-        "stdio"
-      ],
-      "trust": true
-    },
     "chrome-devtools": {
       "command": "{{HOME}}/.claude/chrome-devtools-mcp.sh",
       "args": [],

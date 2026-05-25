@@ -112,7 +112,7 @@ This repository features a unified, Markdown-first agent architecture that integ
 ### Core Architecture
 - **Markdown-First**: Personas, rules, and workflows are authored as standard Markdown files in `agents/`.
 - **Unified Configuration**: A single source of truth for all tools. `install.sh` automatically compiles and symlinks these configurations into the appropriate local directories (`~/.gemini/`).
-- **MCP Integration**: Uses the Model Context Protocol (MCP) to provide agents with powerful tools like GitHub repository management, Azure cloud integration, and Chrome browser automation.
+- **MCP Integration**: Uses the Model Context Protocol (MCP) to provide agents with powerful tools like GitHub repository management and Chrome browser automation.
 
 ### Gemini CLI
 Run specialized agent tasks directly from your terminal.
@@ -127,7 +127,6 @@ The high-performance agent platform used within this workspace.
 
 ### MCP Servers
 - **GitHub (`github`)**: Full repository management, PR creation, and code search. Requires `$GITHUB_PERSONAL_ACCESS_TOKEN`.
-- **Azure (`azure`)**: Integration with Azure cloud services.
 - **Chrome DevTools (`chrome-devtools`)**: Browser automation and GUI testing.
 
 ### Extending the System

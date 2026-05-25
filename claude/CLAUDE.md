@@ -84,6 +84,8 @@ Before staging or committing any files — regardless of user instruction — sc
 - Inform the user and do not proceed until the secret is removed and rotated.
 - If it was already committed, warn that the git history must be cleaned (e.g. `git filter-repo`) and the secret rotated — deleting the file alone is insufficient.
 
+## GitHub
+Use the `gh` CLI for all GitHub operations (PRs, issues, code search, API). There is no GitHub MCP server.
+
 ## MCP Servers Available
-- **GitHub** — repository management, PRs, issues, code search
-- **Azure** — Azure cloud services and diagnostics
+- **Chrome DevTools** — browser automation and GUI testing

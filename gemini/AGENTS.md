@@ -38,5 +38,4 @@ Use skills in `~/dotfiles/agents/skills/` for specific processes:
 ## MCP Servers Available
 Prefer these over manual shell commands when applicable:
 - **GitHub** — repository management, PRs, issues, code search
-- **Azure** — Azure cloud services and diagnostics
 - **Chrome DevTools** — browser automation and GUI testing

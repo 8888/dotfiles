@@ -1,53 +1,68 @@
 ---
 name: github-pr-review
-description: Detailed technical steps for performing a GitHub Pull Request review using MCP tools.
+description: Detailed technical steps for performing a GitHub Pull Request review using the gh CLI.
 ---
 
 # GitHub PR Review Skill
 
-This skill provides the exact sequence of MCP tool calls and logic required to perform a professional code review on GitHub.
+This skill provides the exact sequence of `gh` CLI calls and logic required to perform a professional code review on GitHub.
 
 ## 1. Gather Context
 
 ### Identify Target PR
-- If no URL is provided:
-  - Run `git remote get-url origin` to find the repo.
-  - Parse `owner` and `repo` from the URL.
-  - Use `list_pull_requests(state='open', sort='created', direction='desc')` to find the most recent PR.
-- Use `get_me` to identify your authenticated username.
+- If no PR number/URL is provided:
+  - Run `gh pr view --json number,headRefName` to detect the PR for the current branch.
+  - If that fails (no PR for the branch), run `gh pr list --state open --sort created --limit 10 --json number,title,headRefName,author` and pick the intended one.
+- Identify your authenticated username: `gh api user --jq .login`.
 
 ### Read Documentation & History
-- Use `pull_request_read(method='get')` for description and metadata.
-- Use `pull_request_read(method='get_diff')` for the actual code changes.
-- Use `pull_request_read` with methods `get_review_comments`, `get_comments`, and `get_reviews`.
-  - **CRITICAL**: Read all existing feedback to avoid repeating comments.
+- Description and metadata: `gh pr view <num> --json title,body,author,baseRefName,headRefName,state,labels`.
+- The actual code changes: `gh pr diff <num>`.
+- Existing feedback (read **all** of it to avoid repeating comments):
+  - Line comments: `gh api repos/{owner}/{repo}/pulls/<num>/comments --paginate`
+  - Issue-level comments: `gh api repos/{owner}/{repo}/issues/<num>/comments --paginate`
+  - Prior reviews: `gh api repos/{owner}/{repo}/pulls/<num>/reviews --paginate`
+  - **CRITICAL**: Cross-reference before posting so you never duplicate an existing comment.
 
 ## 2. Technical Analysis
 Review the diff for:
 - **Bugs/Logic**: Correctness and edge cases.
 - **Security**: Secret exposure, injections, unsafe patterns.
 - **Performance**: Inefficiency, leak potential, expensive operations.
-- **Standards**: Adherence to project conventions and `engineering-standards.md`.
-- **Context**: Use `get_file_contents` if you need more context around a diff.
+- **Standards**: Adherence to project conventions and `engineering.md`.
+- **Context**: Read the file directly (or `gh api repos/{owner}/{repo}/contents/<path>?ref=<headRef>`) if you need more context around a diff hunk.
 
 ## 3. Submit Feedback
 
-### Initialize Review
-- Check `get_reviews` for any review from your account with state `PENDING`.
-  - If one exists, use its `id` — **do not call `create`** again, just add comments to the existing pending review.
-  - If none exists, call `pull_request_review_write(method='create')` without an `event` to create a new pending review.
+Build a **single review** with all line-level comments in one request — the REST API accepts a `comments` array, so there is no pending-review dance.
 
-### Post Findings
-- Iterate through unique findings.
-- **Check for existence**: If a similar comment already exists in the PR history, skip it.
-- For new findings, use `add_comment_to_pending_review`:
-  - `side`: 'RIGHT' for new code.
-  - `subjectType`: 'LINE'.
+### Construct the payload
+Write the review to a JSON file (or pipe via `--input -`):
 
-### Finalize
-- Check if you are the author of the PR.
-- Use `pull_request_review_write(method='submit_pending')`.
-- **Events**:
-  - `APPROVE`: If code is solid and you are NOT the author.
-  - `REQUEST_CHANGES`: If blocking issues exist and you are NOT the author.
-  - `COMMENT`: If you are the author (self-review) or have non-blocking feedback.
+```json
+{
+  "body": "<overall summary>",
+  "event": "<COMMENT | APPROVE | REQUEST_CHANGES>",
+  "comments": [
+    { "path": "src/foo.js", "line": 42, "side": "RIGHT", "body": "<finding>" }
+  ]
+}
+```
+
+- `side`: `RIGHT` for new/changed code; `LEFT` for removed lines.
+- For a multi-line comment, add `"start_line"` alongside `"line"`.
+- **Check for existence**: skip any finding that matches an existing comment from Step 1.
+
+### Choose the event
+- `APPROVE`: code is solid and you are **not** the author.
+- `REQUEST_CHANGES`: blocking issues exist and you are **not** the author.
+- `COMMENT`: you are the author (self-review) or feedback is non-blocking.
+
+(Confirm authorship by comparing `gh api user --jq .login` against the PR author from Step 1.)
+
+### Submit
+```bash
+gh api --method POST repos/{owner}/{repo}/pulls/<num>/reviews --input review.json
+```
+
+If you only have an overall comment and no line-level notes, `gh pr review <num> --comment|--approve|--request-changes --body "..."` is sufficient.

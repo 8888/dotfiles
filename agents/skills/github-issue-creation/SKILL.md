@@ -34,9 +34,10 @@ Structure the issue to meet the "Definition of Ready" in the product management 
 - **Environment Context**: OS, browser, branch/environment if applicable.
 
 ## 4. GitHub Execution
-- **Tool Selection**: Use the GitHub MCP tools (e.g., `create_issue`).
-- **Construct Payload**:
-  - `title`: Concise and descriptive (e.g., "Feature: [Summary]" or "Bug: [Summary]").
-  - `body`: The full formatted requirement from Step 3.
-  - `labels`: Apply relevant labels (e.g., `feature`, `bug`, `enhancement`, `product-ready`).
-- **Confirmation**: Present the issue URL to the user.
+- **Tool Selection**: Use the `gh` CLI (`gh issue create`).
+- **Construct the command**:
+  - `--title`: Concise and descriptive (e.g., "Feature: [Summary]" or "Bug: [Summary]").
+  - `--body`: The full formatted requirement from Step 3 (use `--body-file` for long multiline bodies).
+  - `--label`: Apply relevant labels (repeat the flag, e.g. `--label feature --label product-ready`).
+  - `--repo <owner>/<repo>`: Only if targeting a repo other than the current one.
+- **Confirmation**: `gh issue create` prints the issue URL — present it to the user.

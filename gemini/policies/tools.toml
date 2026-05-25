@@ -2,12 +2,6 @@
 # This replaces the deprecated `tools.allowed` in `settings.json`.
 
 [[rule]]
-mcpName = "azure"
-toolName = "applens"
-decision = "allow"
-priority = 100
-
-[[rule]]
 toolName = "run_shell_command"
 commandPrefix = "ls"
 decision = "allow"

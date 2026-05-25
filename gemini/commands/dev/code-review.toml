@@ -4,7 +4,7 @@ description = "Review a GitHub PR with professional, structured feedback"
 prompt = """
 # Goal
 
-Perform a comprehensive code review of a GitHub Pull Request. Access the PR using GitHub MCP tools, analyze the changes, and provide feedback directly on the PR as comments. Either Request Changes, Approve, or Comment.
+Perform a comprehensive code review of a GitHub Pull Request. Access the PR using the `gh` CLI, analyze the changes, and provide feedback directly on the PR as comments. Either Request Changes, Approve, or Comment.
 
 Approach this as a critical code reviewer — flag architectural concerns, security issues, and correctness problems, not just style nits. Follow the standards in `~/.gemini/docs/engineering.md`.
 

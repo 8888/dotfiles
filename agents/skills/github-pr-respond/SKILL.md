@@ -8,8 +8,8 @@ description: Steps for processing and responding to GitHub PR review feedback.
 This skill outlines how to technicaly address and reply to code review comments on a GitHub Pull Request.
 
 ## 1. Context Synchronization
-- Fetch PR details and branch info using `pull_request_read(method='get')`.
-- Retrieve all review threads via `pull_request_read(method='get_review_comments')`.
+- Fetch PR details and branch info: `gh pr view <num> --json title,body,headRefName,baseRefName,state`.
+- Retrieve all review threads: `gh api repos/{owner}/{repo}/pulls/<num>/comments --paginate`.
 - **Local Setup**: 
   - `git fetch origin`
   - `git checkout <branch-name>`
@@ -30,7 +30,8 @@ Classify each unresolved comment:
   - `git push origin <branch>`
 
 ## 4. GitHub Interaction
-- Reply to specific threads using `pull_request_review_write` or equivalent comment tools.
+- Reply to a specific review thread: `gh api repos/{owner}/{repo}/pulls/<num>/comments/<comment_id>/replies --method POST -f body="..."`.
+- For a general PR comment (not tied to a thread): `gh pr comment <num> --body "..."`.
 - **Formatting**:
   - For fixes: "Done. Fixed in [short-hash]."
   - For declines: Provide a technical "Why" (referencing performance, security, or project rules).
