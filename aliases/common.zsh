@@ -27,14 +27,19 @@ alias tk='tmux kill-session -t'
 # named gt-<sha256(town_root)[:6]>). Hardcoded for /home/lee/gt.
 alias gtt='tmux -L gt-5a172f'
 
-# Gas City: the native command is `gc`, but oh-my-zsh's git plugin already aliases
-# `gc` -> `git commit -v`. `gas` is the un-shadowed entry point for Gas City — use it
-# for all interactive gc commands (`gas status`, `gas dashboard`, `gas bd list`).
-# `command` bypasses the git alias and runs the real gc binary on PATH (you can't write
-# `alias gas='gc'` — zsh expands aliases recursively straight back into `git commit`).
-# That binary is BUILT FROM SOURCE onto PATH (e.g. ~/.local/bin/gc), not the Homebrew
-# formula (tap+formula removed 2026-05-25; see life/guides/gascity/README.md).
-alias gas='command gc'
+# Gas City: when the source-built `gc` binary is installed on PATH, drop the
+# oh-my-zsh git-plugin `gc` -> `git commit -v` alias so the real `gc` wins. This
+# matters not just for the operator (no more `gas` typing) but critically for
+# Gas City *agents* — their Bash tool spawns zsh, sources this file, and the
+# alias would otherwise shadow every `gc` call in upstream gastown prompts
+# (DocNow factory first-light, 2026-05-26). Memory: project_docnow_mac_auth,
+# reference_gascity_invocation. `whence -p` resolves PATH binaries, ignoring
+# aliases — so the guard is self-disabling on machines without the binary.
+if whence -p gc >/dev/null 2>&1; then
+  unalias gc 2>/dev/null
+fi
+# Kept for muscle memory — `gas` still works, just no longer required.
+alias gas='gc'
 
 # Vocal Dashboard operator session: launch from the life repo (keeps memory +
 # guides + corpus), add-dir the product repo for project context + pull-main.
