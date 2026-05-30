@@ -25,7 +25,6 @@ cask "basictex"
 # AI
 brew "skills"
 brew "googleworkspace-cli"
-cask "claude-code"
 
 # Agent Orchestration (Gas City runtime deps; gc itself is built from source, not Homebrew)
 brew "dolt"

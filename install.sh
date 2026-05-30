@@ -90,11 +90,6 @@ if $IS_SERVER; then
         mise use --global go@latest >> "$LOG_FILE" 2>&1
     fi
 
-    if ! command -v claude &> /dev/null; then
-        echo -e "${BLUE}Installing Claude Code via npm...${NC}"
-        npm install -g @anthropic-ai/claude-code >> "$LOG_FILE" 2>&1
-    fi
-
     if ! command -v gws &> /dev/null; then
         echo -e "${BLUE}Installing Google Workspace CLI via npm...${NC}"
         npm install -g @googleworkspace/cli >> "$LOG_FILE" 2>&1
@@ -170,6 +165,18 @@ if ! $IS_SERVER; then
         mise install go@latest >> "$LOG_FILE" 2>&1
         mise use --global go@latest >> "$LOG_FILE" 2>&1
     fi
+fi
+
+# Claude Code (native installer — avoids waiting on Homebrew/npm release lag)
+# ~/.local/bin is added to PATH persistently in zsh/common.zsh; this export is
+# script-local so the command -v guard below can detect an existing install.
+export PATH="$HOME/.local/bin:$PATH"
+if ! command -v claude &> /dev/null; then
+    echo -e "${BLUE}Installing Claude Code via native installer...${NC}"
+    tmp_installer=$(mktemp)
+    curl -fsSL https://claude.ai/install.sh -o "$tmp_installer" >> "$LOG_FILE" 2>&1
+    bash "$tmp_installer" >> "$LOG_FILE" 2>&1
+    rm -f "$tmp_installer"
 fi
 
 # --- Symlinking ---
