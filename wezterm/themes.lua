@@ -4,6 +4,7 @@ local pixelgrim    = require('colors.pixelgrim')
 local squirrelsong = require('colors.squirrelsong_dark')
 local candywave    = require('colors.candywave')
 local vortexbloom  = require('colors.vortexbloom')
+local daywalker    = require('colors.daywalker')
 
 local themes = {
   pixelgrim = {
@@ -81,6 +82,28 @@ local themes = {
     },
     default_cursor_style = 'BlinkingBlock',
     inactive_pane_hsb    = { saturation = 0.7, brightness = 0.5 },
+  },
+
+  daywalker = {
+    color_scheme_name  = 'Daywalker',
+    color_scheme_table = daywalker,
+    -- Heavier weight + larger size: thick strokes survive glare; thin ones
+    -- get eaten by ambient light. This is the single biggest sunlight win
+    -- after the light background itself.
+    font = wezterm.font_with_fallback({
+      { family = 'JetBrainsMono Nerd Font', weight = 'Bold' },
+    }),
+    font_size   = 15.0,
+    line_height = 1.25,
+    window_padding            = { left = 12, right = 12, top = 12, bottom = 12 },
+    -- Flat, fully opaque light field — no gradient, no transparency. Both
+    -- create low-contrast dead zones that glare exploits.
+    window_background_opacity = 1.0,
+    -- Steady block: a blinking/thin cursor is easy to lose outdoors.
+    default_cursor_style = 'SteadyBlock',
+    -- Keep inactive panes near full brightness; dimming sacrifices the
+    -- contrast we built the theme around.
+    inactive_pane_hsb    = { saturation = 1.0, brightness = 0.92 },
   },
 }
 
