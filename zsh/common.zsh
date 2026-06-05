@@ -54,5 +54,3 @@ if which mise > /dev/null; then eval "$(mise activate zsh)"; fi
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
 
-# Added by Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
