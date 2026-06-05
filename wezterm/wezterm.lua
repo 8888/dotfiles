@@ -45,26 +45,7 @@ config.hide_tab_bar_if_only_one_tab = true
 -- Bell
 config.audible_bell = 'Disabled'
 
--- Leader key: Ctrl+Space (kept for WezTerm-only utilities)
-config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1500 }
-
 config.keys = {
-  -- Cheat sheet: opens in a temporary tab, press any key to dismiss
-  {
-    key = '?',
-    mods = 'LEADER',
-    action = wezterm.action.SpawnCommandInNewTab {
-      args = { 'sh', '-c', 'cat ~/.config/wezterm/cheatsheet.txt; read -n1 -s' },
-    },
-  },
-  -- ASCII animation
-  {
-    key = '!',
-    mods = 'LEADER',
-    action = wezterm.action.SpawnCommandInNewTab {
-      args = { 'sh', '-c', '~/.config/wezterm/animate.sh' },
-    },
-  },
   -- Pane splits (iTerm/Warp convention): Cmd-D splits right, Cmd-Shift-D splits down
   {
     key = 'd',
