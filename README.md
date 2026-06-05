@@ -107,34 +107,22 @@ Some networks block WireGuard, which both Tailscale and Mullvad use by default.
 
 ## AI & Agent Infrastructure
 
-This repository features a unified, Markdown-first agent architecture that integrates seamlessly with both the **Gemini CLI** and **Antigravity**.
+This repository uses a Markdown-first, tool-agnostic agent architecture centered on **Claude Code**.
 
 ### Core Architecture
-- **Markdown-First**: Personas, rules, and workflows are authored as standard Markdown files in `agents/`.
-- **Unified Configuration**: A single source of truth for all tools. `install.sh` automatically compiles and symlinks these configurations into the appropriate local directories (`~/.gemini/`).
-- **MCP Integration**: Uses the Model Context Protocol (MCP) to provide agents with powerful tools like GitHub repository management and Chrome browser automation.
+- **Shared knowledge in `agents/`**: Domain standards (`agents/standards/`) and skill modules (`agents/skills/`) are authored once as Markdown and consumed by Claude Code.
+- **Symlinked at install time**: `install.sh` symlinks each `agents/skills/*/SKILL.md` into `~/.claude/commands/`, and `claude/CLAUDE.md` → `~/.claude/CLAUDE.md`.
+- **MCP Integration**: Uses the Model Context Protocol (MCP) to give agents tools like Chrome browser automation.
 
-### Gemini CLI
-Run specialized agent tasks directly from your terminal.
-- **Usage**: `gemini <namespace>:<command>` (e.g., `gemini dev:task "fix the bug"`).
-- **Compilation**: Workflows in `agents/workflows/` are automatically mapped to CLI namespaces. A file named `pm-prd.md` becomes the `pm:prd` command.
-
-### Antigravity
-The high-performance agent platform used within this workspace.
-- **Slash Commands**: Trigger workflows using `/` commands (e.g., `/dev-ticket`).
-- **Skills**: Specialized modules in `agents/skills/` extend Antigravity's capabilities (e.g., `tdd-workflow`).
-- **Task View**: Uses `task_boundary` and `task.md` to provide transparent, multi-step progress tracking.
+### Claude Code
+- **Config**: `claude/CLAUDE.md` (global instructions) and `claude/settings.{profile}.json` (one complete file per profile).
+- **Skills**: Modules in `agents/skills/` (each with a `SKILL.md`) surface as `/`-commands, e.g. `/tdd-workflow`.
+- **Standards**: Domain knowledge in `agents/standards/` referenced from `claude/CLAUDE.md`.
 
 ### MCP Servers
-- **GitHub (`github`)**: Full repository management, PR creation, and code search. Requires `$GITHUB_PERSONAL_ACCESS_TOKEN`.
 - **Chrome DevTools (`chrome-devtools`)**: Browser automation and GUI testing.
 
 ### Extending the System
-1. **Rules**: Add `.md` files to `agents/rules/` to define new personas or engineering standards.
-2. **Workflows**: Add `.md` files with YAML frontmatter to `agents/workflows/`.
-3. **Skills**: Create new directories in `agents/skills/` with a `SKILL.md` file.
-4. **Sync**: Run `./install.sh [home|work]` to apply your changes.
-
----
-
-For a full catalog of available rules, workflows, and skills, see [GEMINI_AGENT_ARCHITECTURE.md](GEMINI_AGENT_ARCHITECTURE.md).
+1. **Standards**: Add `.md` files to `agents/standards/` for new domain knowledge.
+2. **Skills**: Create a directory in `agents/skills/` with a `SKILL.md` file.
+3. **Sync**: Run `./install.sh [home|work]` to apply your changes.

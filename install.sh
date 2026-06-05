@@ -256,31 +256,6 @@ for skill_dir in "${dir}/agents/skills"/*/; do
     fi
 done
 
-# Gemini CLI
-mkdir -p ~/.gemini
-if [ -f "${dir}/gemini/settings.json" ]; then
-    echo -e "${BLUE}Configuring Gemini Settings...${NC}"
-    # Expand {{HOME}} to ~/.gemini/settings.json (removes symlink if it exists to avoid truncation)
-    rm -f ~/.gemini/settings.json
-    sed "s|{{HOME}}|$HOME|g" "${dir}/gemini/settings.json" > ~/.gemini/settings.json
-fi
-
-# Process Trusted Folders Template
-if [ -f "${dir}/gemini/trustedFolders.json" ]; then
-    echo -e "${BLUE}Configuring Trusted Folders...${NC}"
-    rm -f ~/.gemini/trustedFolders.json
-    sed "s|{{HOME}}|$HOME|g" "${dir}/gemini/trustedFolders.json" > ~/.gemini/trustedFolders.json
-fi
-
-rm -f ~/.gemini/AGENTS.md
-ln -sf ${dir}/gemini/AGENTS.md ~/.gemini/AGENTS.md
-rm -rf ~/.gemini/docs
-ln -sf ${dir}/agents/standards ~/.gemini/docs
-rm -rf ~/.gemini/commands
-ln -sf ${dir}/gemini/commands ~/.gemini/commands
-rm -rf ~/.gemini/policies
-ln -sf ${dir}/gemini/policies ~/.gemini/policies
-
 # WezTerm (macOS only)
 if $IS_MACOS; then
     rm -f ~/.wezterm.lua

@@ -19,7 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `install.sh` installs packages (Homebrew on macOS, apt on Linux server), Oh My Zsh + plugins, and creates symlinks for all configs. After running, copy `.credentials.example` → `.credentials` and fill in values.
 
-After any changes to `agents/skills/` or `gemini/commands/`, re-run `install.sh` to sync symlinks.
+After any changes to `agents/skills/`, re-run `install.sh` to sync symlinks.
 
 ## Agent Rule: Never Edit Config Files Directly
 
@@ -42,13 +42,12 @@ This is a **profile-based dotfiles system** with two profiles: `home` and `work`
 
 The `agents/` directory contains shared, tool-agnostic AI agent resources:
 
-- **`agents/standards/`** — Domain knowledge files (engineering, product management, git, cloud architecture, design). Symlinked to `~/.gemini/docs/` for Gemini auto-loading. Referenced by `claude/CLAUDE.md` for Claude Code.
-- **`agents/skills/`** — Specialized skill modules, each directory containing a `SKILL.md`. Tool-agnostic process guides used by both Claude Code and Gemini CLI.
+- **`agents/standards/`** — Domain knowledge files (engineering, product management, git, cloud architecture, design). Referenced by `claude/CLAUDE.md` for Claude Code.
+- **`agents/skills/`** — Specialized skill modules, each directory containing a `SKILL.md`. Symlinked into `~/.claude/commands/` by `install.sh`.
 
 ### Tool-Native Configurations
 
 - **`claude/`** — Claude Code config. `CLAUDE.md` → `~/.claude/CLAUDE.md`, `settings.{profile}.json` → `~/.claude/settings.json` (one complete file per profile), `hooks/` contains post-edit linting hook.
-- **`gemini/`** — Gemini CLI config. `AGENTS.md` → `~/.gemini/AGENTS.md`, `commands/` → `~/.gemini/commands/` (hand-written TOML commands, organized by `dev/`, `pm/`, `designer/`, `architect/`). `settings.json` uses `{{HOME}}` placeholders expanded at install time.
 
 ### Key Utilities (`.lee/bin/`)
 
@@ -57,7 +56,7 @@ The `agents/` directory contains shared, tool-agnostic AI agent resources:
 
 ### Homebrew Packages
 
-Managed via `Brewfile`. Notable: `mise` (runtime version manager), `eza` (ls replacement), `gh`, `gemini-cli`, `awscli`, `azure-cli`.
+Managed via `Brewfile`. Notable: `mise` (runtime version manager), `eza` (ls replacement), `gh`, `awscli`, `azure-cli`.
 
 ### VS Code
 

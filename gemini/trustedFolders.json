@@ -1,6 +1,0 @@
-{
-  "{{HOME}}/.agent-worktrees": "TRUST_FOLDER",
-  "{{HOME}}/dotfiles": "TRUST_FOLDER",
-  "{{HOME}}/Documents/code/lee": "TRUST_PARENT",
-  "{{HOME}}/.gemini": "TRUST_FOLDER"
-}
