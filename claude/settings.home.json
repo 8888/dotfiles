@@ -158,6 +158,5 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "voiceEnabled": true,
-  "releaseChannel": "stable",
-  "model": "sonnet"
+  "releaseChannel": "stable"
 }
