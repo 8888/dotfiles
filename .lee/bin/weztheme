@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 # weztheme — switch WezTerm theme from the CLI
-# Usage: weztheme [pixelgrim|squirrelsongdark|candywave|vortexbloom|daywalker]
+# Usage: weztheme [pixelgrim|candywave|vortexbloom|daywalker]
 #        weztheme          (no args: show current + available)
 
 STATE="$HOME/.wezterm_theme"
-THEMES=(pixelgrim squirrelsongdark candywave vortexbloom daywalker)
+THEMES=(pixelgrim candywave vortexbloom daywalker)
 
 if [[ $# -eq 0 ]]; then
   current=$([[ -f "$STATE" ]] && cat "$STATE" || echo 'candywave')

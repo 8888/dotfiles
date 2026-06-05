@@ -1,7 +1,6 @@
 local wezterm = require 'wezterm'
 
 local pixelgrim    = require('colors.pixelgrim')
-local squirrelsong = require('colors.squirrelsong_dark')
 local candywave    = require('colors.candywave')
 local vortexbloom  = require('colors.vortexbloom')
 local daywalker    = require('colors.daywalker')
@@ -24,20 +23,6 @@ local themes = {
     default_cursor_style = 'BlinkingBlock',
     -- Inactive pane
     inactive_pane_hsb = { saturation = 0.8, brightness = 0.55 },
-  },
-
-  squirrelsongdark = {
-    color_scheme_name  = 'SquirrelsongDark',
-    color_scheme_table = squirrelsong,
-    font = wezterm.font_with_fallback({
-      { family = 'JetBrainsMono Nerd Font', weight = 'Regular' },
-    }),
-    font_size   = 14.0,
-    line_height = 1.2,
-    window_padding            = { left = 12, right = 12, top = 12, bottom = 12 },
-    window_background_opacity = 1.0,
-    default_cursor_style      = 'SteadyBar',
-    inactive_pane_hsb         = { saturation = 0.9, brightness = 0.65 },
   },
 
   candywave = {
