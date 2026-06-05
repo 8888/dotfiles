@@ -292,14 +292,6 @@ if $IS_MACOS; then
     fi
 fi
 
-# Cleanup legacy paths
-rm -f ~/.gemini/GEMINI.md
-rm -rf ~/.gemini/antigravity
-rm -rf ~/.agents
-for dir_name in "workflows" "global_workflows" "skills" "global_skills" "rules"; do
-    rm -rf "$HOME/.antigravity/$dir_name"
-done
-
 # Install spec-kit (specify CLI) — tracks main, upgrades on every install run
 echo -e "${BLUE}Installing/upgrading spec-kit (specify CLI)...${NC}"
 uv tool install --upgrade "specify-cli @ git+https://github.com/github/spec-kit.git@main" >> "$LOG_FILE" 2>&1
