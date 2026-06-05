@@ -25,6 +25,7 @@ cask "basictex"
 # AI
 brew "skills"
 brew "googleworkspace-cli"
+cask "antigravity-cli"  # replaces gemini-cli (Google transitioned Gemini CLI → Antigravity CLI)
 
 # Agent Orchestration (Gas City runtime deps; gc itself is built from source, not Homebrew)
 brew "dolt"
