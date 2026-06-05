@@ -17,6 +17,30 @@ alias utcdate='date -u +%FT%TZ'
 alias c='claude'
 alias cy='claude --dangerously-skip-permissions'
 
+# Antigravity CLI (`agy`) is the fallback when Claude Code is out of tokens. It has
+# no working global rules file (v1.0.5 only loads `<cwd>/.agents/AGENTS.md`), so this
+# wrapper injects our global rules into the launch dir for the session, then cleans
+# up — giving "global" behaviour with zero per-repo setup and no git pollution.
+# The injected AGENTS.md points the agent at ~/dotfiles/claude/CLAUDE.md (the full
+# Claude setup). A pre-existing project `.agents/AGENTS.md` is respected, never touched.
+function agy() {
+  local link=".agents/AGENTS.md"
+  local created_link=0 created_dir=0
+  if [[ ! -e "$link" && ! -L "$link" ]]; then
+    if [[ ! -d .agents ]]; then
+      mkdir -p .agents 2>/dev/null && created_dir=1
+    fi
+    ln -s ~/dotfiles/gemini/AGENTS.md "$link" 2>/dev/null && created_link=1
+  fi
+  {
+    command agy "$@"
+  } always {
+    (( created_link )) && rm -f "$link"
+    (( created_dir )) && rmdir .agents 2>/dev/null
+  }
+}
+alias agyc='agy --dangerously-skip-permissions'
+
 # Tmux shortcuts
 alias ta='tmux attach-session -t'
 alias tl='tmux list-sessions'
