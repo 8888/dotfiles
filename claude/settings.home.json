@@ -77,16 +77,7 @@
       "Grep",
       "WebSearch",
       "WebFetch",
-      "mcp__chrome-devtools__*",
-      "mcp__claude_ai_Gmail__gmail_get_profile",
-      "mcp__claude_ai_Gmail__gmail_search_messages",
-      "mcp__claude_ai_Gmail__gmail_read_message",
-      "mcp__claude_ai_Gmail__gmail_read_thread",
-      "mcp__claude_ai_Gmail__gmail_list_labels",
-      "mcp__claude_ai_Gmail__gmail_list_drafts",
-      "mcp__claude_ai_Google_Calendar__gcal_list_*",
-      "mcp__claude_ai_Google_Calendar__gcal_get_*",
-      "mcp__claude_ai_Google_Calendar__gcal_find_*"
+      "mcp__chrome-devtools__*"
     ],
     "deny": [],
     "additionalDirectories": [
