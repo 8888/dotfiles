@@ -275,13 +275,17 @@ if $IS_MACOS && [ "$PROFILE" = "home" ]; then
     mkdir -p ~/.config/goose
     rm -f ~/.config/goose/config.yaml
     ln -sf ${dir}/goose/config.yaml ~/.config/goose/config.yaml
-    # Ollama server runs from OUR LaunchAgent (carries the 16GB-tuned env vars),
-    # not `brew services`. Stop any brew service first so they don't fight over :11434.
+    # Ollama server runs from OUR LaunchAgent (carries the 16GB-tuned env vars), not
+    # `brew services` and not the cask app's own auto-server. The cask registers a
+    # background service (com.ollama.ollama via SMAppService, runatload) that grabs
+    # :11434 — durably DISABLE it so it can't race ours at login.
     brew services stop ollama >/dev/null 2>&1 || true
+    launchctl disable "gui/$(id -u)/com.ollama.ollama" >/dev/null 2>&1 || true
+    launchctl bootout  "gui/$(id -u)/com.ollama.ollama" >/dev/null 2>&1 || true
     mkdir -p ~/Library/LaunchAgents
     rm -f ~/Library/LaunchAgents/com.local.ollama.plist
     ln -sf ${dir}/goose/com.local.ollama.plist ~/Library/LaunchAgents/com.local.ollama.plist
-    launchctl bootout "gui/$(id -u)" ~/Library/LaunchAgents/com.local.ollama.plist >/dev/null 2>&1 || true
+    launchctl bootout   "gui/$(id -u)" ~/Library/LaunchAgents/com.local.ollama.plist >/dev/null 2>&1 || true
     launchctl bootstrap "gui/$(id -u)" ~/Library/LaunchAgents/com.local.ollama.plist >/dev/null 2>&1 || true
     # Pull base models + build the 16K-context derived models Goose uses.
     chmod +x ${dir}/goose/setup-models.sh
