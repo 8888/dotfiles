@@ -31,9 +31,8 @@ pull() {
     return 1
 }
 
-pull qwen3:8b       # default agent model (best tool-caller in class; has thinking mode)
-pull qwen2.5:7b     # non-thinking alternative — faster per agentic step
-pull llama3.2:3b    # tiny + fast for trivial non-agentic tasks
+pull qwen2.5:7b     # default agent model — non-thinking, fast tool-caller (-> qwen25-goose)
+pull qwen3:8b       # deeper reasoning when latency is OK (-> qwen3-goose)
 
 # Derived models with 16K context baked in (Goose ignores server context; needs this).
 "$OLLAMA" show qwen3:8b   >/dev/null 2>&1 && "$OLLAMA" create qwen3-goose  -f "$dir/Modelfile.qwen3-goose"  >/dev/null 2>&1 && echo "✓ qwen3-goose (16K)"
