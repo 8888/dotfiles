@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Local Ollama server (home machine only) — managed by dotfiles, NOT `brew services`.
+  Symlinked to ~/Library/LaunchAgents/com.local.ollama.plist by install.sh.
+
+  Why our own agent instead of `brew services start ollama`:
+  the brew-generated plist can't carry these env vars durably, and on a 16GB M1
+  they matter — they raise the context window (Goose's tool prompt overflows the
+  4K default) and roughly halve KV-cache memory so the model doesn't swap.
+
+  Do NOT also run `brew services start ollama` — two servers will fight over :11434.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.local.ollama</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/ollama</string>
+        <string>serve</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <!-- Bigger context so Goose's tool-definition system prompt fits.
+             16K is a 16GB-safe balance (paired with q8_0 KV below). -->
+        <key>OLLAMA_CONTEXT_LENGTH</key>
+        <string>16384</string>
+        <!-- Halve KV-cache memory + speed up attention on Apple Silicon. -->
+        <key>OLLAMA_FLASH_ATTENTION</key>
+        <string>1</string>
+        <key>OLLAMA_KV_CACHE_TYPE</key>
+        <string>q8_0</string>
+        <!-- Unload the model from RAM 5 min after last use (free memory for the
+             factory / normal work). Set "-1" to keep it resident if you prefer. -->
+        <key>OLLAMA_KEEP_ALIVE</key>
+        <string>5m</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/ollama.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/ollama.log</string>
+</dict>
+</plist>

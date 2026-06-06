@@ -1,0 +1,6 @@
+# Derived model: qwen2.5:7b with a 16K context baked in (same reason as qwen3-goose).
+# qwen2.5 has NO "thinking" mode → lower latency per tool-call step on the M1, which
+# often makes it the better *agentic* default than qwen3 despite qwen3's stronger raw
+# reasoning. Created by goose/setup-models.sh as `qwen25-goose`.
+FROM qwen2.5:7b
+PARAMETER num_ctx 16384

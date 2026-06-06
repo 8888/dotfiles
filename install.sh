@@ -267,6 +267,28 @@ if $IS_MACOS; then
     fi
 fi
 
+# Local LLM stack (home profile, macOS only) — Ollama server + Goose agent config.
+# Packages come from Brewfile.home (ollama, block-goose-cli). Guide: life/guides/local-llm.md
+if $IS_MACOS && [ "$PROFILE" = "home" ]; then
+    echo -e "${BLUE}Configuring local LLM stack (Ollama + Goose)...${NC}"
+    # Goose agent config
+    mkdir -p ~/.config/goose
+    rm -f ~/.config/goose/config.yaml
+    ln -sf ${dir}/goose/config.yaml ~/.config/goose/config.yaml
+    # Ollama server runs from OUR LaunchAgent (carries the 16GB-tuned env vars),
+    # not `brew services`. Stop any brew service first so they don't fight over :11434.
+    brew services stop ollama >/dev/null 2>&1 || true
+    mkdir -p ~/Library/LaunchAgents
+    rm -f ~/Library/LaunchAgents/com.local.ollama.plist
+    ln -sf ${dir}/goose/com.local.ollama.plist ~/Library/LaunchAgents/com.local.ollama.plist
+    launchctl bootout "gui/$(id -u)" ~/Library/LaunchAgents/com.local.ollama.plist >/dev/null 2>&1 || true
+    launchctl bootstrap "gui/$(id -u)" ~/Library/LaunchAgents/com.local.ollama.plist >/dev/null 2>&1 || true
+    # Pull base models + build the 16K-context derived models Goose uses.
+    chmod +x ${dir}/goose/setup-models.sh
+    ${dir}/goose/setup-models.sh >> "$LOG_FILE" 2>&1 || \
+        echo -e "${RED}Model setup incomplete — run ~/dotfiles/goose/setup-models.sh manually.${NC}" >&2
+fi
+
 # Install spec-kit (specify CLI) — tracks main, upgrades on every install run
 echo -e "${BLUE}Installing/upgrading spec-kit (specify CLI)...${NC}"
 uv tool install --upgrade "specify-cli @ git+https://github.com/github/spec-kit.git@main" >> "$LOG_FILE" 2>&1

@@ -15,6 +15,17 @@ brew "mosh"
 # AI
 brew "gemini-cli"
 
+# Local LLM — on-device agent stack (NO Claude/API budget; runs fully offline).
+# See life/guides/local-llm.md for the full usage guide + the honest 16GB-M1 ceiling.
+# Gotchas (both learned the hard way — do NOT "simplify" these):
+#   - Use the CASK `ollama-app`, NOT brew "ollama" (formula). The formula bottle ships
+#     WITHOUT the llama-server runner → inference fails "llama-server binary not found".
+#     The cask bundles the Metal runner; it symlinks the `ollama` CLI to /opt/homebrew/bin.
+#     We run the server from a LaunchAgent, not the GUI — the menu-bar app is incidental.
+#   - Use `block-goose-cli`, NOT brew "goose" (that's an unrelated DB-migration tool).
+cask "ollama-app"       # runtime: pulls/serves local models (localhost:11434, OpenAI-compatible)
+brew "block-goose-cli"  # agent: terminal computer-use agent (shell + files + MCP) over Ollama
+
 # Agent Orchestration — Gas City (vocal-dashboard delivery loop; see life/guides/gascity-migration.md)
 # gc is now BUILT FROM SOURCE (github.com/gastownhall/gascity), NOT installed via Homebrew.
 # Do not re-add the tap/brew here. Runtime deps (dolt/beads/tmux/flock) live in the base Brewfile.

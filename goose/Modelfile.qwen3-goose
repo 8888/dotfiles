@@ -1,0 +1,8 @@
+# Derived model: qwen3:8b with a 16K context baked in.
+# WHY: Goose's Ollama provider forces num_ctx=4096 regardless of the server's
+# OLLAMA_CONTEXT_LENGTH. At 4K, Goose's tool-definition system prompt overflows and
+# the small model deadlocks/loops. Baking num_ctx into a derived model is the only
+# override Goose respects (verified: `ollama ps` then reports CONTEXT 16384).
+# Created by goose/setup-models.sh as `qwen3-goose`. Guide: life/guides/local-llm.md
+FROM qwen3:8b
+PARAMETER num_ctx 16384

@@ -1,0 +1,38 @@
+# Goose config — local-only agent over Ollama (NO Claude/API budget).
+# Symlinked to ~/.config/goose/config.yaml by install.sh.
+# Full guide: life/guides/local-llm.md
+#
+# Provider/model: fully local via the Ollama server (started by the dotfiles
+# LaunchAgent com.local.ollama — see goose/com.local.ollama.plist).
+#
+# Default = qwen25-goose: qwen2.5:7b with a 16K context BAKED IN (built by
+# goose/setup-models.sh). Two reasons it's the default over plain qwen3:8b:
+#   1. Context: Goose forces num_ctx=4096 and ignores the server default; at 4K its
+#      tool prompt overflows and the model DEADLOCKS. The only override Goose respects
+#      is num_ctx baked into a derived model — hence the "-goose" models.
+#   2. Speed: qwen2.5 has no "thinking" mode. Same trivial task: qwen25-goose 1:13 vs
+#      qwen3-goose 3:33 on this M1. Use qwen3-goose only when you want deeper reasoning
+#      and can wait (--model qwen3-goose, or change GOOSE_MODEL here).
+GOOSE_PROVIDER: ollama
+GOOSE_MODEL: qwen25-goose
+OLLAMA_HOST: localhost:11434
+
+# Approval mode. smart_approve = auto-run read-only/safe steps, but PROMPT before
+# anything risky or irreversible (deleting/sending email, rm, git push, etc.).
+# Right default for an agent acting on a real machine + inbox. Other modes:
+#   auto = run everything unattended (don't, with a small flaky model)
+#   approve = prompt before every tool call (safest, slowest)
+#   chat = no tools at all (plain chat)
+GOOSE_MODE: smart_approve
+
+# Extensions = the agent's tools. Keep this LEAN: small local models pick the
+# right tool far more reliably with fewer of them in front of it.
+#   developer = shell + file read/write/edit. This alone covers the use cases:
+#     it runs `gws` for email, reads the life repo, runs git, does file admin.
+# To add more later (web automation, cross-session memory) see the guide:
+#   computercontroller (web/automation), memory (remembers facts across sessions).
+extensions:
+  developer:
+    enabled: true
+    name: developer
+    type: builtin
