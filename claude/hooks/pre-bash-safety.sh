@@ -6,10 +6,10 @@ INPUT=$(cat)
 CMD=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
 
 # Profile-aware sudo policy.
-# home/work = real machines, sudo stays blocked.
-# server    = disposable agent VM, sudo allowed so the agent can self-provision.
+# home/work       = real machines, sudo stays blocked.
+# server/lifebox  = disposable agent VMs, sudo allowed so the agent can self-provision.
 PROFILE=$(cat "$HOME/.dotfiles_profile" 2>/dev/null || echo "home")
-if [ "$PROFILE" != "server" ]; then
+if [ "$PROFILE" != "server" ] && [ "$PROFILE" != "lifebox" ]; then
   if echo "$CMD" | grep -qE '(^|[|;&(])[ ]*sudo[ ]'; then
     echo "BLOCKED: sudo not allowed (profile=$PROFILE)" >&2
     exit 2

@@ -1,0 +1,159 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(gh *)",
+      "Bash(ls *)",
+      "Bash(pwd)",
+      "Bash(which *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(echo *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(rm *)",
+      "Bash(touch *)",
+      "Bash(chmod *)",
+      "Bash(stat *)",
+      "Bash(file *)",
+      "Bash(open *)",
+      "Bash(ln *)",
+      "Bash(diff *)",
+      "Bash(sed *)",
+      "Bash(awk *)",
+      "Bash(cut *)",
+      "Bash(tr *)",
+      "Bash(tee *)",
+      "Bash(xargs *)",
+      "Bash(column *)",
+      "Bash(jq *)",
+      "Bash(bat *)",
+      "Bash(eza *)",
+      "Bash(date *)",
+      "Bash(realpath *)",
+      "Bash(dirname *)",
+      "Bash(basename *)",
+      "Bash(printf *)",
+      "Bash(seq *)",
+      "Bash(bc *)",
+      "Bash(expr *)",
+      "Bash(ps *)",
+      "Bash(uname *)",
+      "Bash(whoami)",
+      "Bash(df *)",
+      "Bash(du *)",
+      "Bash(zip *)",
+      "Bash(unzip *)",
+      "Bash(tar *)",
+      "Bash(base64 *)",
+      "Bash(pbcopy *)",
+      "Bash(pbpaste)",
+      "Bash(source *)",
+      "Bash(python3 *)",
+      "Bash(python *)",
+      "Bash(pip *)",
+      "Bash(uv *)",
+      "Bash(node *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(mise *)",
+      "Bash(brew *)",
+      "Bash(gws *)",
+      "Bash(curl *)",
+      "Bash(pandoc *)",
+      "Bash(specify *)",
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "WebSearch",
+      "WebFetch",
+      "mcp__chrome-devtools__*",
+      "mcp__claude_ai_Gmail__gmail_get_profile",
+      "mcp__claude_ai_Gmail__gmail_search_messages",
+      "mcp__claude_ai_Gmail__gmail_read_message",
+      "mcp__claude_ai_Gmail__gmail_read_thread",
+      "mcp__claude_ai_Gmail__gmail_list_labels",
+      "mcp__claude_ai_Gmail__gmail_list_drafts",
+      "mcp__claude_ai_Google_Calendar__gcal_list_*",
+      "mcp__claude_ai_Google_Calendar__gcal_get_*",
+      "mcp__claude_ai_Google_Calendar__gcal_find_*"
+    ],
+    "deny": [],
+    "defaultMode": "bypassPermissions",
+    "additionalDirectories": [
+      "~/.agent-worktrees"
+    ]
+  },
+  "model": "claude-opus-4-7[1m]",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__chrome-devtools__",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/hooks/chrome-devtools-ensure.sh",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/hooks/pre-bash-safety.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/hooks/pre-commit-secrets.sh",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "file=\"$(echo \"$CLAUDE_TOOL_INPUT\" | jq -r '.file_path // empty')\"; case \"$file\" in *.env|*.env.*) echo 'Blocked: .env file' >&2; exit 2;; *) exit 0;; esac",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/hooks/post-edit-lint.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  },
+  "effortLevel": "medium",
+  "skipDangerousModePermissionPrompt": true,
+  "releaseChannel": "stable"
+}

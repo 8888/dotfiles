@@ -20,7 +20,7 @@ dir=~/dotfiles
 PROFILE=$1
 if [ -z "$PROFILE" ]; then
     echo -e "${BLUE}No profile specified. Defaulting to 'home'.${NC}"
-    echo -e "Usage: ./install.sh [home|work|server]"
+    echo -e "Usage: ./install.sh [home|work|server|lifebox]"
     PROFILE="home"
 fi
 
@@ -29,7 +29,10 @@ IS_SERVER=false
 if [[ "$(uname)" == "Darwin" ]]; then
     IS_MACOS=true
 fi
-if [[ "$PROFILE" == "server" ]]; then
+# Linux server-class profiles (apt-based, sudo-capable, headless):
+#   server  = the factory VM (adds dolt/beads/go/gitleaks)
+#   lifebox = the personal-admin box (lean: no factory tooling)
+if [[ "$PROFILE" == "server" || "$PROFILE" == "lifebox" ]]; then
     IS_SERVER=true
 fi
 
@@ -47,24 +50,28 @@ if $IS_SERVER; then
         git gh jq tmux zsh curl wget build-essential ripgrep unzip \
         bat eza libicu-dev pkg-config mosh sqlite3 >> "$LOG_FILE" 2>&1
 
-    # Install dolt if not present
-    if ! command -v dolt &> /dev/null; then
-        echo -e "${BLUE}Installing dolt...${NC}"
-        curl -L https://github.com/dolthub/dolt/releases/latest/download/install.sh | sudo bash >> "$LOG_FILE" 2>&1
-    fi
+    # Factory-only tooling (the 'server' VM). The lean 'lifebox' admin box skips
+    # these — and gitleaks ships x64-only, which would fail on arm64/Graviton.
+    if [[ "$PROFILE" == "server" ]]; then
+        # Install dolt if not present
+        if ! command -v dolt &> /dev/null; then
+            echo -e "${BLUE}Installing dolt...${NC}"
+            curl -L https://github.com/dolthub/dolt/releases/latest/download/install.sh | sudo bash >> "$LOG_FILE" 2>&1
+        fi
 
-    # Install beads if not present
-    if ! command -v bd &> /dev/null; then
-        echo -e "${BLUE}Installing beads...${NC}"
-        go install github.com/steveyegge/beads/cmd/bd@latest >> "$LOG_FILE" 2>&1
-    fi
+        # Install beads if not present
+        if ! command -v bd &> /dev/null; then
+            echo -e "${BLUE}Installing beads...${NC}"
+            go install github.com/steveyegge/beads/cmd/bd@latest >> "$LOG_FILE" 2>&1
+        fi
 
-    # Install gitleaks if not present
-    if ! command -v gitleaks &> /dev/null; then
-        echo -e "${BLUE}Installing gitleaks...${NC}"
-        GITLEAKS_VERSION=$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest | jq -r .tag_name | sed 's/v//')
-        curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | \
-            sudo tar -xz -C /usr/local/bin gitleaks >> "$LOG_FILE" 2>&1
+        # Install gitleaks if not present
+        if ! command -v gitleaks &> /dev/null; then
+            echo -e "${BLUE}Installing gitleaks...${NC}"
+            GITLEAKS_VERSION=$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest | jq -r .tag_name | sed 's/v//')
+            curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | \
+                sudo tar -xz -C /usr/local/bin gitleaks >> "$LOG_FILE" 2>&1
+        fi
     fi
 
     # Install mise if not present
@@ -83,8 +90,8 @@ if $IS_SERVER; then
         mise use --global node@lts >> "$LOG_FILE" 2>&1
     fi
 
-    # Install Go via mise
-    if ! mise which go &> /dev/null; then
+    # Install Go via mise (factory-only — needed for beads, not the lifebox)
+    if [[ "$PROFILE" == "server" ]] && ! mise which go &> /dev/null; then
         echo -e "${BLUE}Installing Go via mise...${NC}"
         mise install go@latest >> "$LOG_FILE" 2>&1
         mise use --global go@latest >> "$LOG_FILE" 2>&1
