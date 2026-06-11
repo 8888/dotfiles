@@ -13,6 +13,12 @@ Before doing anything else, read and strictly follow these files, in order:
    and pointers to standards + skills). These **override your defaults**.
 2. Any **`CLAUDE.md`** in the current working directory and its parents up to the
    repo root — project-specific rules.
+3. This repo nests a **`CLAUDE.md` per domain** (e.g. `health/`, `financial/credit-cards/`,
+   `relocation/05-LISTINGS/`, `agentic-factory/docnow-mobile/`). Whenever you are about to
+   **read from or write to a subdirectory**, first check for a `CLAUDE.md` in that directory
+   (and any intermediate directories between your cwd and it) and read it before acting. These
+   nested files override the parent rules for that domain — do not skip them just because they
+   live below your starting directory.
 
 Read these automatically. Never ask permission to read them — just do it.
 
