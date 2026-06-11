@@ -233,6 +233,11 @@ if [ -f "${dir}/tmux/tmux.conf" ]; then
     ln -sf ${dir}/tmux/tmux.conf ~/.tmux.conf
 fi
 
+# bat
+mkdir -p ~/.config/bat
+rm -f ~/.config/bat/config
+ln -sf ${dir}/bat/config ~/.config/bat/config
+
 # zshenv (server profile)
 if $IS_SERVER; then
     rm -f ~/.zshenv
