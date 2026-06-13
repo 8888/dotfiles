@@ -13,7 +13,7 @@ cask "tailscale"
 brew "mosh"
 
 # AI
-brew "gemini-cli"
+cask "antigravity-cli"
 
 # Local LLM — on-device agent stack (NO Claude/API budget; runs fully offline).
 # See life/guides/local-llm.md for the full usage guide + the honest 16GB-M1 ceiling.
