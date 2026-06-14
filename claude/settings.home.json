@@ -133,6 +133,17 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/hooks/session-memory-sync.sh",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
