@@ -45,6 +45,15 @@ config.hide_tab_bar_if_only_one_tab = true
 -- Bell
 config.audible_bell = 'Disabled'
 
+-- Clickable URLs: Cmd+Click opens in browser (bypasses tmux mouse capture)
+config.mouse_bindings = {
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'CMD',
+    action = wezterm.action.OpenLinkAtMouseCursor,
+  },
+}
+
 config.keys = {
   -- Pane splits (iTerm/Warp convention): Cmd-D splits right, Cmd-Shift-D splits down
   {
