@@ -1,3 +1,12 @@
 # Installed agent skills (managed by `skills add`, not version controlled)
 .agents/
 .claude/
+
+# Secrets — never commit. These also match the global excludesfile, but they are
+# pinned here so the ignore applies on EVERY clone regardless of whether git's
+# global core.excludesfile is wired up (e.g. the lifebox uses a minimal
+# hand-written ~/.gitconfig that does not set excludesfile). The *.example
+# templates are intentionally tracked; the exact-name patterns below don't match them.
+.credentials
+.claude_credentials.work
+.expo_credentials
