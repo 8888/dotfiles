@@ -59,11 +59,7 @@ if $IS_SERVER; then
             curl -L https://github.com/dolthub/dolt/releases/latest/download/install.sh | sudo bash >> "$LOG_FILE" 2>&1
         fi
 
-        # Install beads if not present
-        if ! command -v bd &> /dev/null; then
-            echo -e "${BLUE}Installing beads...${NC}"
-            go install github.com/steveyegge/beads/cmd/bd@latest >> "$LOG_FILE" 2>&1
-        fi
+        # (beads is installed below, AFTER go — it needs `go install`)
 
         # Install gitleaks if not present (arch-aware: gitleaks ships x64 + arm64)
         if ! command -v gitleaks &> /dev/null; then
@@ -99,6 +95,14 @@ if $IS_SERVER; then
         echo -e "${BLUE}Installing Go via mise...${NC}"
         mise install go@latest >> "$LOG_FILE" 2>&1
         mise use --global go@latest >> "$LOG_FILE" 2>&1
+    fi
+
+    # Install beads (factory-only) — MUST run after go is installed above, since
+    # it builds via `go install`. Previously this lived in the server block before
+    # go existed, which 127'd on a fresh box and aborted the whole install.
+    if [[ "$PROFILE" == "server" ]] && ! command -v bd &> /dev/null; then
+        echo -e "${BLUE}Installing beads...${NC}"
+        go install github.com/steveyegge/beads/cmd/bd@latest >> "$LOG_FILE" 2>&1
     fi
 
     if ! command -v gws &> /dev/null; then
