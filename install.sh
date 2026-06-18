@@ -250,8 +250,6 @@ rm -f ~/.claude/settings.json
 ln -sf "${dir}/claude/settings.${PROFILE}.json" ~/.claude/settings.json
 rm -f ~/.claude/CLAUDE.md
 ln -sf ${dir}/claude/CLAUDE.md ~/.claude/CLAUDE.md
-rm -f ~/.claude/keybindings.json
-ln -sf ${dir}/claude/keybindings.json ~/.claude/keybindings.json
 rm -f ~/.claude/statusline-command.sh
 ln -sf ${dir}/claude/statusline-command.sh ~/.claude/statusline-command.sh
 chmod +x ${dir}/claude/statusline-command.sh
