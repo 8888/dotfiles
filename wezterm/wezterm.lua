@@ -66,6 +66,20 @@ config.keys = {
     mods = 'CMD|SHIFT',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
+  -- Rename current tab: prompts in the local GUI, so it works even when the
+  -- pane is SSH'd into a remote box (where `wezterm cli` isn't available).
+  {
+    key = 'e',
+    mods = 'CMD',
+    action = wezterm.action.PromptInputLine {
+      description = 'Rename tab:',
+      action = wezterm.action_callback(function(window, _, line)
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    },
+  },
 }
 
 return config
