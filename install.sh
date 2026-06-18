@@ -51,7 +51,7 @@ if $IS_SERVER; then
         bat eza libicu-dev pkg-config mosh sqlite3 >> "$LOG_FILE" 2>&1
 
     # Factory-only tooling (the 'server' VM). The lean 'lifebox' admin box skips
-    # these — and gitleaks ships x64-only, which would fail on arm64/Graviton.
+    # these. All are arch-aware (x86_64 and arm64/Graviton both supported).
     if [[ "$PROFILE" == "server" ]]; then
         # Install dolt if not present
         if ! command -v dolt &> /dev/null; then
@@ -65,11 +65,15 @@ if $IS_SERVER; then
             go install github.com/steveyegge/beads/cmd/bd@latest >> "$LOG_FILE" 2>&1
         fi
 
-        # Install gitleaks if not present
+        # Install gitleaks if not present (arch-aware: gitleaks ships x64 + arm64)
         if ! command -v gitleaks &> /dev/null; then
             echo -e "${BLUE}Installing gitleaks...${NC}"
             GITLEAKS_VERSION=$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest | jq -r .tag_name | sed 's/v//')
-            curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | \
+            case "$(uname -m)" in
+                aarch64|arm64) GL_ARCH=arm64 ;;
+                *)             GL_ARCH=x64 ;;
+            esac
+            curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_${GL_ARCH}.tar.gz" | \
                 sudo tar -xz -C /usr/local/bin gitleaks >> "$LOG_FILE" 2>&1
         fi
     fi
