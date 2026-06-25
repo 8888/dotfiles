@@ -45,7 +45,12 @@ config.hide_tab_bar_if_only_one_tab = true
 -- Bell
 config.audible_bell = 'Disabled'
 
--- Clickable URLs: Cmd+Click opens in browser (bypasses tmux mouse capture)
+-- Clickable URLs: Cmd+Click opens in browser (bypasses tmux mouse capture).
+-- tmux's `mouse on` enables mouse reporting, so WezTerm forwards clicks to tmux
+-- unless the held modifier is in this list (defaults to SHIFT). Add CMD so the
+-- Cmd+Click binding below actually fires inside tmux instead of going to tmux.
+config.bypass_mouse_reporting_modifiers = 'CMD'
+
 config.mouse_bindings = {
   {
     event = { Up = { streak = 1, button = 'Left' } },
